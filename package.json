@@ -1,0 +1,38 @@
+{
+  "name": "krsnausclient",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "autosuggest-highlight": "^3.1.1",
+    "axios": "^0.17.1",
+    "js-cookie": "^2.2.0",
+    "lodash": "^4.17.4",
+    "material-ui": "^1.0.0-beta.29",
+    "material-ui-icons": "^1.0.0-beta.17",
+    "mdi-material-ui": "^3.0.1",
+    "query-string": "^5.0.1",
+    "rc-slider": "^8.6.0",
+    "react": "^16.2.0",
+    "react-autosuggest": "^9.3.2",
+    "react-dom": "^16.2.0",
+    "react-facebook-login": "^4.0.0",
+    "react-google-login": "^3.0.4",
+    "react-player": "^0.25.3",
+    "react-redux": "^5.0.6",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.0.17",
+    "react-sticky": "^6.0.1",
+    "react-sticky-el": "^1.0.16",
+    "react-stickynode": "^1.4.1",
+    "react-virtualized": "^9.14.1",
+    "redux": "^3.7.2",
+    "sticky-state": "^2.4.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "proxy": "http://localhost:8000"
+}
