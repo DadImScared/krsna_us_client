@@ -1,56 +1,22 @@
 
-import axios from 'axios';
-
-export const userNameValidator = async (props, state, id, updateFormErrors) => {
-  const newErrors = { ...state.formErrors };
-  try {
-    const { data: { message } } = await axios.post(
-      '/api/v1/userexists', { username: state.form.username }, { headers: { contentType: 'application/json' } }
-    );
-    if (message) {
-      newErrors[id] = 'Username taken';
-    }
-    else {
-      newErrors[id] = '';
-    }
-  }
-  catch(e) {
-    console.error(e.response);
-  }
-  // setState({ formErrors: newErrors });
-  updateFormErrors(newErrors);
-};
-
-export const emailValidator = async (props, { form: { email }, formErrors }, id, updateFormErrors) => {
+export const passwordValidator = (props, { form: { password1, password2 }, formErrors }, id, updateFormErrors) => {
   const newErrors = { ...formErrors };
-  try {
-    const { data: { message } } = await axios.post(
-      '/api/v1/emailexists', { email }, { headers: { contentType: 'application/json' } }
-    );
-    if (message) {
-      newErrors[id] = 'Email taken';
-    }
-    else {
-      newErrors[id] = '';
-    }
-  }
-  catch(e) {
-    console.error(e.response);
-  }
-  // setState({ formErrors: newErrors });
-  updateFormErrors(newErrors);
-};
-
-export const passwordValidator = (props, { form: { password, confirmPass }, formErrors }, id, updateFormErrors) => {
-  const newErrors = { ...formErrors };
-  if (password !== confirmPass && confirmPass && password) {
-    newErrors['password'] = 'passwords must match';
-    newErrors['confirmPass'] = 'passwords must match';
-
+  console.log('in validator', password1, password2);
+  if (password1 !== password2 && password2 && password1) {
+    newErrors['password1'] = 'passwords must match';
+    newErrors['password2'] = 'passwords must match';
   }
   else {
-    newErrors['password'] = '';
-    newErrors['confirmPass'] = '';
+    newErrors['password1'] = '';
+    newErrors['password2'] = '';
+  }
+  if (password1.length && password1.length < 8) {
+    if (newErrors['password1']) {
+      newErrors['password1'] += 'Password must be at least 8 characters long';
+    }
+    else {
+      newErrors['password1'] = 'Password must be at least 8 characters long';
+    }
   }
   updateFormErrors(newErrors);
 };

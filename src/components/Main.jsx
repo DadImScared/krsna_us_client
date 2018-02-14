@@ -7,6 +7,7 @@ import Paper from 'material-ui/Paper';
 
 import VideoPlayer from '../components/VideoPlayer';
 import Login from '../components/Login';
+import Register from '../components/Register';
 import BrowseItemByCategory from '../components/BrowseItemsByCategory';
 import SearchItems from './SearchItems';
 
@@ -26,8 +27,7 @@ const styles = theme => ({
 const Main = ({
   classes, shouldSticky, directionDown,
   videoplayer, videoOffsetHeight, logIn,
-  setRef, setVideoOffsetHeight, categories,setQuery,
-  toggleCategory, updatePosition, closeVideo
+  setRef, setVideoOffsetHeight, updatePosition, closeVideo
 }) => (
   <Paper id={'main-container'} className={classes.content}>
     {
@@ -49,6 +49,12 @@ const Main = ({
         exact path={'/login'}
         render={(props) => (
           <Login {...props} logIn={logIn} />
+        )}
+      />
+      <Route
+        exact path={'/register'}
+        render={(props) => (
+          <Register {...props} logIn={logIn} />
         )}
       />
       <Route

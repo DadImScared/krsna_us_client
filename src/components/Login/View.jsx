@@ -24,13 +24,14 @@ const styles = theme => ({
   }
 });
 
-const View = ({ classes, errorMessage, onSocialSuccess, submitLogin }) => (
+const View = ({ classes, errorMessage, onSocialSuccess, updateForm, submitLogin, formErrors }) => (
   <Paper classes={{ root: classes.paperBackground }}>
     <SocialConnections onSuccessCb={onSocialSuccess} />
     <Typography type={'title'}>or</Typography>
-    <LoginForm submitLogin={submitLogin} errorMessage={errorMessage} />
+    <LoginForm formErrors={formErrors} submitLogin={submitLogin} updateForm={updateForm} errorMessage={errorMessage} />
     <Typography>
-      Don't have an account? Click here to <NavLink style={{ color: 'lightblue' }} to={'/register'}>register.</NavLink>
+      {'Don\'t '} have an account? Click here
+      to <NavLink style={{ color: 'lightblue' }} to={'/register'}>register.</NavLink>
     </Typography>
   </Paper>
 );

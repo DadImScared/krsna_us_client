@@ -1,54 +1,45 @@
 
-import React, { Component } from 'react';
+import React from 'react';
 
 import Cookies from 'js-cookie';
 import axios from 'axios';
 
+import handleFormState from '../handleFormState';
 import View from './View';
 
-export default class extends Component {
-  constructor(...args) {
-    super(...args);
-    this.state = {
-      errorMessage: ''
+export default handleFormState(
+  (props) => {
+    const setLogin = (token, provider) => {
+      Cookies.set('token', token);
+      Cookies.set('provider', provider);
+      props.logIn(provider);
     };
-  }
 
-  render() {
+    const submitLogin = async () => {
+      const { onSuccessCb, handleErrorResponse, form: { email, password } } = props;
+      try {
+        const { data: { key } } = await axios.post('/rest-auth/login/', { email, password });
+        setLogin(key, 'self');
+        props.history.push('/');
+        onSuccessCb && onSuccessCb(key, 'self');
+      }
+      catch ({ response: { data } }) {
+        handleErrorResponse(data);
+      }
+    };
+
+    const googleResponse = (key, provider) => {
+      const { onSuccessCb } = this.props;
+      setLogin(key, provider);
+      onSuccessCb && onSuccessCb(key, provider);
+    };
+
     return (
       <View
-        {...this.state}
-        {...this.props}
-        onSocialSuccess={this.googleResponse}
-        submitLogin={this.submitLogin}
+        {...props}
+        onSocialSuccess={googleResponse}
+        submitLogin={submitLogin}
       />
     );
   }
-
-  setLogin = (token, provider) => {
-    Cookies.set('token', token);
-    Cookies.set('provider', provider);
-    this.props.logIn(provider);
-  };
-
-  submitLogin = () => {
-    const { onSuccessCb } = this.props;
-    const username = document.querySelector('#username');
-    const password = document.querySelector('#password');
-
-    try {
-      const { data: { key } } = axios.post('/rest-auth/login/', { username, password });
-      this.setLogin(key, 'self');
-      onSuccessCb && onSuccessCb(key, 'self');
-    }
-    catch (e) {
-      console.log(e);
-    }
-  };
-
-  googleResponse = (key, provider) => {
-    const { onSuccessCb } = this.props;
-    this.setLogin(key, provider);
-    onSuccessCb && onSuccessCb(key, provider);
-  };
-}
+);
