@@ -1,6 +1,8 @@
 
 import React from 'react';
 
+import PropTypes from 'prop-types';
+
 import { InfiniteLoader, List, AutoSizer, WindowScroller } from 'react-virtualized';
 
 import { withStyles } from 'material-ui/styles';
@@ -23,7 +25,7 @@ const View = ({
   loadMoreResults, setRef,
   loadMoreRows, isRowLoaded,
   rowRenderer, setListRef
-}) => (
+}, { setWindowScroller }) => (
   <Paper className={classes.container}>
     <InfiniteLoader
       isRowLoaded={isRowLoaded}
@@ -33,7 +35,7 @@ const View = ({
     >
       {({ onRowsRendered, registerChild, onChildScroll }) => (
         <WindowScroller
-          ref={setRef}
+          ref={setWindowScroller}
         >
           {({ height, scrollTop }) => {
             return (
@@ -64,5 +66,9 @@ const View = ({
     </InfiniteLoader>
   </Paper>
 );
+
+View.contextTypes = {
+  setWindowScroller: PropTypes.func
+};
 
 export default withStyles(styles)(View);

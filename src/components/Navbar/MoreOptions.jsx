@@ -55,6 +55,14 @@ class MoreOptions extends Component {
                   }}
                 >
                   Log out
+                </MenuItem>,
+                <MenuItem
+                  key={'menu-my-playlists'}
+                  onClick={() => {
+                    this.closeMenu('/playlists/me/');
+                  }}
+                >
+                  My playlists
                 </MenuItem>
               ]
               :
@@ -86,7 +94,7 @@ class MoreOptions extends Component {
 
   closeMenu = (route) => {
     this.setState({ menuAnchorEl: null });
-    route && this.props.history.push(route);
+    typeof route === 'string' && this.props.history.push(route);
   };
 
 

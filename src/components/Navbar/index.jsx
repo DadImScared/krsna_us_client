@@ -1,5 +1,5 @@
 
-import React, { Component } from 'react';
+import React from 'react';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -8,6 +8,8 @@ import * as SearchActionCreators from '../../actions/search';
 import * as UserActionCreators from '../../actions/user';
 
 import View from './View';
+
+const Navbar = (props) => <View {...props} />;
 
 const mapStateToProps = ({ search: { query, categories }, user }) => {
   return {
@@ -24,19 +26,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  class extends Component {
-    constructor(...args) {
-      super(...args);
-    }
-
-    render() {
-      return (
-        <View
-          {...this.state}
-          {...this.props}
-        />
-      );
-    }
-  }
-);
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

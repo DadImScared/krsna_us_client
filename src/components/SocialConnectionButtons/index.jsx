@@ -6,7 +6,7 @@ import axios from 'axios';
 import GoogleButton from './GoogleButton';
 import FacebookButton from './FacebookButton';
 
-export default ({ prefix = 'Sign up', onSuccessCb }) => {
+const SocialConnectionButtons = ({ prefix = 'Sign up', onSuccessCb }) => {
   const done = (key, provider) => {
     onSuccessCb && onSuccessCb(key, provider);
   };
@@ -17,6 +17,7 @@ export default ({ prefix = 'Sign up', onSuccessCb }) => {
       done(key, provider);
     }
     catch (e) {
+      console.log(e);
       console.log(e.response);
     }
   };
@@ -38,3 +39,5 @@ export default ({ prefix = 'Sign up', onSuccessCb }) => {
     </div>
   );
 };
+
+export default SocialConnectionButtons;

@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react';
 
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
@@ -18,7 +19,6 @@ import View from './View';
 
 class Base extends Component {
   constructor(...args) {
-    console.log(...args);
     super(...args);
     this.state = {
       mobileNavOpen: false,
@@ -44,6 +44,10 @@ class Base extends Component {
     );
   }
 
+  getChildContext() {
+    return { setWindowScroller: this.setRef };
+  }
+
   componentDidMount() {
     window.addEventListener('scroll', this.scrollListener);
     window.addEventListener('resize', this.resizeListener);
@@ -61,15 +65,8 @@ class Base extends Component {
   }
 
   setRef = (el) => {
+    console.log('here');
     this._windowScroller = el;
-  };
-
-  setVideoContainerRef = (el) => {
-    this.videoContainer = el;
-  };
-
-  setVideoRef = (el) => {
-    this.videoPlayer = el;
   };
 
   setVideoOffsetHeight = (offset) => {
@@ -150,19 +147,20 @@ class Base extends Component {
   };
 }
 
-const mapStateToProps = ({ search: { query, categories }, videoplayer, user }) => ({
-  query,
-  categories,
+const mapStateToProps = ({ videoplayer, user }) => ({
   videoplayer,
   user
 });
 
 const mapDispatchToProps = dispatch => {
   return {
-    searchActions: bindActionCreators(SearchActionCreators, dispatch),
     videoActions: bindActionCreators(VideoActionCreators, dispatch),
     userActions: bindActionCreators(UserActionCreators, dispatch)
   };
+};
+
+Base.childContextTypes = {
+  setWindowScroller: PropTypes.func
 };
 
 export default withWidth()(withRouter(connect(mapStateToProps, mapDispatchToProps)(Base)));

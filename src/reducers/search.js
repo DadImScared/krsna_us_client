@@ -12,7 +12,8 @@ const initialState = {
     'bhagavatpatrika': true,
     'song': true,
     'lecture': true
-  }
+  },
+  results: {}
 };
 
 export default function Search(state=initialState, action) {
@@ -29,6 +30,17 @@ export default function Search(state=initialState, action) {
     return {
       ...state,
       query: action.query
+    };
+  case SearchActionTypes.UPDATE_RESULTS:
+    return {
+      ...state,
+      results: {
+        ...state.results,
+        [action.query]: {
+          ...state.results[action.query],
+          ...action.results
+        }
+      }
     };
   default:
     return state;

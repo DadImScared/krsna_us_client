@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 
 import _ from 'lodash';
-// import axios from 'axios';
 
 export default function(WrapperComponent) {
   return class extends Component {
@@ -37,7 +36,12 @@ export default function(WrapperComponent) {
           newErrors['nonFieldErrors'] = data[key].join(', ');
         }
         else {
-          newErrors[key] = data[key].join(', ');
+          if (key === 'detail') {
+            newErrors['nonFieldErrors'] = data[key];
+          }
+          else {
+            newErrors[key] = typeof data[key] === 'string' ? data[key]:data[key].join(', ');
+          }
         }
       });
       this.updateFormErrors(newErrors);

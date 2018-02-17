@@ -53,11 +53,8 @@ const styles = theme => ({
 const View =  ({
   directionDown, bottomOfPage, shouldSticky,
   classes, mobileNavToggle, updatePosition,
-  closeVideo, setWindowScroller, setVideoOffsetHeight, categories,
+  closeVideo, setWindowScroller, setVideoOffsetHeight,
   mobileNavOpen, videoplayer,
-  searchActions: {
-    setQuery, toggleCategory
-  },
   userActions: {
     logIn, logOut
   }
@@ -72,9 +69,6 @@ const View =  ({
         shouldSticky={shouldSticky}
         directionDown={directionDown}
         updatePosition={updatePosition}
-        setQuery={setQuery}
-        categories={categories}
-        toggleCategory={toggleCategory}
         closeVideo={closeVideo}
         setVideoOffsetHeight={setVideoOffsetHeight}
         videoplayer={videoplayer}

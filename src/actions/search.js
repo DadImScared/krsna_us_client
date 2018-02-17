@@ -14,3 +14,11 @@ export const setQuery = (query) => {
     query
   };
 };
+
+export const updateResults = (query, results) => {
+  return {
+    type: SearchActionTypes.UPDATE_RESULTS,
+    query,
+    results
+  };
+};

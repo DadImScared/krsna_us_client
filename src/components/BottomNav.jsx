@@ -8,6 +8,7 @@ import Hidden from 'material-ui/Hidden';
 import Menu from 'material-ui-icons/Menu';
 import BottomNavigation, { BottomNavigationAction } from 'material-ui/BottomNavigation';
 
+import NavDrawer from '../components/NavDrawer';
 import PlaylistPlay from 'material-ui-icons/PlaylistPlay';
 import MusicNote from 'material-ui-icons/MusicNote';
 

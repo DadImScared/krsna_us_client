@@ -6,7 +6,7 @@ import { withStyles } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 
-import SocialConnections from '../SocialConnectionButtons';
+import SocialConnectionButtons from '../SocialConnectionButtons';
 
 import LoginForm from './LoginForm';
 
@@ -26,7 +26,7 @@ const styles = theme => ({
 
 const View = ({ classes, errorMessage, onSocialSuccess, updateForm, submitLogin, formErrors }) => (
   <Paper classes={{ root: classes.paperBackground }}>
-    <SocialConnections onSuccessCb={onSocialSuccess} />
+    <SocialConnectionButtons onSuccessCb={onSocialSuccess} />
     <Typography type={'title'}>or</Typography>
     <LoginForm formErrors={formErrors} submitLogin={submitLogin} updateForm={updateForm} errorMessage={errorMessage} />
     <Typography>

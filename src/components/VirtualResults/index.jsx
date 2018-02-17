@@ -14,7 +14,7 @@ const cache = new CellMeasurerCache({
   defaultHeight: 150
 });
 
-export default class extends Component {
+export default class VirtualResults extends Component {
   constructor(...args) {
     super(...args);
     this.state = {
@@ -99,6 +99,7 @@ export default class extends Component {
 
   rowRenderer({ key, index, style, parent }) {
     const { items } = this.state;
+    const { RowComponent = RenderResult } = this.props;
     return (
       <CellMeasurer
         cache={cache}
@@ -115,7 +116,10 @@ export default class extends Component {
           >
             {
               this.state.items.length ?
-                <RenderResult item={items[index]} />
+                React.cloneElement(
+                  <RowComponent />,
+                  { item: items[index] }
+                )
                 :
                 null
             }
