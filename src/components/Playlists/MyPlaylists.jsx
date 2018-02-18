@@ -1,58 +1,73 @@
 
-import React from 'react';
+import React, { Component } from 'react';
 
-import axios from 'axios';
-import Cookies from 'js-cookie';
+import { getMyPlaylists, createPlaylist } from '../../actions/playlist';
 
 import VirtualResults from '../VirtualResults';
-import fetchData from '../fetchData';
 import handleFormState from '../handleFormState';
 
 import RenderPlaylist from './RenderPlaylist';
 import PlaylistForm from './PlaylistForm';
 
-const axiosOptions = () => (
-  {
-    headers: {
-      Authorization: `Token ${Cookies.get('token', '')}`
-    }
+class MyPlaylists extends Component {
+  constructor(...args) {
+    super(...args);
+    this.state = {
+      isLoading: false,
+      items: [],
+      nextPage: false,
+      errorMessage: ''
+    };
   }
-);
 
-const MyPlaylists = ({
-  data: {
-    results,
-    nextPage
-  },
-  getUrl,
-  handleErrorResponse,
-  classes,
-  ...other
-}) => {
-  const submitForm = async () => {
+  async componentDidMount() {
+    this.setState({ isLoading: true });
+    const newData = {};
     try {
-      await axios.post(getUrl(), {
-        name: other.form.name
-      }, axiosOptions());
-      other.reloadPage();
+      const { data: { results, nextPage } } = await getMyPlaylists();
+      newData.items = results;
+      newData.nextPage = nextPage;
+    }
+    catch({ response: { data } }) {
+      newData.errorMessage = data;
+    }
+    newData.isLoading = false;
+    this.setState(newData);
+  }
+
+  submitForm = async () => {
+    const { handleErrorResponse, form, clearErrors } = this.props;
+    try {
+      const { data: newPlaylist } = await createPlaylist(form.name);
+      this.setState({ items: [...this.state.items, newPlaylist] });
+      clearErrors();
     }
     catch ({ response: { data } }) {
       handleErrorResponse(data);
     }
   };
 
-  return (
-    <div>
-      <PlaylistForm classes={classes} submitForm={submitForm} {...other} />
-      <VirtualResults RowComponent={RenderPlaylist} items={results} nextPage={nextPage} />
-    </div>
-  );
-};
+  updateResults = (results, nextPage) => {
+    this.setState({ items: [...this.state.items, ...results], nextPage });
+  };
 
-const getUrl = () => '/api/v1/playlists/';
+  render() {
+    const { classes } = this.props;
+    const { isLoading, items, nextPage } = this.state;
+    return isLoading ? (
+      <div>loading</div>
+    ):(
+      <div>
+        <PlaylistForm classes={classes} submitForm={this.submitForm} {...this.props} />
+        <VirtualResults
+          updateCb={this.updateResults}
+          RowComponent={RenderPlaylist}
+          items={items}
+          nextPage={nextPage}
+        />
+      </div>
+    );
+  }
+}
 
-const shouldLoadMore = (currentProps, nextProps) => {
-  return currentProps.location.pathname !== nextProps.location.pathname;
-};
-
-export default fetchData(getUrl, shouldLoadMore, axiosOptions)(handleFormState(MyPlaylists));
+export default handleFormState(MyPlaylists);

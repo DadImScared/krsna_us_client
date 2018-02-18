@@ -47,12 +47,17 @@ export default function(WrapperComponent) {
       this.updateFormErrors(newErrors);
     };
 
+    clearErrors = () => {
+      this.setState({ formErrors: {} });
+    };
+
     render() {
       return (
         <WrapperComponent
           updateForm={this.updateForm}
           updateFormErrors={this.updateFormErrors}
           handleErrorResponse={this.handleErrorResponse}
+          clearErrors={this.clearErrors}
           {...this.state}
           {...this.props}
         />

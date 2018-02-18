@@ -67,9 +67,10 @@ class BrowseItemsByCategory extends Component {
     this.props.clearResults();
   }
 
-  updateResults = (results, nextPage) => {
+  updateResults = (results, nextPage, clearCache) => {
     const { match: { params }, updateResults } = this.props;
     updateResults(params.category, results, nextPage);
+    clearCache();
   };
 }
 

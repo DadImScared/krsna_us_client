@@ -1,21 +1,44 @@
 
-import React from 'react';
+import React, { Component } from 'react';
 
 import VirtualResults from '../VirtualResults';
-import fetchData from '../fetchData';
 
 import RenderPlaylist from './RenderPlaylist';
 
-const AllPlaylists = ({ data: { results, nextPage } }) => (
-  <VirtualResults RowComponent={RenderPlaylist} items={results} nextPage={nextPage} />
-);
+import { getAllPlaylists } from '../../actions/playlist';
 
-const getUrl = () => {
-  return '/api/v1/playlists/all_playlists/';
-};
+class AllPlaylists extends Component {
+  constructor(...args) {
+    super(...args);
+    this.state = {
+      items: [],
+      nextPage: false,
+      isLoading: false,
+      errorMessage: ''
+    };
+  }
 
-const shouldLoadMore = (currentProps, nextProps) => {
-  return currentProps.location.pathname !== nextProps.location.pathname;
-};
+  async componentDidMount() {
+    this.setState({ isLoading: true });
+    try {
+      const { data: { results, nextPage } } = await getAllPlaylists();
+      console.log(results);
+      this.setState({ items: results, nextPage, isLoading: false });
+    }
+    catch ({ response: { data } }) {
+      this.setState({ errorMessage: data, isLoading: false });
+    }
+  }
 
-export default fetchData(getUrl, shouldLoadMore)(AllPlaylists);
+
+  render() {
+    const { isLoading, items, nextPage } = this.state;
+    return isLoading ? (
+      <div>load here</div>
+    ) : (
+      <VirtualResults RowComponent={RenderPlaylist} items={items} nextPage={nextPage} />
+    );
+  }
+}
+
+export default AllPlaylists;
