@@ -89,7 +89,7 @@ export default class VirtualResults extends Component {
     const results = [].concat(updateCb ? this.props.items:this.state.items, newResults);
 
     const newData = {};
-    
+
     newData.loadMoreResults = Boolean(nextPage); // nextPage is either a url or false we explicitly want true or false
     if (updateCb) {
       updateCb(newResults, nextPage, this.clearCache);
