@@ -30,10 +30,15 @@ export default class VirtualResults extends Component {
   render() {
     // nextPage and items get passed from state instead
     const { nextPage, items, ...other } = this.props;
+    const { loadMoreResults, ...otherState } = this.state;
+    const data = {
+      ...(this.props.updateCb ? { items, nextPage }:{ ...otherState })
+    };
     return (
       <View
         {...other}
-        {...this.state}
+        {...data}
+        loadMoreResults={loadMoreResults}
         cache={cache}
         loadMoreRows={this.loadMoreRows}
         isRowLoaded={this.isRowLoaded}
@@ -48,17 +53,15 @@ export default class VirtualResults extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.nextPage !== nextProps.nextPage) {
-      this.setState(
-        { items: nextProps.items,
-          nextPage: nextProps.nextPage,
-          loadMoreResults: true
-        },
-        () => {
-          this.clearCache();
-          // this.listEle.recomputeRowHeights();
-          console.log('new props');
-        });
+    if (!this.props.updateCb && this.props.nextPage !== nextProps.nextPage) {
+      this.clearCache();
+      return;
+    }
+    if (this.props.updateCb && this.props.shouldUpdate !== nextProps.shouldUpdate) {
+      this.clearCache();
+      console.log('update');
+
+      this.listEle.recomputeRowHeights();
     }
   }
 
@@ -76,35 +79,47 @@ export default class VirtualResults extends Component {
   setListRef = el => this.listEle = el;
 
   async loadMoreRows() {
-    const searchTerm = this.state.nextPage ?  this.state.nextPage : false;
+    const { updateCb } = this.props;
+    const searchTerm = updateCb ? this.props.nextPage :this.state.nextPage ?  this.state.nextPage : false;
     if (!searchTerm) {
       this.setState({ loadMoreResults: false });
       return;
     }
     const { data: { results: newResults, nextPage } } = await axios.get(searchTerm);
+    const results = [].concat(updateCb ? this.props.items:this.state.items, newResults);
 
-    const results = [].concat(this.state.items, newResults);
-
-    if (!nextPage) {
-      this.setState({ items: results, loadMoreResults: false, nextPage: false });
+    const newData = {};
+    
+    newData.loadMoreResults = Boolean(nextPage); // nextPage is either a url or false we explicitly want true or false
+    if (updateCb) {
+      updateCb(newResults, nextPage, this.clearCache);
     }
     else {
-      this.setState({ items: results, nextPage });
+      newData.items = results;
+      newData.nextPage = nextPage;
     }
+    this.setState(newData);
   }
 
   isRowLoaded({ index }) {
-    return !!this.state.items[index];
+    if (this.props.updateCb) {
+      return !!this.props.items[index];
+    }
+    else {
+      return !!this.state.items[index];
+    }
   }
 
   rowRenderer({ key, index, style, parent }) {
     const { items } = this.state;
+    const { items: propItems, updateCb } = this.props;
+    const usedItems = updateCb ? propItems:items;
     const { RowComponent = RenderResult } = this.props;
     return (
       <CellMeasurer
         cache={cache}
         columnIndex={0}
-        key={`${key}-${items[index] && items[index].title}`}
+        key={`${key}-${usedItems[index] && usedItems[index].title}`}
         parent={parent}
         rowIndex={index}
       >
@@ -115,10 +130,10 @@ export default class VirtualResults extends Component {
             style={ { ...style, wordBreak: 'break-word' } }
           >
             {
-              this.state.items.length ?
+              usedItems.length ?
                 React.cloneElement(
                   <RowComponent />,
-                  { item: items[index] }
+                  { item: usedItems[index] }
                 )
                 :
                 null

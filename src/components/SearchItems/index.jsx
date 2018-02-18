@@ -11,14 +11,17 @@ import * as SearchActionCreators from '../../actions/search';
 
 import View from './View';
 
-const mapStateToProps = ({ search: { categories } }) => ({
-  categories
+const mapStateToProps = ({ search: { categories, results } }) => ({
+  categories,
+  results
 });
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators({
     setQuery: SearchActionCreators.setQuery,
-    toggleCategory: SearchActionCreators.toggleCategory
+    toggleCategory: SearchActionCreators.toggleCategory,
+    updateResults: SearchActionCreators.updateResults,
+    clearResults: SearchActionCreators.clearResults
   }, dispatch);
 };
 
@@ -35,8 +38,25 @@ export default connect(mapStateToProps, mapDispatchToProps)(
     }
 
     render() {
+      const { match: { params: { query } }, location: { search }, results } = this.props;
       return (
-        <View {...this.state} {...this.props} />
+        <View
+          items={
+            results[`${this.getQueryId(query, search)}`] ?
+              results[`${query.trim().toLowerCase()}-${search}`].results
+              :
+              []
+          }
+          nextPage={
+            results[`${query.trim().toLowerCase()}-${search}`]
+            &&
+            results[`${query.trim().toLowerCase()}-${search}`].nextPage
+          }
+          updateCb={this.updateResults}
+          shouldUpdate={this.getQueryId(query, search)}
+          suggestions={this.state.suggestions}
+          {...this.props}
+        />
       );
     }
 
@@ -52,13 +72,24 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       const { match: { params: { query: oldQuery } }, location: { search: oldSearch }, setQuery } = this.props;
       if (query !== oldQuery || search !== oldSearch) {
         setQuery(query);
-        this.search(query, search);
         this.checkBoxes(search);
+        if (this.props.results[`${query.trim().toLowerCase()}-${search}`]) {
+          return;
+        }
+        this.search(query, search);
       }
     }
 
+    componentWillUnmount() {
+      this.props.clearResults();
+    }
+
+    getQueryId = (query, search) => `${query.trim().toLowerCase()}-${search}`;
+
     search = async (query, queryS) => {
+      // need to add suggestions to result in search reducer
       const { data: { results, suggestions, nextPage } } = await axios.get(`/api/v1/search/${query}${queryS}`);
+      this.props.updateResults(this.getQueryId(query, queryS), results, nextPage);
       this.setState({ suggestions, nextPage, items: results });
     };
 
@@ -75,5 +106,10 @@ export default connect(mapStateToProps, mapDispatchToProps)(
         }
       });
     };
+
+    updateResults = (results, nextPage) => {
+      const { match: { params: { query } }, location: { search } } = this.props;
+      this.props.updateResults(this.getQueryId(query, search), results, nextPage);
+    }
   }
 );

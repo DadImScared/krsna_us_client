@@ -11,7 +11,6 @@ import Cookies from 'js-cookie';
 
 import withWidth from 'material-ui/utils/withWidth';
 
-import * as SearchActionCreators from '../../actions/search';
 import * as VideoActionCreators from '../../actions/videoplayer';
 import * as UserActionCreators from '../../actions/user';
 
@@ -116,7 +115,12 @@ class Base extends Component {
   toggleStickyClass = () => {
     const { width, videoplayer } = this.props;
     const scrollTop = this.getScrollTop();
-    if (videoplayer.show) this.toggleStickyPlayer(scrollTop);
+    if (videoplayer.show) {
+      this.toggleStickyPlayer(scrollTop);
+    }
+    else {
+      if (!this.state.shouldSticky) this.setState({ shouldSticky: true });
+    }
     switch (width) {
     case 'xs':
     case 'sm':

@@ -15,10 +15,17 @@ export const setQuery = (query) => {
   };
 };
 
-export const updateResults = (query, results) => {
+export const updateResults = (query, results, nextPage) => {
   return {
     type: SearchActionTypes.UPDATE_RESULTS,
     query,
-    results
+    results,
+    nextPage
+  };
+};
+
+export const clearResults = () => {
+  return {
+    type: SearchActionTypes.CLEAR_RESULTS
   };
 };

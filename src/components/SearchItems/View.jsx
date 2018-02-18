@@ -4,14 +4,20 @@ import React from 'react';
 import VirtualResults from '../VirtualResults';
 
 const View = ({
-  suggestions, items,
-  nextPage, isFetching, setRef
+  suggestions, items, updateCb,
+  nextPage, setRef, shouldUpdate
 }) => (
   <div>
     {suggestions.map((suggestion, i) => <p key={i}>{suggestion.text}</p>)}
     {
       items.length ?
-        <VirtualResults items={items} nextPage={nextPage} setRef={setRef} />
+        <VirtualResults
+          shouldUpdate={shouldUpdate}
+          updateCb={updateCb}
+          items={items}
+          nextPage={nextPage}
+          setRef={setRef}
+        />
         :
         <div>no results</div>
     }

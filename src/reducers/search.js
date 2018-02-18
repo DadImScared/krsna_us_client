@@ -37,10 +37,18 @@ export default function Search(state=initialState, action) {
       results: {
         ...state.results,
         [action.query]: {
-          ...state.results[action.query],
-          ...action.results
+          results: [
+            ...(state.results[action.query] ? state.results[action.query].results:[]),
+            ...action.results
+          ],
+          nextPage: action.nextPage
         }
       }
+    };
+  case SearchActionTypes.CLEAR_RESULTS:
+    return {
+      ...state,
+      results: {}
     };
   default:
     return state;
