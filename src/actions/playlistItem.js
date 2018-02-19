@@ -4,20 +4,20 @@ import axios from 'axios';
 import axiosOptions from './axiosOptions';
 
 
-const baseUrl = '/api/v1/items/';
+const baseUrl = '/api/v1/playlistitems/';
 
 const fullUrl = (extension) => {
-  return `${baseUrl}${extension}`;
+  return `${baseUrl}${extension}/`;
 };
 
-const getItems = async (playlistId) => {
-  return await axios.get(fullUrl(`?playlist_id=${playlistId}`));
+export const getItems = async (playlistId) => {
+  return await axios.get(`${baseUrl}?playlist_id=${playlistId}`);
 };
 
-const patchItems = async (itemId, newOrder) => {
-  return await axios.patch(fullUrl(itemId), { item_order: newOrder }, axiosOptions());
+export const patchItem = async (itemId, newOrder) => {
+  return await axios.patch(fullUrl(itemId), { new_order: newOrder }, axiosOptions());
 };
 
-const deleteItems = async (itemId) => {
+export const deleteItem = async (itemId) => {
   return await axios.delete(fullUrl(itemId), axiosOptions());
 };

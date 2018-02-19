@@ -6,7 +6,7 @@ import axiosOptions from './axiosOptions';
 const baseUrl = '/api/v1/playlists/';
 
 const fullUrl = (extension = '') => {
-  return `${baseUrl}${extension}`;
+  return `${baseUrl}${extension}/`;
 };
 
 export const createPlaylist = async (name) => {
