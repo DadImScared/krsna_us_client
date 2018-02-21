@@ -14,6 +14,16 @@ export const getItems = async (playlistId) => {
   return await axios.get(`${baseUrl}?playlist_id=${playlistId}`);
 };
 
+export const postItem = async (playlistId, itemId) => {
+  return await axios.post(
+    `${baseUrl}?playlist_id=${playlistId}`,
+    {
+      collection_item: itemId
+    },
+    axiosOptions()
+  );
+};
+
 export const patchItem = async (itemId, newOrder) => {
   return await axios.patch(fullUrl(itemId), { new_order: newOrder }, axiosOptions());
 };

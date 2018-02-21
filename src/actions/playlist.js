@@ -21,6 +21,11 @@ export const getMyPlaylists = async () => {
   return await axios.get(baseUrl, axiosOptions());
 };
 
+export const getPlaylistsWithItem = async (itemId) => {
+  // get "my" playlists with a bool indicating if the item is in the playlist
+  return await axios.get(`${fullUrl('has_item')}?item_id=${itemId}`, axiosOptions());
+};
+
 export const getPlaylist = async (playlistId) => {
   return await axios.get(fullUrl(playlistId));
 };
