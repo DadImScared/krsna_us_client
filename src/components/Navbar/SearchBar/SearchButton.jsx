@@ -2,11 +2,12 @@
 import React from 'react';
 
 import { InputAdornment } from 'material-ui/Input';
+import Icon from 'material-ui/Icon';
 import IconButton from 'material-ui/IconButton';
 import { Search as SearchIcon } from 'material-ui-icons';
 
 const SearchButtonContainer = ({ pushSearch, query }) => (
-  <InputAdornment style={{ position: 'relative', bottom: '-0.4rem', paddingRight: '5px' }}>
+  <InputAdornment style={{ position: 'relative', paddingRight: '5px' }}>
     <IconButton buttonRef={(el) => this.autoButton = el} onClick={() => {
       pushSearch(query);
 
@@ -18,7 +19,7 @@ const SearchButtonContainer = ({ pushSearch, query }) => (
         this.autoButton.blur();
       }, 400);
     }}>
-      <SearchIcon />
+      <Icon><SearchIcon /></Icon>
     </IconButton>
   </InputAdornment>
 );

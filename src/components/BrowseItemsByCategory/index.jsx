@@ -38,7 +38,7 @@ class BrowseItemsByCategory extends Component {
     try {
       const { data: { results, nextPage } } = await axios.get(`/api/v1/items/${params.category}/`);
       this.setState({ items: results, isFetching: false, nextPage });
-      this.updateResults(results, nextPage);
+      this.props.updateResults(params.category, results, nextPage);
     }
     catch(e) {
       console.log(e);
@@ -49,6 +49,10 @@ class BrowseItemsByCategory extends Component {
     const { location, match: { params } } = nextProps;
     if (location.pathname !== this.props.location.pathname) {
       if (this.props.browse[params.category]) {
+        this.setState({ isFetching: true });
+        setTimeout(()=> {
+          this.setState({ isFetching: false });
+        }, 1000);
         return;
       }
       this.setState({ isFetching: true, category: params.category });

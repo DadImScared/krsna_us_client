@@ -13,7 +13,7 @@ const PlaylistForm = ({ updateForm, formErrors, submitForm, classes = {}, textFi
       onChange={(event) => updateForm(event, 'name')}
       classes={textFieldStyles}
     />
-    <Button raised onClick={submitForm} color='primary'>Submit</Button>
+    <Button variant='raised' onClick={submitForm} color='primary'>Submit</Button>
   </div>
 );
 

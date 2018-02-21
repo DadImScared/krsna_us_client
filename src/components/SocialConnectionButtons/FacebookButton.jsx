@@ -25,7 +25,7 @@ const FacebookButton = ({ classes, onSuccess, prefix }) => (
     callback={onSuccess}
     render={renderProps => (
       <Button
-        raised
+        variant='raised'
         classes={{ label: classes.buttonLabel }}
         color={'primary'}
         onClick={renderProps.onClick}

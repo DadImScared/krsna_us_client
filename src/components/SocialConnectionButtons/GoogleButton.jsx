@@ -30,7 +30,7 @@ const GoogleButton = ({ classes, prefix, onSuccess, onFailure }) => (
   <Button
     component={GoogleLogin}
     style={{}}
-    raised
+    variant='raised'
     classes={{ label: classes.buttonLabel, root: classes.googleButtonBackground }}
     color={'primary'}
     clientId={'177912286434-rh71pfirblbdk01elrt0hh8876ogs1m5.apps.googleusercontent.com'}

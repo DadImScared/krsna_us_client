@@ -15,13 +15,12 @@ const theme = createMuiTheme({
     primary: {
       light: indigo[100],
       main: indigo[500],
-      dark: indigo[700],
-      ...indigo
+      dark: indigo[700]
     },
     secondary: {
       main: blue['A200'],
       light: blue['500'],
-      ...blue
+      dark: blue['700']
     },
     type: 'dark'
   }

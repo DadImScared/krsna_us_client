@@ -50,7 +50,7 @@ const UIControls = ({
             null
         }
         <div style={{ display: 'flex', alignSelf: 'center' }}>
-          <Icon color='contrast' style={{ alignItems: 'center', height: '24px' }}>
+          <Icon color='secondary' style={{ alignItems: 'center', height: '24px' }}>
             <VolumeMute />
           </Icon>
           <Slider

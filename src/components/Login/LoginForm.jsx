@@ -36,7 +36,7 @@ const LoginForm = ({ classes, submitLogin, updateForm, formErrors }) => (
       className={classes.textField}
       margin="normal"
     />
-    <Button raised color={'primary'} style={{ width: '100%' }} onClick={submitLogin}>Submit</Button>
+    <Button variant='raised' color={'primary'} style={{ width: '100%' }} onClick={submitLogin}>Submit</Button>
   </div>
 );
 

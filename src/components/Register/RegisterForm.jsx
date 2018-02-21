@@ -32,7 +32,7 @@ const RegisterForm = ({ classes, updateForm, registerUser, form, formErrors }) =
         );
       })
     }
-    <Button color='primary' raised onClick={registerUser}>
+    <Button color='primary' variant='raised' onClick={registerUser}>
       Submit
     </Button>
   </div>

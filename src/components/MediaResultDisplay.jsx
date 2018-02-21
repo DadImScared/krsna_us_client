@@ -17,8 +17,9 @@ const MediaResultDisplay = ({ item, setMediaItem }) => (
       <div>
         <div style={{ display: 'flex', alignItems: 'center', marginBottom: '24px' }}>
           <Button
+            size='small'
             onClick={() => setMediaItem(item.link, item.title)}
-            dense raised color={'accent'}
+            variant='raised' color='secondary'
             style={{ marginRight: '24px' }}
           >
             <PlayArrow />

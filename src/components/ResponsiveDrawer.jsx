@@ -9,7 +9,7 @@ const ResponsiveDrawer = ({ drawerClasses, anchor = 'left', children, isOpen, ha
       <Hidden mdUp key={`hidden-up-drawer-${id}`}>
         <Drawer
           disableRestoreFocus={true}
-          type="temporary"
+          variant='temporary'
           anchor={anchor}
           open={isOpen}
           onClose={handleClose}
@@ -20,7 +20,7 @@ const ResponsiveDrawer = ({ drawerClasses, anchor = 'left', children, isOpen, ha
       </Hidden>,
       <Hidden smDown key={`hidden-down-drawer-${id}`}>
         <Drawer
-          type="permanent"
+          variant='permanent'
           open
           anchor={anchor}
           classes={drawerClasses}

@@ -8,7 +8,7 @@ import classNames from 'classnames';
 import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 
-import { fixedVideo, fixedVideoScrollDown, videoWrapper, unStuckVideo} from "./styles.css";
+import { fixedVideo, fixedVideoScrollDown, videoWrapper, unStuckVideo } from './styles.css';
 
 const styles = theme => ({
   ...fixedVideo(theme),
@@ -54,7 +54,7 @@ const View = ({
           width={'100%'}
           url={url}
         />
-        <Button onClick={closeVideo} raised dense color={'accent'}>X</Button>
+        <Button onClick={closeVideo} variant='raised' size='small' color='secondary'>X</Button>
       </div>
     </div>
   </div>

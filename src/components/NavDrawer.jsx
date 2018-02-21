@@ -35,7 +35,7 @@ const styles = theme => ({
   },
   activeLink: {
     '& .menu-item-text': {
-      color: theme.palette.common.darkWhite
+      color: theme.palette.primary.contrastText
     }
   }
 });

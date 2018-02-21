@@ -60,7 +60,7 @@ export default class VirtualResults extends Component {
     if (this.props.updateCb && this.props.shouldUpdate !== nextProps.shouldUpdate) {
       this.clearCache();
       console.log('update');
-
+      setTimeout(() => this.listEle.scrollToPosition(15), 200);
       this.listEle.recomputeRowHeights();
     }
   }
