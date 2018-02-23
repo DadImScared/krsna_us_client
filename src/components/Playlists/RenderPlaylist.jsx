@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 
 import { withStyles } from 'material-ui/styles';
 import { ListItem, ListItemSecondaryAction, ListItemText } from 'material-ui/List';
-import Button from 'material-ui/Button';
 import Icon from 'material-ui/Icon';
 import IconButton from 'material-ui/IconButton';
 

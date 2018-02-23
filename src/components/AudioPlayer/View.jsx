@@ -7,6 +7,7 @@ import { withStyles } from 'material-ui/styles';
 import Card, { CardContent } from 'material-ui/Card';
 import Typography from 'material-ui/Typography';
 
+import Marquee from './Marquee';
 import UIControls from './UIControls';
 
 const styles = theme => ({
@@ -60,7 +61,19 @@ const View = ({
       />
       <Card className={classes.card}>
         <CardContent>
-          <Typography noWrap={true}>{currentSongName}</Typography>
+          {
+            currentSongName ?
+              <Marquee
+                Size={'p'}
+                items={[currentSongName]}
+                timeToChange={8000}
+                timeToCross={10000}
+                color={'red'}
+                pause={playing}
+              />
+              :
+              null
+          }
         </CardContent>
         <UIControls
           played={played}

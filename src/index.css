@@ -29,3 +29,8 @@ body {
 .sticky.sticky-fixed.is-absolute{
   position: absolute;
 }
+
+@keyframes marquee {
+  0%   { transform: translate(0, 0); animation-timing-function: ease-in;}
+  100% { transform: translate(-100%, 0); animation-timing-function: ease-out;}
+}

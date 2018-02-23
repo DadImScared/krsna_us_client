@@ -6,7 +6,7 @@ import { arrayMove } from 'react-sortable-hoc';
 
 import handleFormState from '../../handleFormState';
 import View from './View';
-import { getItems, patchItem, deleteItem } from '../../../actions/playlistItem';
+import { getItems, patchItem, deleteItem as deletePlaylistItem } from '../../../actions/playlistItem';
 import { patchPlaylist } from '../../../actions/playlist';
 
 class Playlist extends Component {
@@ -95,11 +95,11 @@ class Playlist extends Component {
     const { items } = this.state;
     const newData = { ...this.state };
     try {
-      await deleteItem(item.item_id);
+      await deletePlaylistItem(item.item_id);
       newData.items = _.filter(items, (o) => o.item_id !== item.item_id);
     }
     catch ({ response: { data } }) {
-      newData.errorMessage = 'Please log in and try again'
+      newData.errorMessage = 'Please log in and try again';
     }
     this.setState(newData);
   };
