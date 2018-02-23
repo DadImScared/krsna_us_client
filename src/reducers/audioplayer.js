@@ -36,6 +36,9 @@ export default function AudioPlayer(state=initialState, action) {
   case AudioActionTypes.SET_PLAYLIST:
     return {
       ...state,
+      playing: action.playing,
+      playerType: action.playerType,
+      showPlayer: action.showPlayer,
       name: action.name,
       items: action.items,
       currentIndex: action.currentIndex

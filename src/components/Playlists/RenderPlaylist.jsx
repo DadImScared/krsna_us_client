@@ -3,21 +3,17 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
-import { withStyles } from 'material-ui/styles';
 import { ListItem, ListItemSecondaryAction, ListItemText } from 'material-ui/List';
 import Icon from 'material-ui/Icon';
 import IconButton from 'material-ui/IconButton';
 
-import PlayArrow from 'material-ui-icons/PlayArrow';
 import Delete from 'material-ui-icons/Delete';
+
+import PlayPlaylistButton from './PlayPlaylistButton';
 
 const RenderPlaylist = ({ item, deletePlaylist }) => (
   <ListItem>
-    <IconButton>
-      <Icon>
-        <PlayArrow />
-      </Icon>
-    </IconButton>
+    <PlayPlaylistButton playlistId={item.playlist_id} />
     <ListItemText
       primary={
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>

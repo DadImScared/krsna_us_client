@@ -17,7 +17,7 @@ const styles = theme => ({
   ...sortableList(theme)
 });
 
-const View = ({ name, itemCount, items, classes, onSortEnd, deleteItem, ...other }) => (
+const View = ({ name, itemCount, items, classes, ...other }) => (
   <Paper classes={{
     root: classes.container
   }} square={true}>
@@ -39,7 +39,7 @@ const View = ({ name, itemCount, items, classes, onSortEnd, deleteItem, ...other
       </div>
     </div>
     <Divider/>
-    <PlaylistItems deleteItem={deleteItem} onSortEnd={onSortEnd} classes={classes} useDragHandle={true} items={items} />
+    <PlaylistItems {...other} classes={classes} useDragHandle={true} items={items} />
   </Paper>
 );
 

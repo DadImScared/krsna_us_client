@@ -39,11 +39,9 @@ class Marquee extends Component {
     };
 
     return (
-
       <section id="marquee">
         <this.props.Size style={styling1}><span style={styling2}>{ marquee }</span></this.props.Size>
       </section>
-
     );
   }
 

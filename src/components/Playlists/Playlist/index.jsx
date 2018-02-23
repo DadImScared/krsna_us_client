@@ -27,6 +27,7 @@ class Playlist extends Component {
         submitForm={this.submitForm}
         onSortEnd={this.onSortEnd}
         deleteItem={this.deleteItem}
+        playlistId={this.getPlaylistId(this.props)}
         {...this.state}
         {...this.props}
       />
@@ -50,10 +51,11 @@ class Playlist extends Component {
     this.setState({ isLoading: true });
     const newData = {};
     try {
-      const { data: { items, name, items_count: itemCount } } = await getItems(playlistId);
+      const { data: { items, name, items_count: itemCount, playlist_id } } = await getItems(playlistId);
       newData.items = items;
       newData.name = name;
       newData.itemCount = itemCount;
+      newData.playlistId = playlist_id;
     }
     catch ({ response: { data } }) {
       newData.errorMessage = data;

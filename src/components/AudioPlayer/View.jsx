@@ -62,15 +62,17 @@ const View = ({
       <Card className={classes.card}>
         <CardContent>
           {
-            currentSongName ?
-              <Marquee
-                Size={'p'}
-                items={[currentSongName]}
-                timeToChange={8000}
-                timeToCross={10000}
-                color={'red'}
-                pause={playing}
-              />
+            (currentSongName && playerType === 'song') || items[currentIndex] ?
+              <div>
+                <Marquee
+                  Size={'p'}
+                  items={[currentSongName ? currentSongName:items[currentIndex].title]}
+                  timeToChange={0}
+                  timeToCross={7000}
+                  color={'red'}
+                  pause={playing}
+                />
+              </div>
               :
               null
           }
