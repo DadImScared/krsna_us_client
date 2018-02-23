@@ -1,8 +1,11 @@
 
 import React, { Component } from 'react';
 
+import { Link } from 'react-router-dom';
+
 import { withStyles } from 'material-ui/styles';
 import Dialog from 'material-ui/Dialog';
+import Button from 'material-ui/Button';
 import List, { ListItem, ListItemText } from 'material-ui/List';
 import Icon from 'material-ui/Icon';
 import Divider from 'material-ui/Divider';
@@ -18,7 +21,7 @@ import Slide from 'material-ui/transitions/Slide';
 import CloseIcon from 'material-ui-icons/Close';
 import AddBox from 'material-ui-icons/AddBox';
 
-import { getPlaylistsWithItem } from '../../actions/playlist';
+import { getPlaylistsWithItem, createPlaylist } from '../../actions/playlist';
 import { postItem, deleteItem } from '../../actions/playlistItem';
 
 const styles = theme => ({
@@ -30,6 +33,18 @@ const styles = theme => ({
       width: '80%',
       margin: '0 auto'
     }
+  },
+  formContainer: {
+    padding: theme.spacing.unit * 2
+  },
+  formWrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    padding: theme.spacing.unit
+  },
+  formField: {
+    marginBottom: theme.spacing.unit
   }
 });
 
@@ -41,22 +56,9 @@ class AddToPlaylist extends Component {
   constructor(...args) {
     super(...args);
     this.state = {
-      playlists: {}
+      playlists: {},
+      errorMessage: false
     };
-  }
-
-  async componentDidMount() {
-    const newPlaylists = {};
-    try {
-      const { data } = await getPlaylistsWithItem(this.props.item.item_id);
-      data.forEach((item) => {
-        newPlaylists[item.playlist_id] = item;
-      });
-      this.setState({ playlists: newPlaylists });
-    }
-    catch ({ response: { data } }) {
-      console.log(data);
-    }
   }
 
   render() {
@@ -82,27 +84,61 @@ class AddToPlaylist extends Component {
             <IconButton color="inherit" onClick={closeModal} aria-label="Close">
               <CloseIcon />
             </IconButton>
-            <Typography variant='title'>
-              Add to playlist
+            <Typography style={{ wordBreak: 'break-word' }}>
+              {item.title}
             </Typography>
           </Toolbar>
         </AppBar>
         <div className={classes.container}>
           <Paper>
             <div>
-              <TextField
-                id='playlistInput'
-                onChange={(event) => updateForm(event, 'playlistInput')}
-              />
+              {
+                this.state.errorMessage ?
+                  <div>
+                    <Typography>
+                      There is an error please <Link to={'/login'}>log in</Link> and try again
+                    </Typography>
+                  </div>
+                  :
+                  <div>
+                    <div className={classes.formContainer}>
+                      <div className={classes.formWrapper}>
+                        <TextField
+                          id='name'
+                          value={form.name || ''}
+                          onChange={(event) => updateForm(event, 'name')}
+                          classes={{ root: classes.formField }}
+                        />
+                        <Button onClick={this.createPlaylistAndItem} variant='raised' color='primary'>
+                          create playlist
+                        </Button>
+                      </div>
+                    </div>
+                    <Divider/>
+                    <List>
+                      {this.renderPlaylists()}
+                    </List>
+                  </div>
+              }
             </div>
-            <Divider/>
-            <List>
-              {this.renderPlaylists()}
-            </List>
           </Paper>
         </div>
       </Dialog>
     );
+  }
+
+  async componentDidMount() {
+    const newPlaylists = {};
+    try {
+      const { data } = await getPlaylistsWithItem(this.props.item.item_id);
+      data.forEach((item) => {
+        newPlaylists[item.playlist_id] = item;
+      });
+      this.setState({ playlists: newPlaylists });
+    }
+    catch ({ response: { data, status } }) {
+      this.setState({ errorMessage: true  });
+    }
   }
 
   renderPlaylists = () => {
@@ -119,7 +155,6 @@ class AddToPlaylist extends Component {
           color='secondary'
         />
         <ListItemText primary={playlists[item].name} />
-        <span>{playlists[item].hasItem ? 'true':'false'}</span>
       </ListItem>
     ));
   };
@@ -154,6 +189,35 @@ class AddToPlaylist extends Component {
       }
     }
     this.setState({ playlists: newPlaylists });
+  };
+
+  createPlaylistAndItem = async () => {
+    const { form, item, handleErrorResponse, clearFields, clearErrors } = this.props;
+    const newData = {
+      ...this.state
+    };
+    try {
+      const { data } = await createPlaylist(form.name);
+      const { data: { item_id } } = await postItem(data.playlist_id, item.item_id);
+      newData.playlists = {
+        ...this.state.playlists,
+        [data.playlist_id]: {
+          ...data,
+          hasItem: item_id
+        }
+      };
+      clearFields();
+      clearErrors();
+    }
+    catch ({ response: { data, status } }) {
+      if (status === 401) {
+        newData.errorMessage = true;
+      }
+      else {
+        handleErrorResponse(data);
+      }
+    }
+    this.setState(newData);
   };
 }
 

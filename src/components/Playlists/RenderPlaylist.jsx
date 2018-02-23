@@ -10,8 +10,9 @@ import Icon from 'material-ui/Icon';
 import IconButton from 'material-ui/IconButton';
 
 import PlayArrow from 'material-ui-icons/PlayArrow';
+import Delete from 'material-ui-icons/Delete';
 
-const RenderPlaylist = ({ item }) => (
+const RenderPlaylist = ({ item, deletePlaylist }) => (
   <ListItem>
     <IconButton>
       <Icon>
@@ -21,14 +22,14 @@ const RenderPlaylist = ({ item }) => (
     <ListItemText
       primary={
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <span>{item.name}</span>
-          <span>{item.items_count}</span>
+          <Link style={{ color: 'white', textDecoration: 'none' }} to={`/playlists/${item.playlist_id}/`}><span>{item.name}</span></Link>
+          <span style={{ alignSelf: 'center' }}>{item.items_count}</span>
         </div>
       }
     />
-    <IconButton component={Link} to={`/playlists/${item.playlist_id}/`}>
+    <IconButton onClick={() => deletePlaylist(item.playlist_id)}>
       <Icon>
-        <PlayArrow />
+        <Delete />
       </Icon>
     </IconButton>
   </ListItem>

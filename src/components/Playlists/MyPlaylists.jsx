@@ -1,7 +1,9 @@
 
 import React, { Component } from 'react';
 
-import { getMyPlaylists, createPlaylist } from '../../actions/playlist';
+import _ from 'lodash';
+
+import { getMyPlaylists, createPlaylist, deletePlaylist } from '../../actions/playlist';
 
 import VirtualResults from '../VirtualResults';
 import handleFormState from '../handleFormState';
@@ -47,6 +49,21 @@ class MyPlaylists extends Component {
     }
   };
 
+  deletePlaylist = async (playlistId) => {
+    const r = window.confirm('Are you sure you want to delete the playlist?');
+    if (r) {
+      const newData = { ...this.state };
+      try {
+        await deletePlaylist(playlistId);
+        newData.items = _.filter(this.state.items, (o) => o.playlist_id !== playlistId);
+      }
+      catch ({ response: { data } }) {
+        newData.errorMessage = 'Please log in and try again';
+      }
+      this.setState(newData);
+    }
+  };
+
   updateResults = (results, nextPage) => {
     this.setState({ items: [...this.state.items, ...results], nextPage });
   };
@@ -58,8 +75,9 @@ class MyPlaylists extends Component {
       <div>loading</div>
     ):(
       <div>
-        <PlaylistForm classes={classes} submitForm={this.submitForm} {...this.props} />
+        <PlaylistForm placeholderText='Change playlist name' classes={classes} submitForm={this.submitForm} {...this.props} />
         <VirtualResults
+          deletePlaylist={this.deletePlaylist}
           updateCb={this.updateResults}
           RowComponent={RenderPlaylist}
           items={items}

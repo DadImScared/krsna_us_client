@@ -1,11 +1,12 @@
 
 import React, { Component } from 'react';
 
+import _ from 'lodash';
 import { arrayMove } from 'react-sortable-hoc';
 
 import handleFormState from '../../handleFormState';
 import View from './View';
-import { getItems, patchItem } from '../../../actions/playlistItem';
+import { getItems, patchItem, deleteItem } from '../../../actions/playlistItem';
 import { patchPlaylist } from '../../../actions/playlist';
 
 class Playlist extends Component {
@@ -25,6 +26,7 @@ class Playlist extends Component {
       <View
         submitForm={this.submitForm}
         onSortEnd={this.onSortEnd}
+        deleteItem={this.deleteItem}
         {...this.state}
         {...this.props}
       />
@@ -80,8 +82,6 @@ class Playlist extends Component {
 
   onSortEnd = async ({ oldIndex, newIndex }) => {
     const itemId = this.state.items[oldIndex].item_id;
-    console.log('sorted');
-    console.log(oldIndex, ' ', newIndex);
     this.setState({ items: arrayMove(this.state.items, oldIndex, newIndex) });
     try {
       await patchItem(itemId, newIndex);
@@ -89,6 +89,19 @@ class Playlist extends Component {
     catch (e) {
       this.setState({ items: arrayMove(this.state.items, newIndex, oldIndex) });
     }
+  };
+
+  deleteItem = async (item) => {
+    const { items } = this.state;
+    const newData = { ...this.state };
+    try {
+      await deleteItem(item.item_id);
+      newData.items = _.filter(items, (o) => o.item_id !== item.item_id);
+    }
+    catch ({ response: { data } }) {
+      newData.errorMessage = 'Please log in and try again'
+    }
+    this.setState(newData);
   };
 }
 

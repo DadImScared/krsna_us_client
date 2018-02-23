@@ -17,7 +17,7 @@ const styles = theme => ({
   ...sortableList(theme)
 });
 
-const View = ({ name, itemCount, items, classes, onSortEnd, ...other }) => (
+const View = ({ name, itemCount, items, classes, onSortEnd, deleteItem, ...other }) => (
   <Paper classes={{
     root: classes.container
   }} square={true}>
@@ -33,15 +33,13 @@ const View = ({ name, itemCount, items, classes, onSortEnd, ...other }) => (
       <div className={classNames(classes.spacing, classes.playlistInfo)}>
         <PlaylistForm
           classes={classes}
+          placeholder='Edit name'
           {...other}
         />
       </div>
-      <div className={classes.spacing}>
-        delete button/share button
-      </div>
     </div>
     <Divider/>
-    <PlaylistItems onSortEnd={onSortEnd} classes={classes} useDragHandle={true} items={items} />
+    <PlaylistItems deleteItem={deleteItem} onSortEnd={onSortEnd} classes={classes} useDragHandle={true} items={items} />
   </Paper>
 );
 

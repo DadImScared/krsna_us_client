@@ -133,7 +133,7 @@ export default class VirtualResults extends Component {
               usedItems.length ?
                 React.cloneElement(
                   <RowComponent />,
-                  { item: usedItems[index] }
+                  { item: usedItems[index], ...this.props }
                 )
                 :
                 null
