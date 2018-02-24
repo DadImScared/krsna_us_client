@@ -20,8 +20,9 @@ const UIControls = ({
   classes, togglePlaying, volume, seconds,
   format, setVolume, onSeekDown, onSeekChange,
   onSeekUp, played, theme, playing,
-  playerType
+  playerType, changeSong
 }) => {
+
   return (
     <div>
       <div className={classNames(classes.buttonControls, {
@@ -30,7 +31,7 @@ const UIControls = ({
       })}>
         {
           playerType === 'playlist' ?
-            <IconButton>
+            <IconButton onClick={() => changeSong(-1)}>
               <SkipPreviousIcon/>
             </IconButton>
             :
@@ -43,7 +44,7 @@ const UIControls = ({
         </IconButton>
         {
           playerType === 'playlist' ?
-            <IconButton>
+            <IconButton onClick={() => changeSong(1)}>
               <SkipNextIcon/>
             </IconButton>
             :

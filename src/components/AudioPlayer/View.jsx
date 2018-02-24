@@ -71,6 +71,20 @@ const View = ({
   onSeekUp, showPlayer, updateIndex
 }) => {
   const seconds = duration * played;
+
+  const changeSong = (change) => {
+    let newIndex = currentIndex + change;
+    if (newIndex < 0) {
+      newIndex = 0;
+      onSeekChange(0);
+      onSeekUp(0);
+    }
+    else if (newIndex > items.length - 1) {
+      newIndex = 0;
+    }
+    updateIndex(newIndex);
+  };
+
   return (
     <div className={classes.cardWrapper}>
       <ReactPlayer
@@ -85,7 +99,12 @@ const View = ({
         onPause={() => setPlaying(false)}
         onProgress={onProgress}
         onEnded={() => {
-          if (playing) togglePlaying();
+          if (playerType === 'song') {
+            if (playing) togglePlaying();
+          }
+          else {
+            changeSong(1);
+          }
         }}
         onDuration={setDuration}
       />
@@ -112,6 +131,10 @@ const View = ({
           format={format}
           seconds={seconds}
           classes={classes}
+          items={items}
+          changeSong={changeSong}
+          currentIndex={currentIndex}
+          updateIndex={updateIndex}
           togglePlaying={togglePlaying}
           volume={volume}
           setVolume={setVolume}

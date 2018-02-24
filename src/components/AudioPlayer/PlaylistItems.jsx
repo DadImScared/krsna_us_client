@@ -30,6 +30,7 @@ class PlaylistItem extends Component {
               {
                 items.map((item, index) => (
                   <ListItem
+                    id={`playlist-item-${index}`}
                     className={`${currentIndex === index ? `${classes.currentlyPlaying}`:''}`}
                     dense
                     key={`${item.item_id}-${index}`}
