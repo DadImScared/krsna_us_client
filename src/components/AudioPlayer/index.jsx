@@ -33,7 +33,8 @@ const mapStateToProps = ({
 const mapDispatchToProps = dispatch => {
   return bindActionCreators({
     togglePlaying: AudioActionCreators.togglePlaying,
-    setPlaying: AudioActionCreators.setPlaying
+    setPlaying: AudioActionCreators.setPlaying,
+    updateIndex: AudioActionCreators.updateIndex
   }, dispatch);
 };
 

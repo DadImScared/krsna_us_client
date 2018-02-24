@@ -65,7 +65,7 @@ const View = ({
   loaded, muted, volume, format,
   onProgress, setPlayerRef, setDuration,
   setVolume, onSeekDown, onSeekChange,
-  onSeekUp, showPlayer
+  onSeekUp, showPlayer, updateIndex
 }) => {
   const seconds = duration * played;
   return (
@@ -118,7 +118,14 @@ const View = ({
           playing={playing}
           playerType={playerType}
         />
-        <PlaylistItems playerType={playerType} showPlayer={showPlayer} classes={classes} items={items} />
+        <PlaylistItems
+          playerType={playerType}
+          showPlayer={showPlayer}
+          classes={classes}
+          items={items}
+          currentIndex={currentIndex}
+          updateIndex={updateIndex}
+        />
       </Card>
     </div>
   );

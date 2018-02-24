@@ -20,7 +20,7 @@ class PlaylistItem extends Component {
   }
 
   render() {
-    const { playerType, showPlayer, classes, items } = this.props;
+    const { playerType, showPlayer, classes, items, currentIndex, updateIndex } = this.props;
     const { anchorEl, item } = this.state;
     return (
       <div>
@@ -46,7 +46,7 @@ class PlaylistItem extends Component {
                         root: classes.tooltip,
                         popper: `${classes.playlistPopoverContainer}`
                       }} placement='top' title={item.title}>
-                        <ListItemText  primary={
+                        <ListItemText onClick={() => updateIndex(index)} primary={
                           <Typography noWrap>
                             {item.title}
                           </Typography>
@@ -54,7 +54,7 @@ class PlaylistItem extends Component {
                       </Tooltip>
                     </Hidden>
                     <Hidden xlUp>
-                      <ListItemText  primary={
+                      <ListItemText onClick={() => updateIndex(index)} primary={
                         <Typography noWrap>
                           {item.title}
                         </Typography>
