@@ -54,6 +54,9 @@ const styles = theme => ({
     [`${theme.breakpoints.only('xl')} and (orientation: landscape)`]: {
       display: 'none'
     }
+  },
+  currentlyPlaying: {
+    backgroundColor: theme.palette.secondary.dark
   }
 });
 
