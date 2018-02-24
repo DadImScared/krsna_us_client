@@ -5,19 +5,14 @@ import ReactPlayer from 'react-player';
 
 import { withStyles } from 'material-ui/styles';
 import Card, { CardContent } from 'material-ui/Card';
-import Typography from 'material-ui/Typography';
 
 import Marquee from './Marquee';
 import UIControls from './UIControls';
+import PlaylistItems from './PlaylistItems';
 
 const styles = theme => ({
   cardWrapper: {
     padding: theme.spacing.unit
-  },
-  card: {
-    [theme.breakpoints.up('md')]: {
-      height: '36vh'
-    }
   },
   buttonControls: {
     display: 'flex'
@@ -27,6 +22,38 @@ const styles = theme => ({
   },
   withSong: {
     justifyContent: 'space-around'
+  },
+  playlistItemsContainer: {
+    height: '40vh',
+    overflowY: 'auto',
+    overflowX: 'hidden',
+    [theme.breakpoints.up('md')]: {
+      height: '30vh'
+    }
+  },
+  playlistItem: {
+    width: '100%',
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis'
+  },
+  playlistPopoverContainer: {
+    padding: theme.spacing.unit * 2,
+    wordBreak: 'break-word'
+  },
+  playlistPopover: {
+    pointerEvents: 'none'
+  },
+  tooltip: {
+    '&:hover': {
+      cursor: 'pointer'
+    }
+  },
+  infoIcon: {
+    display: 'flex',
+    [`${theme.breakpoints.only('xl')} and (orientation: landscape)`]: {
+      display: 'none'
+    }
   }
 });
 
@@ -38,7 +65,7 @@ const View = ({
   loaded, muted, volume, format,
   onProgress, setPlayerRef, setDuration,
   setVolume, onSeekDown, onSeekChange,
-  onSeekUp
+  onSeekUp, showPlayer
 }) => {
   const seconds = duration * played;
   return (
@@ -59,14 +86,14 @@ const View = ({
         }}
         onDuration={setDuration}
       />
-      <Card className={classes.card}>
+      <Card>
         <CardContent>
           {
             (currentSongName && playerType === 'song') || items[currentIndex] ?
               <div>
                 <Marquee
                   Size={'p'}
-                  items={[currentSongName ? currentSongName:items[currentIndex].title]}
+                  items={[playerType === 'song' ? currentSongName:items[currentIndex].title]}
                   timeToChange={0}
                   timeToCross={7000}
                   color={'red'}
@@ -91,6 +118,7 @@ const View = ({
           playing={playing}
           playerType={playerType}
         />
+        <PlaylistItems playerType={playerType} showPlayer={showPlayer} classes={classes} items={items} />
       </Card>
     </div>
   );

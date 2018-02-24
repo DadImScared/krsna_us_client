@@ -14,6 +14,7 @@ const mapStateToProps = ({
     playing,
     items,
     playerType,
+    showPlayer,
     currentIndex,
     currentSongUrl,
     currentSongName
@@ -23,6 +24,7 @@ const mapStateToProps = ({
   playing,
   items,
   playerType,
+  showPlayer,
   currentIndex,
   currentSongUrl,
   currentSongName
