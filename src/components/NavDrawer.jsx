@@ -44,7 +44,7 @@ const NavDrawer =  ({ classes, isOpen, handleClose, showPlayer }) => {
   const renderCategories = () => {
     const categoryLinks = Object.keys(CATEGORIES).map((category, index) => {
       return (
-        <MenuItem activeClassName={classes.activeLink} key={index} component={NavLink} to={`/${category}`}>
+        <MenuItem onClick={handleClose} activeClassName={classes.activeLink} key={index} component={NavLink} to={`/${category}`}>
           <ListItemText primary={
             <Typography className={'menu-item-text'} color={'secondary'}>
               {typeof CATEGORIES[category] === 'string' ? CATEGORIES[category]: CATEGORIES[category].displayName}

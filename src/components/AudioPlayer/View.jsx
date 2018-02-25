@@ -105,7 +105,7 @@ const View = ({
           }
           else {
             changeSong(1);
-            setPlaying(true);
+            setPlaying(true); // need to set playing to true again because onEnded stops playing
           }
         }}
         onDuration={setDuration}
