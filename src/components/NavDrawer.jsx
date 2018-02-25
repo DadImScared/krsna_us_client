@@ -6,11 +6,13 @@ import { withStyles } from 'material-ui/styles';
 import { MenuItem, MenuList } from 'material-ui/Menu';
 import { ListItemText } from 'material-ui/List';
 import Typography from 'material-ui/Typography';
+import Icon from 'material-ui/Icon';
 import Divider from 'material-ui/Divider';
+
+import Close from 'material-ui-icons/Close';
 
 import ResponsiveDrawer from '../components/ResponsiveDrawer';
 
-// import AudioPlayer from '../containers/AudioPlayer';
 import AudioPlayer from '../components/AudioPlayer';
 
 import CATEGORIES from '../categories';
@@ -37,10 +39,18 @@ const styles = theme => ({
     '& .menu-item-text': {
       color: theme.palette.primary.contrastText
     }
+  },
+  closeIcon: {
+    position: 'absolute ',
+    top: 0,
+    right: '5px',
+    '&:hover': {
+      cursor: 'pointer'
+    }
   }
 });
 
-const NavDrawer =  ({ classes, isOpen, handleClose, showPlayer }) => {
+const NavDrawer =  ({ classes, isOpen, handleClose, showPlayer, setShowPlayer }) => {
   const renderCategories = () => {
     const categoryLinks = Object.keys(CATEGORIES).map((category, index) => {
       return (
@@ -73,7 +83,14 @@ const NavDrawer =  ({ classes, isOpen, handleClose, showPlayer }) => {
         <Divider/>
         {
           showPlayer ?
-            <AudioPlayer/>
+            <div style={{ position: 'relative' }}>
+
+              <Icon onClick={() => setShowPlayer(false)} color='error' className={classes.closeIcon}>
+                <Close />
+              </Icon>
+
+              <AudioPlayer/>
+            </div>
             :
             null
         }

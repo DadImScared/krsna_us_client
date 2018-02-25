@@ -56,13 +56,17 @@ const View =  ({
   mobileNavOpen, videoplayer, showPlayer,
   userActions: {
     logIn, logOut
-  }, ...other
+  },
+  audioActions: {
+    showPlayer: setShowPlayer
+  },
+  ...other
 }) => (
   <MuiThemeProvider theme={theme}>
     <Reboot/>
     <div className={classes.appFrame}>
       <Navbar directionDown={directionDown}/>
-      <NavDrawer showPlayer={showPlayer} isOpen={mobileNavOpen} handleClose={mobileNavToggle} />
+      <NavDrawer setShowPlayer={setShowPlayer} showPlayer={showPlayer} isOpen={mobileNavOpen} handleClose={mobileNavToggle} />
       <Main
         setRef={setWindowScroller}
         shouldSticky={shouldSticky}

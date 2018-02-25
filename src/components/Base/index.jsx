@@ -11,6 +11,7 @@ import Cookies from 'js-cookie';
 
 import withWidth from 'material-ui/utils/withWidth';
 
+import * as AudioActionCreators from '../../actions/audioplayer';
 import * as VideoActionCreators from '../../actions/videoplayer';
 import * as UserActionCreators from '../../actions/user';
 
@@ -160,7 +161,8 @@ const mapStateToProps = ({ videoplayer, user, audioplayer: { showPlayer } }) => 
 const mapDispatchToProps = dispatch => {
   return {
     videoActions: bindActionCreators(VideoActionCreators, dispatch),
-    userActions: bindActionCreators(UserActionCreators, dispatch)
+    userActions: bindActionCreators(UserActionCreators, dispatch),
+    audioActions: bindActionCreators(AudioActionCreators, dispatch)
   };
 };
 

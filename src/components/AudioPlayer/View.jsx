@@ -68,23 +68,9 @@ const View = ({
   loaded, muted, volume, format,
   onProgress, setPlayerRef, setDuration,
   setVolume, onSeekDown, onSeekChange,
-  onSeekUp, showPlayer, updateIndex
+  onSeekUp, showPlayer, updateIndex, changeSong
 }) => {
   const seconds = duration * played;
-
-  const changeSong = (change) => {
-    let newIndex = currentIndex + change;
-    if (newIndex < 0) {
-      newIndex = 0;
-      onSeekChange(0);
-      onSeekUp(0);
-    }
-    else if (newIndex > items.length - 1) {
-      newIndex = 0;
-    }
-    document.querySelector(`#playlist-item-${newIndex}`).scrollIntoView({ behavior: 'smooth' });
-    updateIndex(newIndex);
-  };
 
   return (
     <div id='audioPlayer' className={classes.cardWrapper}>

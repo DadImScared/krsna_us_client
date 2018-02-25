@@ -66,6 +66,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
           setDuration={this.setDuration}
           setVolume={this.setVolume}
           setPlayerRef={this.setPlayerRef}
+          changeSong={this.changeSong}
         />
       );
     }
@@ -114,6 +115,24 @@ export default connect(mapStateToProps, mapDispatchToProps)(
           :
           ''}${('0' + mm).slice(-2)}:${('0' + ss).slice(-2)
       }`;
+    };
+
+    changeSong = (change) => {
+      let newIndex = this.props.currentIndex + change;
+      // console.log(newIndex, 'nI', currentIndex, 'ci', change, 'chan');
+      if (newIndex < 0) {
+        newIndex = 0;
+        this.onSeekChange(0);
+        this.onSeekMouseUp(0);
+      }
+      else if (newIndex > this.props.items.length - 1) {
+        newIndex = 0;
+      }
+      else {
+        console.log(this.props.currentIndex);
+      }
+      document.querySelector(`#playlist-item-${newIndex}`).scrollIntoView({ behavior: 'smooth' });
+      this.props.updateIndex(newIndex);
     };
   }
 );
