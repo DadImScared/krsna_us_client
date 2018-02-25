@@ -8,7 +8,6 @@ import Hidden from 'material-ui/Hidden';
 import Menu from 'material-ui-icons/Menu';
 import BottomNavigation, { BottomNavigationAction } from 'material-ui/BottomNavigation';
 
-import NavDrawer from '../components/NavDrawer';
 import PlaylistPlay from 'material-ui-icons/PlaylistPlay';
 import MusicNote from 'material-ui-icons/MusicNote';
 
@@ -42,12 +41,15 @@ class BottomNav extends Component {
   }
 
   bottomNavChange = (event, value) => {
-    const { mobileNavToggle } = this.props;
-    let newValue;
+    const { mobileNavToggle, history } = this.props;
+    let newValue = value;
     switch(value) {
     case 1:
       mobileNavToggle();
       newValue = 4;
+      break;
+    case 2:
+      history.push('/playlists/me/');
       break;
     default:
       newValue = value;
