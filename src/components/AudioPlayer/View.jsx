@@ -87,7 +87,7 @@ const View = ({
   };
 
   return (
-    <div className={classes.cardWrapper}>
+    <div id='audioPlayer' className={classes.cardWrapper}>
       <ReactPlayer
         ref={setPlayerRef}
         playing={playing}

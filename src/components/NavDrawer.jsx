@@ -63,7 +63,7 @@ const NavDrawer =  ({ classes, isOpen, handleClose, showPlayer }) => {
   const renderNavDrawerContent = () => {
     return (
       <div style={{ position: 'fixed' }} className={classes.drawerPaper}>
-        <div className={classes.drawerHeader}>
+        <div id='navDrawerTop' className={classes.drawerHeader}>
           <Typography type='title'>
             Krsna.us
           </Typography>

@@ -11,6 +11,7 @@ const ResponsiveDrawer = ({ drawerClasses, anchor = 'left', children, isOpen, ha
           disableRestoreFocus={true}
           variant='temporary'
           anchor={anchor}
+          ModalProps={{ keepMounted: true }}
           open={isOpen}
           onClose={handleClose}
           classes={drawerClasses}

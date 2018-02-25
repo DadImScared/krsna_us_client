@@ -51,9 +51,24 @@ class BottomNav extends Component {
 
   bottomNavChange = (event, value) => {
     const { value: currentValue } = this.state;
-    const { mobileNavToggle, history } = this.props;
+    const { mobileNavToggle, history, showPlayer } = this.props;
     let newValue = value;
     switch(value) {
+    case 0: {
+      if (showPlayer) {
+        const audioPlayer = document.querySelector('#audioPlayer');
+        mobileNavToggle();
+        audioPlayer.scrollIntoView({ behavior: 'smooth' });
+        // setTimeout(() => audioPlayer.scrollIntoView({ behavior: 'smooth' }), 100);
+      }
+      if (currentValue === 2) {
+        newValue = 2;
+      }
+      else {
+        newValue = 4;
+      }
+      break;
+    }
     case 1:
       mobileNavToggle();
       if (currentValue === 2) {
@@ -62,6 +77,7 @@ class BottomNav extends Component {
       else {
         newValue = 4;
       }
+      document.querySelector('#navDrawerTop').scrollIntoView({ behavior: 'smooth' });
       break;
     case 2:
       history.push('/playlists/me/');

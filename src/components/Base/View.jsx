@@ -75,6 +75,7 @@ const View =  ({
       />
       <BottomNav
         {...other}
+        showPlayer={showPlayer}
         bottomOfPage={bottomOfPage}
         directionDown={directionDown}
         mobileNavToggle={mobileNavToggle}
