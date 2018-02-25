@@ -105,6 +105,8 @@ class AddToPlaylist extends Component {
                       <div className={classes.formWrapper}>
                         <TextField
                           id='name'
+                          error={!!formErrors['name']}
+                          helperText={formErrors['name'] || ''}
                           value={form.name || ''}
                           onChange={(event) => updateForm(event, 'name')}
                           classes={{ root: classes.formField }}
@@ -139,6 +141,11 @@ class AddToPlaylist extends Component {
     catch ({ response: { data, status } }) {
       this.setState({ errorMessage: true  });
     }
+  }
+
+  componentWillUnmount() {
+    this.props.clearErrors();
+    this.props.clearFields();
   }
 
   renderPlaylists = () => {
