@@ -29,8 +29,17 @@ const styles = theme => ({
       }),
       opacity: 0
     }
+  },
+  activeView: {
+    color: theme.palette.secondary.main
   }
 });
+
+const menuItems = [
+  { label: 'Audio player', icon: <MusicNote /> },
+  { label: 'Menu', icon: <Menu /> },
+  { label: 'My playlists', icon: <PlaylistPlay /> }
+];
 
 class BottomNav extends Component {
   constructor(...args) {
@@ -72,9 +81,18 @@ class BottomNav extends Component {
           showLabels
           value={this.state.value}
         >
-          <BottomNavigationAction label={'Audio player'} icon={<MusicNote />} />
-          <BottomNavigationAction label={'Menu'} icon={<Menu />} />
-          <BottomNavigationAction label={'Play lists'} icon={<PlaylistPlay />} />
+          {
+            menuItems.map((item, index) => (
+              <BottomNavigationAction
+                key={`${item.label}-${index}`}
+                label={item.label}
+                icon={item.icon}
+                classes={{
+                  selected: classes.activeView
+                }}
+              />
+            ))
+          }
         </BottomNavigation>
       </Hidden>
     );
