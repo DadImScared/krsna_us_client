@@ -71,6 +71,10 @@ class Marquee extends Component {
     }
   }
 
+  componentWillUnmount() {
+    clearInterval(this.state.marqueeTimer);
+  }
+
   resetPosition = (items, change) => {
     this.setState({ items, resetPosition: true });
     clearInterval(this.state.marqueeTimer);
