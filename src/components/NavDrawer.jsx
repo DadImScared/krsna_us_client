@@ -40,7 +40,7 @@ const styles = theme => ({
   }
 });
 
-const NavDrawer =  ({ classes, isOpen, handleClose }) => {
+const NavDrawer =  ({ classes, isOpen, handleClose, showPlayer }) => {
   const renderCategories = () => {
     const categoryLinks = Object.keys(CATEGORIES).map((category, index) => {
       return (
@@ -71,7 +71,12 @@ const NavDrawer =  ({ classes, isOpen, handleClose }) => {
         <Divider/>
         {renderCategories()}
         <Divider/>
-        <AudioPlayer/>
+        {
+          showPlayer ?
+            <AudioPlayer/>
+            :
+            null
+        }
       </div>
     );
   };

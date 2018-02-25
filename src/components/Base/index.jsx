@@ -151,9 +151,10 @@ class Base extends Component {
   };
 }
 
-const mapStateToProps = ({ videoplayer, user }) => ({
+const mapStateToProps = ({ videoplayer, user, audioplayer: { showPlayer } }) => ({
   videoplayer,
-  user
+  user,
+  showPlayer
 });
 
 const mapDispatchToProps = dispatch => {

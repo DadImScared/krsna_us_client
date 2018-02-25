@@ -53,7 +53,7 @@ const View =  ({
   directionDown, bottomOfPage, shouldSticky,
   classes, mobileNavToggle, updatePosition,
   closeVideo, setWindowScroller, setVideoOffsetHeight,
-  mobileNavOpen, videoplayer,
+  mobileNavOpen, videoplayer, showPlayer,
   userActions: {
     logIn, logOut
   }
@@ -62,7 +62,7 @@ const View =  ({
     <Reboot/>
     <div className={classes.appFrame}>
       <Navbar directionDown={directionDown}/>
-      <NavDrawer isOpen={mobileNavOpen} handleClose={mobileNavToggle} />
+      <NavDrawer showPlayer={showPlayer} isOpen={mobileNavOpen} handleClose={mobileNavToggle} />
       <Main
         setRef={setWindowScroller}
         shouldSticky={shouldSticky}
