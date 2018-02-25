@@ -105,6 +105,7 @@ const View = ({
           }
           else {
             changeSong(1);
+            setPlaying(true);
           }
         }}
         onDuration={setDuration}
