@@ -65,12 +65,10 @@ class Base extends Component {
   }
 
   setRef = (el) => {
-    console.log('here');
     this._windowScroller = el;
   };
 
   setVideoOffsetHeight = (offset) => {
-    // const offset = Math.floor(this.videoContainer.offsetTop + ( this.videoPlayer.offsetHeight / 2));
     this.setState({ videoOffsetHeight: offset });
 
   };

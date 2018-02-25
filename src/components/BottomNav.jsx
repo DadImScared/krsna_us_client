@@ -59,7 +59,6 @@ class BottomNav extends Component {
         const audioPlayer = document.querySelector('#audioPlayer');
         mobileNavToggle();
         audioPlayer.scrollIntoView({ behavior: 'smooth' });
-        // setTimeout(() => audioPlayer.scrollIntoView({ behavior: 'smooth' }), 100);
       }
       if (currentValue === 2) {
         newValue = 2;
