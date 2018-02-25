@@ -50,12 +50,18 @@ class BottomNav extends Component {
   }
 
   bottomNavChange = (event, value) => {
+    const { value: currentValue } = this.state;
     const { mobileNavToggle, history } = this.props;
     let newValue = value;
     switch(value) {
     case 1:
       mobileNavToggle();
-      newValue = 4;
+      if (currentValue === 2) {
+        newValue = 2;
+      }
+      else {
+        newValue = 4;
+      }
       break;
     case 2:
       history.push('/playlists/me/');
@@ -65,6 +71,25 @@ class BottomNav extends Component {
     }
     this.setState({ value: newValue });
   };
+
+  componentDidMount() {
+    if (this.props.location.pathname === '/playlists/me/') {
+      this.setState({ value: 2 });
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { location } = this.props;
+    const { location: { pathname } } = nextProps;
+    if (location.pathname !== pathname) {
+      if ( pathname === '/playlists/me/') {
+        this.setState({ value: 2 });
+      }
+      else {
+        this.setState({ value: 4 });
+      }
+    }
+  }
 
   render() {
     const { classes, bottomOfPage, directionDown } = this.props;

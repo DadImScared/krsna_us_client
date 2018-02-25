@@ -56,7 +56,7 @@ const View =  ({
   mobileNavOpen, videoplayer, showPlayer,
   userActions: {
     logIn, logOut
-  }, history
+  }, ...other
 }) => (
   <MuiThemeProvider theme={theme}>
     <Reboot/>
@@ -74,7 +74,7 @@ const View =  ({
         logIn={logIn}
       />
       <BottomNav
-        history={history}
+        {...other}
         bottomOfPage={bottomOfPage}
         directionDown={directionDown}
         mobileNavToggle={mobileNavToggle}
