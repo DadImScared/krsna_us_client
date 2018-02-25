@@ -82,6 +82,7 @@ const View = ({
     else if (newIndex > items.length - 1) {
       newIndex = 0;
     }
+    document.querySelector(`#playlist-item-${newIndex}`).scrollIntoView({ behavior: 'smooth' });
     updateIndex(newIndex);
   };
 
