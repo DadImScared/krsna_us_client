@@ -36,7 +36,7 @@ class AllPlaylists extends Component {
     return isLoading ? (
       <div>load here</div>
     ) : (
-      <VirtualResults RowComponent={RenderPlaylist} items={items} nextPage={nextPage} />
+      <VirtualResults showDelete={false} RowComponent={RenderPlaylist} items={items} nextPage={nextPage} />
     );
   }
 }

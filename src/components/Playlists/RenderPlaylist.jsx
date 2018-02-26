@@ -3,7 +3,7 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
-import { ListItem, ListItemSecondaryAction, ListItemText } from 'material-ui/List';
+import { ListItem, ListItemText } from 'material-ui/List';
 import Icon from 'material-ui/Icon';
 import IconButton from 'material-ui/IconButton';
 
@@ -11,7 +11,7 @@ import Delete from 'material-ui-icons/Delete';
 
 import PlayPlaylistButton from './PlayPlaylistButton';
 
-const RenderPlaylist = ({ item, deletePlaylist }) => (
+const RenderPlaylist = ({ item, deletePlaylist, showDelete = true }) => (
   <ListItem>
     <PlayPlaylistButton playlistId={item.playlist_id} />
     <ListItemText
@@ -22,11 +22,16 @@ const RenderPlaylist = ({ item, deletePlaylist }) => (
         </div>
       }
     />
-    <IconButton onClick={() => deletePlaylist(item.playlist_id)}>
-      <Icon>
-        <Delete />
-      </Icon>
-    </IconButton>
+    {
+      showDelete ?
+        <IconButton onClick={() => deletePlaylist(item.playlist_id)}>
+          <Icon>
+            <Delete />
+          </Icon>
+        </IconButton>
+        :
+        null
+    }
   </ListItem>
 );
 
