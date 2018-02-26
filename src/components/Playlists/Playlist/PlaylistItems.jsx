@@ -24,36 +24,54 @@ const DragHandle = SortableHandle(() => (
   </Icon>
 ));
 
-const SortableItem = SortableElement(({ value, deleteItem, playlistId, itemIndex }) => (
+const SortableItem = SortableElement(({ value, deleteItem, playlistId, itemIndex, isCreator }) => (
   <ListItem>
-    <div>
-      <DragHandle />
-      <Hidden mdUp>
-        <Icon onClick={() => deleteItem(value)} color='error'>
-          <Delete/>
-        </Icon>
-      </Hidden>
-    </div>
+    {
+      isCreator ?
+        <div>
+          <DragHandle />
+          <Hidden mdUp>
+            <Icon onClick={() => deleteItem(value)} color='error'>
+              <Delete/>
+            </Icon>
+          </Hidden>
+        </div>
+        :
+        null
+    }
     <ListItemText primary={value.title} />
     <Hidden mdDown>
       <ListItemSecondaryAction>
         <PlayPlaylistButton index={itemIndex} playlistId={playlistId} />
-        <IconButton onClick={() => deleteItem(value)}>
-          <Icon color='error'>
-            <Delete/>
-          </Icon>
-        </IconButton>
+        {
+          isCreator ?
+            <IconButton onClick={() => deleteItem(value)}>
+              <Icon color='error'>
+                <Delete/>
+              </Icon>
+            </IconButton>
+            :
+            null
+        }
       </ListItemSecondaryAction>
     </Hidden>
   </ListItem>
 ));
 
-const PlaylistItems = SortableContainer(({ items, classes, deleteItem, playlistId }) => (
+const PlaylistItems = SortableContainer(({ items, classes, deleteItem, isCreator, playlistId }) => (
   <List classes={{
     root: classes.listContainer
   }}>
     {items.map((value, index) => (
-      <SortableItem itemIndex={index} playlistId={playlistId} value={value} deleteItem={deleteItem} key={`item-${index}`} index={index} />
+      <SortableItem
+        isCreator={isCreator}
+        itemIndex={index}
+        playlistId={playlistId}
+        value={value}
+        deleteItem={deleteItem}
+        key={`item-${index}`}
+        index={index}
+      />
     ))}
   </List>
 ));

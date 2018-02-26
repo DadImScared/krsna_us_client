@@ -10,8 +10,8 @@ const fullUrl = (extension) => {
   return `${baseUrl}${extension}/`;
 };
 
-export const getItems = async (playlistId) => {
-  return await axios.get(`${baseUrl}?playlist_id=${playlistId}`);
+export const getItems = async (playlistId, addOptions = false) => {
+  return await axios.get(`${baseUrl}?playlist_id=${playlistId}`, addOptions ? axiosOptions():{});
 };
 
 export const postItem = async (playlistId, itemId) => {

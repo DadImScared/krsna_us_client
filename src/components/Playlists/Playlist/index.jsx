@@ -1,6 +1,8 @@
 
 import React, { Component } from 'react';
 
+import { connect } from 'react-redux';
+
 import _ from 'lodash';
 import { arrayMove } from 'react-sortable-hoc';
 
@@ -17,7 +19,8 @@ class Playlist extends Component {
       name: '',
       itemCount: 0,
       isLoading: false,
-      errorMessage: ''
+      errorMessage: '',
+      isCreator: false
     };
   }
 
@@ -35,27 +38,35 @@ class Playlist extends Component {
   }
 
   componentDidMount() {
-    console.log(this.getPlaylistId(this.props));
-    this.fetchAndUpdate(this.getPlaylistId(this.props));
+    this.fetchAndUpdate(this.getPlaylistId(this.props), this.props.loggedIn);
   }
 
   componentWillReceiveProps(nextProps) {
     const currentPlaylistId = this.getPlaylistId(this.props);
     const newPlaylistId = this.getPlaylistId(nextProps);
-    if (currentPlaylistId !== newPlaylistId) {
-      this.fetchAndUpdate(newPlaylistId);
+    if (currentPlaylistId !== newPlaylistId || this.props.loggedIn !== nextProps.loggedIn) {
+      this.fetchAndUpdate(newPlaylistId, nextProps.loggedIn);
     }
   }
 
-  fetchAndUpdate = async (playlistId) => {
+  fetchAndUpdate = async (playlistId, loggedIn = false) => {
     this.setState({ isLoading: true });
     const newData = {};
     try {
-      const { data: { items, name, items_count: itemCount, playlist_id } } = await getItems(playlistId);
+      const {
+        data: {
+          items,
+          name,
+          items_count: itemCount,
+          playlist_id,
+          isCreator
+        }
+      } = await getItems(playlistId, loggedIn);
       newData.items = items;
       newData.name = name;
       newData.itemCount = itemCount;
       newData.playlistId = playlist_id;
+      newData.isCreator = isCreator;
     }
     catch ({ response: { data } }) {
       newData.errorMessage = data;
@@ -107,4 +118,8 @@ class Playlist extends Component {
   };
 }
 
-export default handleFormState(Playlist);
+const mapStateToProps = ({ user: { loggedIn } }) => ({
+  loggedIn
+});
+
+export default handleFormState(connect(mapStateToProps)(Playlist));

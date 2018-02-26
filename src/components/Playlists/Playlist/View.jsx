@@ -31,11 +31,16 @@ const View = ({ name, itemCount, items, classes, ...other }) => (
         </Typography>
       </div>
       <div className={classNames(classes.spacing, classes.playlistInfo)}>
-        <PlaylistForm
-          classes={classes}
-          placeholder='Edit name'
-          {...other}
-        />
+        {
+          other.isCreator ?
+            <PlaylistForm
+              classes={classes}
+              placeholder='Edit name'
+              {...other}
+            />
+            :
+            null
+        }
       </div>
     </div>
     <Divider/>
