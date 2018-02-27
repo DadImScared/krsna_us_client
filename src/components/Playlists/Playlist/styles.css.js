@@ -18,7 +18,7 @@ export const inputRow = (theme) => ({
     display: 'flex',
     alignItems: 'center',
     flexWrap: 'wrap',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     padding: theme.spacing.unit * 2
   },
   playlistInfo: {

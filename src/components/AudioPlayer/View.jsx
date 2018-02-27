@@ -68,7 +68,8 @@ const View = ({
   loaded, muted, volume, format,
   onProgress, setPlayerRef, setDuration,
   setVolume, onSeekDown, onSeekChange,
-  onSeekUp, showPlayer, updateIndex, changeSong
+  onSeekUp, showPlayer, updateIndex, changeSong,
+  color
 }) => {
   const seconds = duration * played;
 
@@ -106,7 +107,7 @@ const View = ({
                   items={[playerType === 'song' ? currentSongName:items[currentIndex].title]}
                   timeToChange={0}
                   timeToCross={7000}
-                  color={'red'}
+                  color={color}
                   pause={playing}
                 />
               </div>
