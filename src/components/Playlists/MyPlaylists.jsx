@@ -39,18 +39,19 @@ class MyPlaylists extends Component {
 
   submitForm = async (e) => {
     e.preventDefault();
-    const { handleErrorResponse, form, clearErrors } = this.props;
+    const { handleErrorResponse, form, clearErrors, clearFields } = this.props;
     try {
       const { data: newPlaylist } = await createPlaylist(form.name);
       this.setState({ items: [...this.state.items, newPlaylist] });
       clearErrors();
+      clearFields();
     }
     catch ({ response: { data } }) {
       handleErrorResponse(data);
     }
   };
 
-  deletePlaylist = async (playlistId) => {
+  deleteMyPlaylist = async (playlistId) => {
     const r = window.confirm('Are you sure you want to delete the playlist?');
     if (r) {
       const newData = { ...this.state };
@@ -78,7 +79,7 @@ class MyPlaylists extends Component {
       <div>
         <PlaylistForm placeholderText='Change playlist name' classes={classes} submitForm={this.submitForm} {...this.props} />
         <VirtualResults
-          deletePlaylist={this.deletePlaylist}
+          deletePlaylist={this.deleteMyPlaylist}
           updateCb={this.updateResults}
           RowComponent={RenderPlaylist}
           items={items}

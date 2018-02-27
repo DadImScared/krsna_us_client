@@ -4,11 +4,20 @@ import React from 'react';
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
 
-const PlaylistForm = ({ updateForm, formErrors, submitForm, placeholder, classes = {}, textFieldStyles = {} }) => (
+const PlaylistForm = ({
+  updateForm,
+  form,
+  formErrors,
+  submitForm,
+  placeholder,
+  classes = {},
+  textFieldStyles = {}
+}) => (
   <form onSubmit={submitForm} className={classes.formContainer}>
     <TextField
       id='name'
       placeholder={placeholder}
+      value={form.name || ''}
       error={!!formErrors['name'] || !!formErrors['nonFieldErrors']}
       helperText={formErrors['name'] || formErrors['nonFieldErrors'] || ''}
       onChange={(event) => updateForm(event, 'name')}
