@@ -5,7 +5,7 @@ import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
 
 const PlaylistForm = ({ updateForm, formErrors, submitForm, placeholder, classes = {}, textFieldStyles = {} }) => (
-  <div className={classes.formContainer}>
+  <form onSubmit={submitForm} className={classes.formContainer}>
     <TextField
       id='name'
       placeholder={placeholder}
@@ -15,7 +15,7 @@ const PlaylistForm = ({ updateForm, formErrors, submitForm, placeholder, classes
       classes={textFieldStyles}
     />
     <Button variant='raised' onClick={submitForm} color='primary'>Submit</Button>
-  </div>
+  </form>
 );
 
 export default PlaylistForm;

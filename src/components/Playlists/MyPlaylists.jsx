@@ -37,7 +37,8 @@ class MyPlaylists extends Component {
     this.setState(newData);
   }
 
-  submitForm = async () => {
+  submitForm = async (e) => {
+    e.preventDefault();
     const { handleErrorResponse, form, clearErrors } = this.props;
     try {
       const { data: newPlaylist } = await createPlaylist(form.name);
