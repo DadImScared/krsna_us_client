@@ -23,6 +23,7 @@ const View = ({ match, classes }) => (
       )}
     />
     <Route
+      exact
       path={`${match.url}/me/`}
       render={(props) => (
         <MyPlaylists classes={classes} {...props} />

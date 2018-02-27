@@ -1,13 +1,15 @@
 
 import React from 'react';
 
-import { withRouter } from 'react-router-dom';
+import { withRouter, NavLink } from 'react-router-dom';
 
 import classNames from 'classnames';
 
 import { withStyles } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
+import Hidden from 'material-ui/Hidden';
+import Button from 'material-ui/Button';
 
 import SearchBar from './SearchBar';
 import MoreOptions from './MoreOptions';
@@ -39,6 +41,17 @@ const styles = theme => ({
       }),
       opacity: 0
     }
+  },
+  link: {
+    color: theme.palette.text.secondary
+  },
+  activeLink: {
+    color: theme.palette.text.primary
+  },
+  hiddenLg: {
+    [theme.breakpoints.up('lg')]: {
+      display: 'none'
+    }
   }
 });
 
@@ -60,7 +73,28 @@ const View = ({
   }}>
     <Toolbar style={{ justifyContent: 'space-between' }}>
       <SearchBar query={query} categories={categories} actions={searchActions} history={history} />
-      <MoreOptions user={user} actions={userActions} history={history} />
+      <div style={{ display: 'flex' }}>
+        <Hidden mdDown>
+          <Button
+            component={NavLink}
+            activeClassName={classes.activeLink}
+            className={classes.link}
+            exact
+            to={'/playlists/'}
+          >
+            all playlists
+          </Button>
+          <Button
+            component={NavLink}
+            activeClassName={classes.activeLink}
+            className={classes.link}
+            to={'/playlists/me/'}
+          >
+            my playlists
+          </Button>
+        </Hidden>
+        <MoreOptions classes={classes} user={user} actions={userActions} history={history} />
+      </div>
     </Toolbar>
   </AppBar>
 );

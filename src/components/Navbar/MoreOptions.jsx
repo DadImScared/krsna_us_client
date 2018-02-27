@@ -20,7 +20,7 @@ class MoreOptions extends Component {
 
   render() {
     const { menuAnchorEl } = this.state;
-    const { user: { loggedIn } } = this.props;
+    const { user: { loggedIn }, classes } = this.props;
     return (
       <div>
         <IconButton onClick={this.openMenu}>
@@ -57,12 +57,13 @@ class MoreOptions extends Component {
                   Log out
                 </MenuItem>,
                 <MenuItem
-                  key={'menu-my-playlists'}
+                  className={classes.hiddenLg}
+                  key={'menu-all-playlists'}
                   onClick={() => {
-                    this.closeMenu('/playlists/me/');
+                    this.closeMenu('/playlists/');
                   }}
                 >
-                  My playlists
+                  All playlists
                 </MenuItem>
               ]
               :
