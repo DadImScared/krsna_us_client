@@ -17,7 +17,7 @@ const styles = theme => ({
   ...sortableList(theme)
 });
 
-const View = ({ name, itemCount, items, classes, ...other }) => (
+const View = ({ name, items, classes, ...other }) => (
   <Paper classes={{
     root: classes.container
   }} square={true}>
@@ -27,7 +27,7 @@ const View = ({ name, itemCount, items, classes, ...other }) => (
           <span>name: {name}</span>
         </Typography>
         <Typography>
-          <span>item count: {itemCount}</span>
+          <span>item count: {items.length}</span>
         </Typography>
       </div>
       <div className={classNames(classes.spacing, classes.playlistInfo)}>

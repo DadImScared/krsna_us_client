@@ -57,14 +57,12 @@ class Playlist extends Component {
         data: {
           items,
           name,
-          items_count: itemCount,
           playlist_id,
           isCreator
         }
       } = await getItems(playlistId, loggedIn);
       newData.items = items;
       newData.name = name;
-      newData.itemCount = itemCount;
       newData.playlistId = playlist_id;
       newData.isCreator = isCreator;
     }
