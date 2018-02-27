@@ -15,7 +15,10 @@ const CATEGORIES = {
   },
   'book': 'Books',
   'harikatha': 'Harikatha',
-  'lecture': 'Lectures',
+  'lecture': {
+    displayName: 'Lectures',
+    component: <AudioResult />
+  },
   'harmonistmonthly': 'Harmonist Monthly',
   'harmonistmagazine': 'Harmonist Magazine',
   'bhagavatpatrika': 'Bhagavat Patrika'

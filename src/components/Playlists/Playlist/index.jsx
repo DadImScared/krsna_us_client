@@ -80,7 +80,8 @@ class Playlist extends Component {
     return playlistId;
   };
 
-  submitForm = async () => {
+  submitForm = async (e) => {
+    e.preventDefault();
     const { handleErrorResponse, form, clearErrors, clearFields } = this.props;
     try {
       const { data: { name } } = await patchPlaylist(this.getPlaylistId(this.props), form.name || '');
