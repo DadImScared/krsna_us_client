@@ -27,7 +27,7 @@ const styles = theme => ({
 const View = ({ classes, errorMessage, onSocialSuccess, updateForm, submitLogin, formErrors }) => (
   <Paper classes={{ root: classes.paperBackground }}>
     <SocialConnectionButtons onSuccessCb={onSocialSuccess} />
-    <Typography type={'title'}>or</Typography>
+    <Typography variant={'title'}>or</Typography>
     <LoginForm formErrors={formErrors} submitLogin={submitLogin} updateForm={updateForm} errorMessage={errorMessage} />
     <Typography>
       {'Don\'t '} have an account? Click here

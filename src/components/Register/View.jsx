@@ -29,7 +29,7 @@ const styles = theme => ({
 const View = ({ classes, onSocialSuccess, ...other }) => (
   <Paper classes={{ root: classes.paperBackground }}>
     <SocialConnectionButtons prefix={'Register'} onSuccess={onSocialSuccess} />
-    <Typography type={'title'}>or</Typography>
+    <Typography variant={'title'}>or</Typography>
     <div>
       <Typography>Register with us</Typography>
       <RegisterForm classes={classes} {...other} />
