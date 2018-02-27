@@ -14,7 +14,8 @@ const Login = (props) => {
     props.logIn(provider);
   };
 
-  const submitLogin = async () => {
+  const submitLogin = async (e) => {
+    e.preventDefault();
     const { onSuccessCb, handleErrorResponse, form: { email, password } } = props;
     try {
       const { data: { key } } = await axios.post('/rest-auth/login/', { email, password });
