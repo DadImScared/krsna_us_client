@@ -14,7 +14,8 @@ export default handleFormState(
       this.props.logIn(provider); // redux login for ui change
     };
 
-    const registerUser = async () => {
+    const registerUser = async (e) => {
+      e.preventDefault();
       const { form: { email, password1, password2 }, handleErrorResponse } = props;
       try {
         const { data: { key } } = await axios.post(

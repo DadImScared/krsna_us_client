@@ -15,26 +15,28 @@ const formFields = [
 const RegisterForm = ({ classes, updateForm, registerUser, form, formErrors }) => (
   <div>
     <div>{formErrors['nonFieldErrors']}</div>
-    {
-      formFields.map(({ id, labelText, validator, fieldType = 'text' }, index) => {
-        return (
-          <div key={index} className={classes.fieldStyle}>
-            <TextField
-              id={id}
-              error={!!formErrors[id]}
-              label={labelText}
-              type={fieldType}
-              value={form[id] || ''}
-              helperText={formErrors[id] || ''}
-              onChange={(event) => updateForm(event, id, validator)}
-            />
-          </div>
-        );
-      })
-    }
-    <Button color='primary' variant='raised' onClick={registerUser}>
-      Submit
-    </Button>
+    <form onSubmit={registerUser}>
+      {
+        formFields.map(({ id, labelText, validator, fieldType = 'text' }, index) => {
+          return (
+            <div key={index} className={classes.fieldStyle}>
+              <TextField
+                id={id}
+                error={!!formErrors[id]}
+                label={labelText}
+                type={fieldType}
+                value={form[id] || ''}
+                helperText={formErrors[id] || ''}
+                onChange={(event) => updateForm(event, id, validator)}
+              />
+            </div>
+          );
+        })
+      }
+      <Button type='submit' color='primary' variant='raised' onClick={registerUser}>
+        Submit
+      </Button>
+    </form>
   </div>
 );
 
