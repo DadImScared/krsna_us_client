@@ -37,7 +37,7 @@ const GoogleButton = ({ classes, prefix, onSuccess, onFailure }) => (
     onSuccess={onSuccess}
     onFailure={onFailure}
   >
-    <img className={classes.googleButton} alt={'google logo'} />
+    <img height={'30px'} width={'30px'} className={classes.googleButton} alt={'google logo'} />
     <Typography className={classes.textSpacing} style={{ display: 'inline' }}>{prefix} with Google</Typography>
   </Button>
 );
