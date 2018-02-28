@@ -2,10 +2,12 @@
 import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import _ from 'lodash';
 import { arrayMove } from 'react-sortable-hoc';
 
+import * as AudioActionCreators from '../../../actions/audioplayer';
 import handleFormState from '../../handleFormState';
 import View from './View';
 import { getItems, patchItem, deleteItem as deletePlaylistItem } from '../../../actions/playlistItem';
@@ -121,4 +123,10 @@ const mapStateToProps = ({ user: { loggedIn } }) => ({
   loggedIn
 });
 
-export default handleFormState(connect(mapStateToProps)(Playlist));
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    setPlaylist: AudioActionCreators.setPlaylist
+  }, dispatch);
+};
+
+export default handleFormState(connect(mapStateToProps, mapDispatchToProps)(Playlist));

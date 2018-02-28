@@ -24,13 +24,13 @@ const DragHandle = SortableHandle(() => (
   </Icon>
 ));
 
-const SortableItem = SortableElement(({ value, deleteItem, playlistId, itemIndex, isCreator }) => (
+const SortableItem = SortableElement(({ value, deleteItem, playlistId, itemIndex, isCreator, setPlaylist, items, name }) => (
   <ListItem>
     {
       isCreator ?
         <div>
           <DragHandle />
-          <Hidden mdUp>
+          <Hidden lgUp>
             <Icon onClick={() => deleteItem(value)} color='error'>
               <Delete/>
             </Icon>
@@ -39,7 +39,12 @@ const SortableItem = SortableElement(({ value, deleteItem, playlistId, itemIndex
         :
         null
     }
-    <ListItemText primary={value.title} />
+    <Hidden lgUp>
+      <ListItemText onClick={() => setPlaylist(name, items, itemIndex)} primary={value.title} />
+    </Hidden>
+    <Hidden mdDown>
+      <ListItemText primary={value.title} />
+    </Hidden>
     <Hidden mdDown>
       <ListItemSecondaryAction>
         <PlayPlaylistButton index={itemIndex} playlistId={playlistId} />
@@ -58,12 +63,15 @@ const SortableItem = SortableElement(({ value, deleteItem, playlistId, itemIndex
   </ListItem>
 ));
 
-const PlaylistItems = SortableContainer(({ items, classes, deleteItem, isCreator, playlistId }) => (
+const PlaylistItems = SortableContainer(({ items, classes, deleteItem, isCreator, playlistId, setPlaylist, name }) => (
   <List classes={{
     root: classes.listContainer
   }}>
     {items.map((value, index) => (
       <SortableItem
+        name={name}
+        setPlaylist={setPlaylist}
+        items={items}
         isCreator={isCreator}
         itemIndex={index}
         playlistId={playlistId}
