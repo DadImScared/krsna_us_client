@@ -9,6 +9,7 @@ import VideoPlayer from '../components/VideoPlayer';
 import Login from '../components/Login';
 import Register from '../components/Register';
 import Playlists from './Playlists';
+import Home from './Home';
 import BrowseItemByCategory from '../components/BrowseItemsByCategory';
 import SearchItems from './SearchItems';
 
@@ -56,6 +57,13 @@ const Main = ({
         exact path={'/register'}
         render={(props) => (
           <Register {...props} logIn={logIn} />
+        )}
+      />
+      <Route
+        exact
+        path={'/'}
+        render={(props) => (
+          <Home {...props} />
         )}
       />
       <Route
