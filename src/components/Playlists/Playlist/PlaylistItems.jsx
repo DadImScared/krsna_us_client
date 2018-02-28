@@ -39,6 +39,9 @@ const SortableItem = SortableElement(({ value, deleteItem, playlistId, itemIndex
         :
         null
     }
+    <Hidden mdDown>
+      <PlayPlaylistButton index={itemIndex} playlistId={playlistId} />
+    </Hidden>
     <Hidden lgUp>
       <ListItemText onClick={() => setPlaylist(name, items, itemIndex)} primary={value.title} />
     </Hidden>
@@ -47,7 +50,7 @@ const SortableItem = SortableElement(({ value, deleteItem, playlistId, itemIndex
     </Hidden>
     <Hidden mdDown>
       <ListItemSecondaryAction>
-        <PlayPlaylistButton index={itemIndex} playlistId={playlistId} />
+
         {
           isCreator ?
             <IconButton onClick={() => deleteItem(value)}>
