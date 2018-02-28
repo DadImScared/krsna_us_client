@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 import { withStyles } from 'material-ui/styles';
 import { MenuItem, MenuList } from 'material-ui/Menu';
@@ -74,9 +74,11 @@ const NavDrawer =  ({ classes, isOpen, handleClose, showPlayer, setShowPlayer })
     return (
       <div style={{ position: 'fixed' }} className={classes.drawerPaper}>
         <div id='navDrawerTop' className={classes.drawerHeader}>
-          <Typography type='title'>
-            Krsna.us
-          </Typography>
+          <Link to='/'>
+            <Typography type='title'>
+              Krsna.us
+            </Typography>
+          </Link>
         </div>
         <Divider/>
         {renderCategories()}
