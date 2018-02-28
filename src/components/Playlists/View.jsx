@@ -4,6 +4,7 @@ import { Route } from 'react-router-dom';
 
 import { withStyles } from 'material-ui/styles';
 
+import ProtectedRoute from '../ProtectedRoute';
 import AllPlaylists from './AllPlaylists';
 import MyPlaylists from './MyPlaylists';
 import Playlist from './Playlist';
@@ -13,7 +14,7 @@ const styles = theme => ({
   ...playlistForm(theme)
 });
 
-const View = ({ match, classes }) => (
+const View = ({ match, classes, loggedIn }) => (
   <div>
     <Route
       exact
@@ -22,12 +23,12 @@ const View = ({ match, classes }) => (
         <AllPlaylists classes={classes} {...props} />
       )}
     />
-    <Route
+    <ProtectedRoute
       exact
+      loggedIn={loggedIn}
       path={`${match.url}/me/`}
-      render={(props) => (
-        <MyPlaylists classes={classes} {...props} />
-      )}
+      componentProps={{ classes }}
+      component={MyPlaylists}
     />
     <Route
       exact

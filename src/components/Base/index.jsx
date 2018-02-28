@@ -48,14 +48,17 @@ class Base extends Component {
     return { setWindowScroller: this.setRef };
   }
 
-  componentDidMount() {
-    window.addEventListener('scroll', this.scrollListener);
-    window.addEventListener('resize', this.resizeListener);
+  componentWillMount() {
     const token = Cookies.get('token');
     if (token) {
       const provider = Cookies.get('provider');
       this.props.userActions.logIn(provider);
     }
+  }
+
+  componentDidMount() {
+    window.addEventListener('scroll', this.scrollListener);
+    window.addEventListener('resize', this.resizeListener);
     this.setState({ lastScrollTop: this.getScrollTop() });
   }
 
