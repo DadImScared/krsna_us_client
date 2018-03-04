@@ -63,7 +63,8 @@ const View = ({
   searchActions,
   user,
   query,
-  categories
+  categories,
+  location
 }) => (
   <AppBar position={'fixed'} className={classes.appBar} classes={{
     root: classNames({
@@ -72,7 +73,7 @@ const View = ({
     })
   }}>
     <Toolbar style={{ justifyContent: 'space-between' }}>
-      <SearchBar query={query} categories={categories} actions={searchActions} history={history} />
+      <SearchBar location={location} query={query} categories={categories} actions={searchActions} history={history} />
       <div style={{ display: 'flex' }}>
         <Hidden mdDown>
           <Button

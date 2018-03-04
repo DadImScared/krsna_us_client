@@ -93,7 +93,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
     getQueryId = (query, search) => `${query.trim().toLowerCase()}-${search}`;
 
     search = async (query, queryS) => {
-      const { data: { results, suggestions, nextPage } } = await axios.get(`/api/v1/search/${query}${queryS}`);
+      const { data: { results, suggestions = [], nextPage } } = await axios.get(`/api/v1/search/${query}${queryS}`);
       this.props.updateResults(this.getQueryId(query, queryS), results, nextPage, suggestions);
     };
 

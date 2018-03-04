@@ -42,7 +42,7 @@ export default function Search(state=initialState, action) {
             ...action.results
           ],
           nextPage: action.nextPage,
-          suggestions: action.suggestions
+          suggestions: action.suggestions ? action.suggestions:state.results[action.query].suggestions
         }
       }
     };
