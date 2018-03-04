@@ -45,7 +45,6 @@ class AudioPlayer extends Component {
 
   onProgress = state => {
     // We only want to update time slider if we are not currently seeking
-    console.log(state);
     if (!this.state.seeking) {
       this.setState(state);
     }
@@ -99,9 +98,6 @@ class AudioPlayer extends Component {
     }
     else if (newIndex > this.props.items.length - 1) {
       newIndex = 0;
-    }
-    else {
-      console.log(this.props.currentIndex);
     }
     document.querySelector(`#playlist-item-${newIndex}`).scrollIntoView({ behavior: 'smooth' });
     this.props.updateIndex(newIndex);
