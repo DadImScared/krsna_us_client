@@ -59,6 +59,7 @@ const View = ({
   renderSuggestion,
   handleChange,
   categories,
+  clearSuggestions,
   actions: { toggleCategory }
 }) => (
   <div style={{ width: '500px', display: 'flex' }}>
@@ -82,6 +83,10 @@ const View = ({
       renderSuggestionsContainer={renderSuggestionsContainer}
       getSuggestionValue={getSuggestionValue}
       renderSuggestion={renderSuggestion}
+      onSuggestionSelected={(event,{ suggestionValue }) => {
+        clearSuggestions();
+        pushSearch(suggestionValue);
+      }}
       inputProps={{
         classes,
         pushSearch,

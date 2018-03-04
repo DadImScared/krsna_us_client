@@ -26,6 +26,7 @@ class SearchBar extends Component {
         {...this.props}
         pushSearch={this.pushWithCategories}
         handleChange={this.handleChange}
+        clearSuggestions={this.clearSuggestions}
         renderSuggestion={this.renderSuggestion}
         renderSuggestionsContainer={this.renderSuggestionsContainer}
         getSuggestionValue={this.getSuggestionValue}
@@ -95,6 +96,8 @@ class SearchBar extends Component {
   };
 
   getSuggestionValue = (suggestion) => suggestion.text;
+
+  clearSuggestions = () => this.setState({ suggestions: [] });
 }
 
 export default SearchBar;

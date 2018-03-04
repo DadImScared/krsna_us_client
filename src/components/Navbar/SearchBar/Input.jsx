@@ -5,10 +5,11 @@ import TextField from 'material-ui/TextField';
 
 import SearchButton from './SearchButton';
 
-const Input = ({ classes, value , ref, pushSearch,  ...other }) => (
+const Input = ({ classes, value , ref, pushSearch, ...other }) => (
   <TextField
     placeholder={'Search items'}
     label='Search content'
+    onKeyDown={(event) => event.key === 'Enter' ? pushSearch(value):null}
     inputRef={ref}
     value={value}
     classes={{
