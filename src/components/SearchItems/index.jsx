@@ -55,6 +55,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
           updateCb={this.updateResults}
           shouldUpdate={this.getQueryId(query, search)}
           suggestions={this.state.suggestions}
+          isFetching={this.state.isFetching}
           {...this.props}
         />
       );
@@ -74,6 +75,10 @@ export default connect(mapStateToProps, mapDispatchToProps)(
         setQuery(query);
         this.checkBoxes(search);
         if (this.props.results[`${query.trim().toLowerCase()}-${search}`]) {
+          this.setState({ isFetching: true });
+          setTimeout(()=> {
+            this.setState({ isFetching: false });
+          }, 100);
           return;
         }
         this.search(query, search);

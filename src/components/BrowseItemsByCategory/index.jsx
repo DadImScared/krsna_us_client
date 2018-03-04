@@ -28,6 +28,7 @@ class BrowseItemsByCategory extends Component {
         items={browse[category] ? [...browse[category].results]:[]}
         nextPage={browse[category] && browse[category].nextPage}
         {...this.props}
+        isFetching={this.state.isFetching}
       />
     );
   }
@@ -52,7 +53,7 @@ class BrowseItemsByCategory extends Component {
         this.setState({ isFetching: true });
         setTimeout(()=> {
           this.setState({ isFetching: false });
-        }, 1000);
+        }, 100);
         return;
       }
       this.setState({ isFetching: true, category: params.category });

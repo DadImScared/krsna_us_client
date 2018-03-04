@@ -53,12 +53,10 @@ export default class VirtualResults extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (!this.props.updateCb && this.props.nextPage !== nextProps.nextPage) {
-      this.clearCache();
+      this.listEle.recomputeRowHeights();
       return;
     }
     if (this.props.updateCb && this.props.shouldUpdate !== nextProps.shouldUpdate) {
-      this.clearCache();
-      setTimeout(() => this.listEle.scrollToPosition(15), 200);
       this.listEle.recomputeRowHeights();
     }
   }
@@ -66,7 +64,6 @@ export default class VirtualResults extends Component {
   componentDidMount() {
     window.addEventListener('resize', this.clearCache);
     this.clearCache();
-    this.listEle.recomputeRowHeights();
   }
 
   componentWillUnmount() {
