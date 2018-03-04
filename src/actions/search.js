@@ -15,12 +15,13 @@ export const setQuery = (query) => {
   };
 };
 
-export const updateResults = (query, results, nextPage) => {
+export const updateResults = (query, results, nextPage, suggestions) => {
   return {
     type: SearchActionTypes.UPDATE_RESULTS,
     query,
     results,
-    nextPage
+    nextPage,
+    suggestions
   };
 };
 

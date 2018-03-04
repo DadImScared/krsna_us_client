@@ -41,7 +41,8 @@ export default function Search(state=initialState, action) {
             ...(state.results[action.query] ? state.results[action.query].results:[]),
             ...action.results
           ],
-          nextPage: action.nextPage
+          nextPage: action.nextPage,
+          suggestions: action.suggestions
         }
       }
     };

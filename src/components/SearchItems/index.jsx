@@ -30,10 +30,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
     constructor(...args) {
       super(...args);
       this.state = {
-        nextPage: false,
-        items: [],
-        isFetching: false,
-        suggestions: []
+        isFetching: false
       };
     }
 
@@ -54,7 +51,11 @@ export default connect(mapStateToProps, mapDispatchToProps)(
           }
           updateCb={this.updateResults}
           shouldUpdate={this.getQueryId(query, search)}
-          suggestions={this.state.suggestions}
+          suggestions={results[this.getQueryId(query, search)] ?
+            results[this.getQueryId(query, search)].suggestions
+            :
+            []
+          }
           isFetching={this.state.isFetching}
           {...this.props}
         />
@@ -92,10 +93,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(
     getQueryId = (query, search) => `${query.trim().toLowerCase()}-${search}`;
 
     search = async (query, queryS) => {
-      // need to add suggestions to result in search reducer
       const { data: { results, suggestions, nextPage } } = await axios.get(`/api/v1/search/${query}${queryS}`);
-      this.props.updateResults(this.getQueryId(query, queryS), results, nextPage);
-      this.setState({ suggestions, nextPage, items: results });
+      this.props.updateResults(this.getQueryId(query, queryS), results, nextPage, suggestions);
     };
 
     checkBoxes = (search) => {
