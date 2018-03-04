@@ -1,6 +1,9 @@
+
 import React, { Component } from 'react';
-import { ListItem, ListItemText } from 'material-ui/List';
+
 import { withStyles } from 'material-ui/styles';
+import Typography from 'material-ui/Typography';
+import { ListItem, ListItemText } from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 
 import CATEGORIES from '../../categories';
@@ -10,6 +13,11 @@ const styles = theme => ({
   buttonStyle: {
     margin: theme.spacing.unit,
     marginLeft: '0'
+  },
+  contentStyle: {
+    '& em': {
+      fontWeight: 500
+    }
   }
 });
 
@@ -19,7 +27,7 @@ class RenderResult extends Component {
   }
 
   render() {
-    const { item } = this.props;
+    const { item, classes } = this.props;
     return (
       typeof CATEGORIES[item.category] === 'string' ?
         (
@@ -34,7 +42,17 @@ class RenderResult extends Component {
                   {item.year ? <div style={{ marginRight: '8px' }}>year: {item.year}</div>:null}
                   {item.issue ? <div style={{ marginRight: '8px' }}>issue: {item.issue}</div>:null}
                 </div>
-                title: <a style={{ textDecoration: 'none' }} href={item.link}><Title item={item} /></a>
+                <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
+                  <span style={{ marginRight: '5px' }}>title: </span> <a style={{ textDecoration: 'none' }} href={item.link}><Title item={item} /></a>
+                </div>
+                {item.highlightedBody ? (
+                  <div>
+                    <span>content: </span>
+                    <Typography>
+                      <span className={classes.contentStyle} dangerouslySetInnerHTML={{ __html: item.highlightedBody }} />
+                    </Typography>
+                  </div>
+                ):null}
                 <Divider />
               </div>
             }/>
