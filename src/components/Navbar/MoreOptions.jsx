@@ -32,7 +32,6 @@ class MoreOptions extends Component {
           onClose={this.closeMenu}
           MenuListProps={{ style: { display: 'flex', flexDirection: 'column' } }}
         >
-
           <MenuItem style={{ order: 1 }} onClick={this.closeMenu}>Donate</MenuItem>
           {
             loggedIn ?
