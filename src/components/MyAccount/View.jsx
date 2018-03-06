@@ -1,10 +1,21 @@
 
 import React from 'react';
 
+import SelfProviderSettings from './SelfProviderSettings';
 
-const View = () => (
+
+const View = ({ userInfo, provider }) => (
   <div>
-    my account
+    <div>
+      {
+        provider === 'self' ?
+          <SelfProviderSettings
+            userInfo={userInfo}
+          />
+          :
+          <div>log out of google</div>
+      }
+    </div>
   </div>
 );
 

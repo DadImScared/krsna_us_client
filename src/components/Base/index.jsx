@@ -49,6 +49,7 @@ class Base extends Component {
   }
 
   componentWillMount() {
+
     const token = Cookies.get('token');
     if (token) {
       const provider = Cookies.get('provider');

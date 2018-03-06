@@ -1,9 +1,11 @@
 
+import Cookies from 'js-cookie';
+
 import * as UserActionTypes from '../actiontypes/user';
 
 const initialState = {
-  loggedIn: false,
-  provider: ''
+  loggedIn: !!Cookies.get('token'),
+  provider: Cookies.get('provider', '')
 };
 
 export default function User(state=initialState, action) {

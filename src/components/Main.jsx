@@ -33,7 +33,7 @@ const Main = ({
   videoplayer, videoOffsetHeight, logIn,
   setRef, setVideoOffsetHeight, updatePosition,
   closeVideo, user: {
-    loggedIn
+    loggedIn, provider
   }
 }) => (
   <Paper id={'main-container'} className={classes.content}>
@@ -67,6 +67,7 @@ const Main = ({
       <ProtectedRoute
         exact path={'/my_account/'}
         loggedIn={loggedIn}
+        componentProps={{ provider }}
         component={MyAccount}
       />
       <Route
