@@ -39,7 +39,7 @@ class MoreOptions extends Component {
                 <MenuItem
                   style={{ order: 0 }}
                   key={'menu-my-account'}
-                  onClick={this.closeMenu}
+                  onClick={() => this.closeMenu('/my_account/')}
                 >
                   My Account
                 </MenuItem>,
