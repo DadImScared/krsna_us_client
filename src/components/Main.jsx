@@ -7,6 +7,7 @@ import Paper from 'material-ui/Paper';
 
 import VideoPlayer from '../components/VideoPlayer';
 import Login from '../components/Login';
+import Logout from '../components/Logout';
 import Register from '../components/Register';
 import Playlists from './Playlists';
 import Home from './Home';
@@ -34,7 +35,7 @@ const Main = ({
   setRef, setVideoOffsetHeight, updatePosition,
   closeVideo, user: {
     loggedIn, provider
-  }
+  }, logOut
 }) => (
   <Paper id={'main-container'} className={classes.content}>
     {
@@ -56,6 +57,12 @@ const Main = ({
         exact path={'/login'}
         render={(props) => (
           <Login {...props} logIn={logIn} />
+        )}
+      />
+      <Route
+        exact path={'/logout/'}
+        render={(props) => (
+          <Logout {...props} logOut={logOut} />
         )}
       />
       <Route

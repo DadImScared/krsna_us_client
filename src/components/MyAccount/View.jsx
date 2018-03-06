@@ -2,6 +2,7 @@
 import React from 'react';
 
 import SelfProviderSettings from './SelfProviderSettings';
+import GoogleLogout from './GoogleLogout';
 
 
 const View = ({ userInfo, provider, ...other }) => (
@@ -14,7 +15,9 @@ const View = ({ userInfo, provider, ...other }) => (
             {...other}
           />
           :
-          <div>log out of google</div>
+          <div style={{ textAlign: 'center' }}>
+            <GoogleLogout {...other} />
+          </div>
       }
     </div>
   </div>

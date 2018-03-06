@@ -1,8 +1,6 @@
 
 import React, { Component } from 'react';
 
-import Cookies from 'js-cookie';
-
 import Menu, { MenuItem } from 'material-ui/Menu';
 import IconButton from 'material-ui/IconButton';
 
@@ -46,12 +44,7 @@ class MoreOptions extends Component {
                 <MenuItem
                   style={{ order: -1 }}
                   key={'menu-logged-out'}
-                  onClick={() => {
-                    this.props.actions.logOut();
-                    Cookies.remove('token');
-                    Cookies.remove('provider');
-                    this.closeMenu('/Movie');
-                  }}
+                  onClick={() => this.closeMenu('/logout/')}
                 >
                   Log out
                 </MenuItem>,
