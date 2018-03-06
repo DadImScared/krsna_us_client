@@ -3,7 +3,9 @@ import React from 'react';
 
 import _ from 'lodash';
 
+import { green } from 'material-ui/colors';
 import { withStyles } from 'material-ui/styles';
+import Typography from 'material-ui/Typography';
 import TextField from 'material-ui/TextField';
 import Paper from 'material-ui/Paper';
 import Divider from 'material-ui/Divider';
@@ -28,6 +30,14 @@ const styles = theme => ({
   formRoot: {
     marginTop: theme.spacing.unit * 2,
     width: '100%'
+  },
+  formWrapper: {
+    marginTop: theme.spacing.unit * 2
+  },
+  successMessage: {
+    color: green[500],
+    textAlign: 'center',
+    marginTop: theme.spacing.unit * 2
   }
 });
 
@@ -51,7 +61,16 @@ const SelfProviderSettings = ({ userInfo, classes, ...other }) => (
         })
       }
       <Divider style={{ marginTop: '25px' }} />
-      <ChangePassword classes={classes} {...other} />
+      <div className={classes.formWrapper}>
+        <Typography gutterBottom align='center' variant='subheading'>Change password</Typography>
+        {
+          other.success ?
+            <Typography className={classes.successMessage}>{other.success}</Typography>
+            :
+            null
+        }
+        <ChangePassword classes={classes} {...other} />
+      </div>
     </div>
   </Paper>
 );

@@ -1,6 +1,8 @@
 
 import React, { Component } from 'react';
 
+import _ from 'lodash';
+
 import { getUserInfo, changePassword } from '../../actions/user';
 import handleFormState from '../handleFormState';
 import View from './View';
@@ -13,13 +15,20 @@ class MyAccount extends Component {
       email: '',
       username: '',
       firstName: '',
-      lastName: ''
+      lastName: '',
+      successMessage: ''
     };
   }
 
   render() {
+    const { successMessage, ...userInfo } = this.state;
     return (
-      <View {...this.props} userInfo={{ ...this.state }} />
+      <View
+        {...this.props}
+        userInfo={{ ...userInfo }}
+        success={successMessage}
+        submitPasswordChange={this.submitPasswordChange}
+      />
     );
   }
 
@@ -33,14 +42,35 @@ class MyAccount extends Component {
       this.setState({ email, username, firstName, lastName });
     }
     catch ({ response: { data } }) {
-      // this.props.history.push('/login/');
+      this.props.history.push('/login/');
     }
   };
 
-  submitPasswordChange = (e) => {
+  submitPasswordChange = async (e) => {
     e.preventDefault();
-    const { form } = this.props;
-    console.log(form);
+    const { form: { oldPassword, password1, password2 } } = this.props;
+    try {
+      await changePassword({
+        old_password: oldPassword,
+        new_password1: password1,
+        new_password2: password2
+      });
+      this.setState({ successMessage: 'Password changed' });
+      this.props.clearFields();
+      this.props.clearErrors();
+    }
+    catch ({ response: { data } }) {
+      const errors = {};
+      Object.keys(data).forEach((item) => {
+        if (item.includes('new')) {
+          errors[item.split('_')[1]] = typeof data[item] === 'string' ? data[item]:data[item].join(', ');
+        }
+        else {
+          errors[_.camelCase(item)] = typeof data[item] === 'string' ? data[item]:data[item].join(', ');
+        }
+      });
+      this.props.updateFormErrors(errors);
+    }
   };
 }
 

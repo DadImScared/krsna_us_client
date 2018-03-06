@@ -31,7 +31,14 @@ const ChangePassword = ({ form, formErrors, submitPasswordChange, updateForm, cl
         </div>
       ))
     }
-    <Button classes={{ root: classes.formButton }} variant='raised' color='primary'>Change password</Button>
+    <Button
+      onClick={submitPasswordChange}
+      classes={{ root: classes.formButton }}
+      variant='raised'
+      color='primary'
+    >
+      Change password
+    </Button>
   </div>
 );
 
