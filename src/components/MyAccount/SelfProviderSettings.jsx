@@ -6,6 +6,7 @@ import _ from 'lodash';
 import { withStyles } from 'material-ui/styles';
 import TextField from 'material-ui/TextField';
 import Paper from 'material-ui/Paper';
+import Divider from 'material-ui/Divider';
 
 import ChangePassword from './ChangePassword';
 
@@ -21,8 +22,12 @@ const styles = theme => ({
       margin: '0 auto'
     }
   },
+  formButton: {
+    margin: `${theme.spacing.unit * 2}px 0`
+  },
   formRoot: {
-    marginTop: theme.spacing.unit * 2
+    marginTop: theme.spacing.unit * 2,
+    width: '100%'
   }
 });
 
@@ -45,6 +50,7 @@ const SelfProviderSettings = ({ userInfo, classes, ...other }) => (
           }
         })
       }
+      <Divider style={{ marginTop: '25px' }} />
       <ChangePassword classes={classes} {...other} />
     </div>
   </Paper>
