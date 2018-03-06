@@ -16,7 +16,7 @@ class MyAccount extends Component {
       username: '',
       firstName: '',
       lastName: '',
-      successMessage: ''
+      successMessage: false
     };
   }
 
@@ -55,7 +55,8 @@ class MyAccount extends Component {
         new_password1: password1,
         new_password2: password2
       });
-      this.setState({ successMessage: 'Password changed' });
+      this.setState({ successMessage: true });
+      setTimeout(() => this.setState({ successMessage: false }), 1500);
       this.props.clearFields();
       this.props.clearErrors();
     }

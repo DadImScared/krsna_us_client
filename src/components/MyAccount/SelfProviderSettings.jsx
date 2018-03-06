@@ -10,6 +10,8 @@ import TextField from 'material-ui/TextField';
 import Paper from 'material-ui/Paper';
 import Divider from 'material-ui/Divider';
 
+import Fade from 'material-ui/transitions/Fade';
+
 import ChangePassword from './ChangePassword';
 
 
@@ -63,12 +65,12 @@ const SelfProviderSettings = ({ userInfo, classes, ...other }) => (
       <Divider style={{ marginTop: '25px' }} />
       <div className={classes.formWrapper}>
         <Typography gutterBottom align='center' variant='subheading'>Change password</Typography>
-        {
-          other.success ?
-            <Typography className={classes.successMessage}>{other.success}</Typography>
-            :
-            null
-        }
+
+        <Fade mountOnEnter unmountOnExit in={!!other.success}>
+          <div>
+            <Typography className={classes.successMessage}>Password changed!</Typography>
+          </div>
+        </Fade>
         <ChangePassword classes={classes} {...other} />
       </div>
     </div>
