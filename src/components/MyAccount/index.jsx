@@ -1,7 +1,8 @@
 
 import React, { Component } from 'react';
 
-import { getUserInfo } from '../../actions/user';
+import { getUserInfo, changePassword } from '../../actions/user';
+import handleFormState from '../handleFormState';
 import View from './View';
 
 
@@ -34,7 +35,13 @@ class MyAccount extends Component {
     catch ({ response: { data } }) {
       // this.props.history.push('/login/');
     }
-  }
+  };
+
+  submitPasswordChange = (e) => {
+    e.preventDefault();
+    const { form } = this.props;
+    console.log(form);
+  };
 }
 
-export default MyAccount;
+export default handleFormState(MyAccount);

@@ -20,3 +20,7 @@ export const logOut = () => {
 export const getUserInfo = async () => {
   return await axios.get('/rest-auth/user/', axiosOptions());
 };
+
+export const changePassword = async (payload) => {
+  return await axios.post('/rest-auth/password/change/', payload, axiosOptions());
+};

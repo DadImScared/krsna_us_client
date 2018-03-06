@@ -7,6 +7,8 @@ import { withStyles } from 'material-ui/styles';
 import TextField from 'material-ui/TextField';
 import Paper from 'material-ui/Paper';
 
+import ChangePassword from './ChangePassword';
+
 
 const styles = theme => ({
   container: {
@@ -25,23 +27,26 @@ const styles = theme => ({
 });
 
 
-const SelfProviderSettings = ({ userInfo, classes }) => (
+const SelfProviderSettings = ({ userInfo, classes, ...other }) => (
   <Paper classes={{ root: classes.container }}>
-    {
-      Object.keys(userInfo).map((info, index) => {
-        if (userInfo[info]) {
-          return (
-            <TextField
-              classes={{ root: classes.formRoot }}
-              label={_.upperFirst(info)}
-              disabled
-              key={`${userInfo[info]}-${index}`}
-              value={userInfo[info]}
-            />
-          );
-        }
-      })
-    }
+    <div>
+      {
+        Object.keys(userInfo).map((info, index) => {
+          if (userInfo[info]) {
+            return (
+              <TextField
+                classes={{ root: classes.formRoot }}
+                label={_.upperFirst(info)}
+                disabled
+                key={`${userInfo[info]}-${index}`}
+                value={userInfo[info]}
+              />
+            );
+          }
+        })
+      }
+      <ChangePassword classes={classes} {...other} />
+    </div>
   </Paper>
 );
 
