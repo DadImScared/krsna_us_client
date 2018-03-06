@@ -47,6 +47,7 @@ const styles = theme => ({
 const SelfProviderSettings = ({ userInfo, classes, ...other }) => (
   <Paper classes={{ root: classes.container }}>
     <div>
+      <Typography gutterBottom align='center' variant='subheading'>User info</Typography>
       {
         Object.keys(userInfo).map((info, index) => {
           if (userInfo[info]) {
