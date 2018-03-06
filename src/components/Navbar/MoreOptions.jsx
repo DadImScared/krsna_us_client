@@ -18,7 +18,7 @@ class MoreOptions extends Component {
 
   render() {
     const { menuAnchorEl } = this.state;
-    const { user: { loggedIn }, classes } = this.props;
+    const { user: { loggedIn, provider }, classes } = this.props;
     return (
       <div>
         <IconButton onClick={this.openMenu}>
@@ -33,14 +33,21 @@ class MoreOptions extends Component {
           <MenuItem style={{ order: 1 }} onClick={this.closeMenu}>Donate</MenuItem>
           {
             loggedIn ?
-              [
+              provider !== 'facebook' ? (
                 <MenuItem
                   style={{ order: 0 }}
                   key={'menu-my-account'}
                   onClick={() => this.closeMenu('/my_account/')}
                 >
                   My Account
-                </MenuItem>,
+                </MenuItem>
+              ):null
+              :
+              null
+          }
+          {
+            loggedIn ?
+              [
                 <MenuItem
                   style={{ order: -1 }}
                   key={'menu-logged-out'}
