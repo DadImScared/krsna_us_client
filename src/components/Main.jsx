@@ -10,8 +10,10 @@ import Login from '../components/Login';
 import Register from '../components/Register';
 import Playlists from './Playlists';
 import Home from './Home';
+import MyAccount from './MyAccount';
 import BrowseItemByCategory from '../components/BrowseItemsByCategory';
 import SearchItems from './SearchItems';
+import ProtectedRoute from './ProtectedRoute';
 
 const styles = theme => ({
   content: {
@@ -29,7 +31,10 @@ const styles = theme => ({
 const Main = ({
   classes, shouldSticky, directionDown,
   videoplayer, videoOffsetHeight, logIn,
-  setRef, setVideoOffsetHeight, updatePosition, closeVideo
+  setRef, setVideoOffsetHeight, updatePosition,
+  closeVideo, user: {
+    loggedIn
+  }
 }) => (
   <Paper id={'main-container'} className={classes.content}>
     {
@@ -58,6 +63,11 @@ const Main = ({
         render={(props) => (
           <Register {...props} logIn={logIn} />
         )}
+      />
+      <ProtectedRoute
+        exact path={'/my_account/'}
+        loggedIn={loggedIn}
+        component={MyAccount}
       />
       <Route
         exact

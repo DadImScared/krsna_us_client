@@ -76,6 +76,7 @@ const View =  ({
         setVideoOffsetHeight={setVideoOffsetHeight}
         videoplayer={videoplayer}
         logIn={logIn}
+        {...other}
       />
       <BottomNav
         {...other}
