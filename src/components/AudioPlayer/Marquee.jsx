@@ -82,10 +82,14 @@ class Marquee extends Component {
   }
 
   resetPosition = (items, change) => {
+    const { isRandom } = this.props;
     this.setState({ items, resetPosition: true });
     clearInterval(this.state.marqueeTimer);
     setTimeout(
-      () => this.setState({ marqueeTimer: setInterval(this.changeMarqueeII, change), resetPosition: false }),
+      () => this.setState({
+        marqueeTimer: setInterval(isRandom ? this.changeMarqueeI:this.changeMarqueeII, change),
+        resetPosition: false }
+      ),
       100);
   };
 
