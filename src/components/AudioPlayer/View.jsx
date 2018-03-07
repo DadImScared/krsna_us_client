@@ -69,7 +69,7 @@ const View = ({
   onProgress, setPlayerRef, setDuration,
   setVolume, onSeekDown, onSeekChange,
   onSeekUp, showPlayer, updateIndex, changeSong,
-  color
+  color, shouldReset
 }) => {
   const seconds = duration * played;
 
@@ -103,6 +103,7 @@ const View = ({
             (currentSongName && playerType === 'song') || items[currentIndex] ?
               <div>
                 <Marquee
+                  shouldReset={shouldReset}
                   Size={'p'}
                   items={[playerType === 'song' ? currentSongName:items[currentIndex].title]}
                   timeToChange={0}

@@ -20,7 +20,8 @@ class AudioPlayer extends Component {
       duration: 0,
       playbackRate: 1.0,
       muted: false,
-      seeking: false
+      seeking: false,
+      shouldReset: false
     };
   }
 
@@ -90,11 +91,12 @@ class AudioPlayer extends Component {
 
   changeSong = (change) => {
     let newIndex = this.props.currentIndex + change;
-    // console.log(newIndex, 'nI', currentIndex, 'ci', change, 'chan');
     if (newIndex < 0) {
       newIndex = 0;
       this.onSeekChange(0);
       this.onSeekMouseUp(0);
+      this.setState({ shouldReset: true });
+      setTimeout(()=> this.setState({ shouldReset: false }), 50);
     }
     else if (newIndex > this.props.items.length - 1) {
       newIndex = 0;

@@ -59,8 +59,8 @@ class Marquee extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { items: oldItems } = this.props;
-    const { items: newItems, timeToChange } = nextProps;
+    const { items: oldItems, shouldReset: oldShouldReset } = this.props;
+    const { items: newItems, timeToChange, shouldReset } = nextProps;
     if (oldItems.length !== newItems.length) {
       this.resetPosition(newItems, timeToChange);
     }
@@ -68,6 +68,12 @@ class Marquee extends Component {
       if (!_.isEqual([...oldItems].sort(), [...newItems].sort())) {
         this.resetPosition(newItems, timeToChange);
       }
+    }
+    // optional to force reset
+    // used if needed to reset scrolling text while at the beginning of text options
+    if (oldShouldReset !== shouldReset && shouldReset) {
+      this.resetPosition(newItems, timeToChange);
+
     }
   }
 
