@@ -22,6 +22,7 @@ const RegisterForm = ({ classes, updateForm, registerUser, form, formErrors }) =
             <div key={index} className={classes.fieldStyle}>
               <TextField
                 id={id}
+                style={{ width: '100%' }}
                 error={!!formErrors[id]}
                 label={labelText}
                 type={fieldType}
