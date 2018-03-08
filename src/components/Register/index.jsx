@@ -5,6 +5,7 @@ import axios from 'axios';
 
 import { setLogin } from '../../cookieState';
 import handleFormState from '../handleFormState';
+import { reSendEmailConfirm } from '../../actions/user';
 import View from './View';
 
 class Register extends Component {
@@ -42,6 +43,8 @@ class Register extends Component {
       );
       // on success verification email is sent
       // here we need to show that and also provide dialog to re send the confirmation
+      // {"detail":"Verification e-mail sent."} example success message
+      this.setState({ shouldShowMessage: true });
       setLogin(key, 'self');
       this.props.history.push('/');
     }
