@@ -22,7 +22,6 @@ class AllPlaylists extends Component {
     this.setState({ isLoading: true });
     try {
       const { data: { results, nextPage } } = await getAllPlaylists();
-      console.log(results);
       this.setState({ items: results, nextPage, isLoading: false });
     }
     catch ({ response: { data } }) {

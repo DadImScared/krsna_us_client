@@ -1,7 +1,6 @@
 
 export const passwordValidator = (props, { form: { password1, password2 }, formErrors }, id, updateFormErrors) => {
   const newErrors = { ...formErrors };
-  console.log('in validator', password1, password2);
   if (password1 !== password2 && password2 && password1) {
     newErrors['password1'] = 'Passwords must match';
     newErrors['password2'] = 'Passwords must match';
