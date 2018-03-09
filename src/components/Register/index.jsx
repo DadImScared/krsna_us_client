@@ -5,14 +5,19 @@ import axios from 'axios';
 
 import { setLogin } from '../../cookieState';
 import handleFormState from '../handleFormState';
-import { reSendEmailConfirm } from '../../actions/user';
 import View from './View';
+
+const message = `
+Thank you for registering. Please confirm your email.
+If you do not see it please 
+`;
 
 class Register extends Component {
   constructor(...args) {
     super(...args);
     this.state = {
-      shouldShowMessage: false
+      shouldShow: false,
+      email: ''
     };
   }
 
@@ -21,6 +26,7 @@ class Register extends Component {
       <View
         {...this.props}
         {...this.state}
+        successMessage={message}
         registerUser={this.registerUser}
         onSocialSuccess={this.onSocialSuccess}
       />
@@ -34,19 +40,16 @@ class Register extends Component {
 
   registerUser = async (e) => {
     e.preventDefault();
-    const { form: { email, password1, password2 }, handleErrorResponse } = this.props;
+    const { form: { email, password1, password2 }, handleErrorResponse, clearFields, clearErrors } = this.props;
     try {
-      const { data: { key } } = await axios.post(
+      await axios.post(
         '/rest-auth/registration/',
         { email, password1, password2 },
         { headers: { contentType: 'application/json' } }
       );
-      // on success verification email is sent
-      // here we need to show that and also provide dialog to re send the confirmation
-      // {"detail":"Verification e-mail sent."} example success message
-      this.setState({ shouldShowMessage: true });
-      setLogin(key, 'self');
-      this.props.history.push('/');
+      this.setState({ shouldShow: true, email });
+      clearFields();
+      clearErrors();
     }
     catch ({ response: { data } }) {
       handleErrorResponse(data);
