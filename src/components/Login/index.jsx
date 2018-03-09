@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { Component } from 'react';
 
 import Cookies from 'js-cookie';
 import axios from 'axios';
@@ -7,20 +7,37 @@ import axios from 'axios';
 import handleFormState from '../handleFormState';
 import View from './View';
 
-const Login = (props) => {
-  const setLogin = (token, provider) => {
+class Login extends Component {
+  constructor(...args) {
+    super(...args);
+    this.state = {
+      shouldShow: false
+    };
+  }
+
+  render() {
+    return (
+      <View
+        {...this.props}
+        onSocialSuccess={this.googleResponse}
+        submitLogin={this.submitLogin}
+      />
+    );
+  }
+
+  setLogin = (token, provider) => {
     Cookies.set('token', token);
     Cookies.set('provider', provider);
-    props.logIn(provider);
+    this.props.logIn(provider);
   };
 
-  const submitLogin = async (e) => {
+  submitLogin = async (e) => {
     e.preventDefault();
-    const { onSuccessCb, handleErrorResponse, form: { email, password } } = props;
+    const { onSuccessCb, handleErrorResponse, form: { email, password } } = this.props;
     try {
       const { data: { key } } = await axios.post('/rest-auth/login/', { email, password });
-      setLogin(key, 'self');
-      props.history.push('/');
+      this.setLogin(key, 'self');
+      this.props.history.push('/');
       onSuccessCb && onSuccessCb(key, 'self');
     }
     catch ({ response: { data } }) {
@@ -28,21 +45,11 @@ const Login = (props) => {
     }
   };
 
-  const googleResponse = (key, provider) => {
-    const { onSuccessCb } = props;
-    setLogin(key, provider);
+  googleResponse = (key, provider) => {
+    const { onSuccessCb } = this.props;
+    this.setLogin(key, provider);
     onSuccessCb && onSuccessCb(key, provider);
   };
+}
 
-  return (
-    <View
-      {...props}
-      onSocialSuccess={googleResponse}
-      submitLogin={submitLogin}
-    />
-  );
-};
-
-export default handleFormState(
-  Login
-);
+export default handleFormState(Login);
