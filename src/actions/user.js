@@ -28,3 +28,7 @@ export const changePassword = async (payload) => {
 export const reSendEmailConfirm = async (email) => {
   return await axios.post('/api/v1/resend_email/', { email });
 };
+
+export const verifyEmail = async (key) => {
+  return await axios.post('/rest-auth/registration/verify-email/', { key });
+};

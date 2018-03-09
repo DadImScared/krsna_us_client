@@ -9,6 +9,7 @@ import VideoPlayer from '../components/VideoPlayer';
 import Login from '../components/Login';
 import Logout from '../components/Logout';
 import Register from '../components/Register';
+import VerifyEmail from '../components/VerifyEmail';
 import Playlists from './Playlists';
 import Home from './Home';
 import MyAccount from './MyAccount';
@@ -69,6 +70,12 @@ const Main = ({
         exact path={'/register'}
         render={(props) => (
           <Register {...props} logIn={logIn} />
+        )}
+      />
+      <Route
+        exact path={'/verify_email/:key/'}
+        render={(props) => (
+          <VerifyEmail {...props} />
         )}
       />
       <ProtectedRoute
