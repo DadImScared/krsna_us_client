@@ -7,10 +7,15 @@ import axios from 'axios';
 import handleFormState from '../handleFormState';
 import View from './View';
 
+const message = `
+Email is not verified. Please 
+`;
+
 class Login extends Component {
   constructor(...args) {
     super(...args);
     this.state = {
+      email: '',
       shouldShow: false
     };
   }
@@ -19,6 +24,8 @@ class Login extends Component {
     return (
       <View
         {...this.props}
+        {...this.state}
+        message={message}
         onSocialSuccess={this.googleResponse}
         submitLogin={this.submitLogin}
       />
@@ -41,6 +48,9 @@ class Login extends Component {
       onSuccessCb && onSuccessCb(key, 'self');
     }
     catch ({ response: { data } }) {
+      if (data.non_field_errors && data.non_field_errors[0] === 'E-mail is not verified.') {
+        this.setState({ shouldShow: true, email });
+      }
       handleErrorResponse(data);
     }
   };
