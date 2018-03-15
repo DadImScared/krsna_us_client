@@ -1,17 +1,17 @@
 
 import { combineReducers } from 'redux';
-import Search from './search';
-import AudioPlayer from './audioplayer';
-import VideoPlayer from './videoplayer';
-import User from './user';
-import Browse from './browse';
+import search from './search';
+import audioplayer from './audioplayer';
+import videoplayer from './videoplayer';
+import user from './user';
+import browse from './browse';
 
 const reducer = combineReducers({
-  search: Search,
-  audioplayer: AudioPlayer,
-  videoplayer: VideoPlayer,
-  user: User,
-  browse: Browse
+  search,
+  audioplayer,
+  videoplayer,
+  user,
+  browse
 });
 
 export default reducer;

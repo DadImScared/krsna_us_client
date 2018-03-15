@@ -6,7 +6,6 @@ const initialState = {};
 export default function Browse(state=initialState, action) {
   switch(action.type) {
   case BrowseActionTypes.UPDATE_RESULTS:
-    console.log(action);
     return {
       ...state,
       [action.category]: {
