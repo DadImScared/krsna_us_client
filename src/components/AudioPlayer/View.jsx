@@ -21,7 +21,7 @@ const View = ({
   onProgress, setPlayerRef, setDuration,
   setVolume, onSeekDown, onSeekChange,
   onSeekUp, showPlayer, updateIndex, changeSong,
-  color, shouldReset
+  color, shouldReset, toggleMute
 }) => {
   const seconds = duration * played;
 
@@ -85,6 +85,8 @@ const View = ({
           onSeekUp={onSeekUp}
           playing={playing}
           playerType={playerType}
+          toggleMute={toggleMute}
+          muted={muted}
         />
         <PlaylistItems
           playerType={playerType}

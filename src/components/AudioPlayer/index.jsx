@@ -40,6 +40,7 @@ class AudioPlayer extends Component {
         setPlayerRef={this.setPlayerRef}
         changeSong={this.changeSong}
         color={this.props.theme.palette.text.primary}
+        toggleMute={this.toggleMute}
       />
     );
   }
@@ -104,6 +105,8 @@ class AudioPlayer extends Component {
     document.querySelector(`#playlist-item-${newIndex}`).scrollIntoView({ behavior: 'smooth' });
     this.props.updateIndex(newIndex);
   };
+
+  toggleMute = () => this.setState({ muted: !this.state.muted });
 }
 
 const mapStateToProps = ({

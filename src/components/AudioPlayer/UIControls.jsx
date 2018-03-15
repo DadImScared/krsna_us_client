@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import { withTheme } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
+import Tooltip from 'material-ui/Tooltip';
 import Icon from 'material-ui/Icon';
 
 import VolumeMute from 'material-ui-icons/VolumeMute';
@@ -20,7 +21,8 @@ const UIControls = ({
   classes, togglePlaying, volume, seconds,
   format, setVolume, onSeekDown, onSeekChange,
   onSeekUp, played, theme, playing,
-  playerType, changeSong
+  playerType, changeSong, muted,
+  toggleMute
 }) => {
 
   return (
@@ -51,9 +53,11 @@ const UIControls = ({
             null
         }
         <div style={{ display: 'flex', alignSelf: 'center' }}>
-          <Icon color='secondary' style={{ alignItems: 'center', height: '24px' }}>
-            <VolumeMute />
-          </Icon>
+          <Tooltip placement={'top'} title={muted ? 'Un mute':'Mute'}>
+            <Icon onClick={toggleMute} color='secondary' style={{ alignItems: 'center', height: '24px' }}>
+              <VolumeMute />
+            </Icon>
+          </Tooltip>
           <Slider
             style={{ width: `${playerType === 'playlist' ? '40px':'80px'}`, alignSelf: 'center' }}
             min={0}
