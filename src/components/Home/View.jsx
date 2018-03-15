@@ -4,92 +4,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { withStyles } from 'material-ui/styles';
-import { indigo } from 'material-ui/colors';
+
 import Button from 'material-ui/Button';
 import GridList, { GridListTile } from 'material-ui/GridList';
 import Card, { CardActions, CardContent } from 'material-ui/Card';
 import Typography from 'material-ui/Typography';
 
 import categoryTiles from './categoryTiles';
-
-const styles = theme => ({
-  container: {
-    display: 'flex',
-    justifyContent: 'center',
-    flexDirection: 'column'
-  },
-  heading: {
-    alignSelf: 'center',
-    paddingBottom: theme.spacing.unit * 2
-  },
-  root: {
-    height: '100%',
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      height: '404px'
-    },
-    [theme.breakpoints.up('xl')]: {
-      width: '50%'
-    }
-  },
-  tile: {
-    display: 'flex',
-    alignItems: 'center'
-  },
-  pictures: {
-    [theme.breakpoints.down('sm')]: {
-      display: 'none'
-    }
-  },
-  card: {
-    width: '100%',
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-around',
-    [theme.breakpoints.up('md')]: {
-      width: '60%',
-      margin: '0 auto',
-      height: 'auto'
-    }
-  },
-  cardTitle: {
-    marginBottom: theme.spacing.unit
-  },
-  cardAction: {
-    height: 'auto',
-    display: 'flex',
-    flexDirection: 'column',
-    [theme.breakpoints.up('sm')]: {
-      height: '52px',
-      flexDirection: 'row'
-    }
-  },
-  movie: {
-    backgroundColor: indigo[700]
-  },
-  harikatha: {
-    backgroundColor: indigo[400]
-  },
-  harmonistmagazine: {
-    backgroundColor: indigo[600],
-    [theme.breakpoints.only('xl')]: {
-      backgroundColor: indigo[300]
-    }
-  },
-  books: {
-    backgroundColor: indigo[300],
-    [theme.breakpoints.only('xl')]: {
-      backgroundColor: indigo[600]
-    }
-  },
-  songs: {
-    backgroundColor: indigo[500]
-  },
-  bhagavatpatrika: {
-    backgroundColor: indigo[200]
-  }
-});
+import styles from '../../styles/Home.css';
 
 
 const View = ({ classes }) => (

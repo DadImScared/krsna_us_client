@@ -1,5 +1,5 @@
 
-export const playlistForm = (theme) => ({
+export default (theme) => ({
   formContainer: {
     height: '150px',
     display: 'flex',

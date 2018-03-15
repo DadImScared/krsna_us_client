@@ -38,3 +38,9 @@ export const sortableList = () => ({
     wordBreak: 'break-word'
   }
 });
+
+export default (theme) => ({
+  ...sortableList(),
+  ...container(),
+  ...inputRow(theme)
+});

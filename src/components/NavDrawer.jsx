@@ -16,39 +16,8 @@ import ResponsiveDrawer from '../components/ResponsiveDrawer';
 import AudioPlayer from '../components/AudioPlayer';
 
 import CATEGORIES from '../categories';
+import styles from '../styles/NavDrawer.css';
 
-const drawerWidth = 240;
-
-const styles = theme => ({
-  drawerHeader: {
-    ...theme.mixins.toolbar,
-    display: 'flex',
-    paddingLeft: theme.spacing.unit * 2,
-    alignItems: 'center'
-  },
-  drawerPaper: {
-    width: 250,
-    height: '100%',
-    overflow: 'auto',
-    [theme.breakpoints.up('md')]: {
-      width: drawerWidth,
-      position: 'relative'
-    }
-  },
-  activeLink: {
-    '& .menu-item-text': {
-      color: theme.palette.primary.contrastText
-    }
-  },
-  closeIcon: {
-    position: 'absolute ',
-    top: 0,
-    right: '5px',
-    '&:hover': {
-      cursor: 'pointer'
-    }
-  }
-});
 
 const NavDrawer =  ({ classes, isOpen, handleClose, showPlayer, setShowPlayer }) => {
   const renderCategories = () => {

@@ -6,25 +6,7 @@ import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 
-import btn_google_dark from './btn_google_dark_normal_ios.svg';
-import btn_google_pressed from './btn_google_dark_pressed_ios.svg';
-
-import baseButtonStyles from './styles.css';
-
-const styles = theme => ({
-  googleButtonBackground: {
-    marginBottom: theme.spacing.unit * 2,
-    [`&:active $googleButton`]: {
-      content: `url(${btn_google_pressed})`,
-      cursor: 'pointer',
-      boxShadow: theme.shadows[1]
-    }
-  },
-  googleButton: {
-    content: `url(${btn_google_dark})`
-  },
-  ...baseButtonStyles(theme)
-});
+import { GoogleButton as styles } from '../../styles/SocialConnectionButtons';
 
 const GoogleButton = ({ classes, prefix, onSuccess, onFailure }) => (
   <Button

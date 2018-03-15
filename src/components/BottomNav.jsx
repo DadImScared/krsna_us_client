@@ -11,29 +11,7 @@ import BottomNavigation, { BottomNavigationAction } from 'material-ui/BottomNavi
 import PlaylistPlay from 'material-ui-icons/PlaylistPlay';
 import MusicNote from 'material-ui-icons/MusicNote';
 
-const styles = theme => ({
-  showNavBar: {
-    [theme.breakpoints.down('md')]: {
-      transition: theme.transitions.create(['opacity'], {
-        easing: theme.transitions.easing.easeIn,
-        duration: theme.transitions.duration.enteringScreen
-      }),
-      opacity: 1
-    }
-  },
-  hideNavBar: {
-    [theme.breakpoints.down('md')]: {
-      transition: theme.transitions.create(['opacity'], {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.leavingScreen
-      }),
-      opacity: 0
-    }
-  },
-  activeView: {
-    color: theme.palette.secondary.main
-  }
-});
+import styles from '../styles/BottomNav.css';
 
 const menuItems = [
   { label: 'Audio player', icon: <MusicNote /> },

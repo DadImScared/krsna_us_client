@@ -8,11 +8,8 @@ import ProtectedRoute from '../ProtectedRoute';
 import AllPlaylists from './AllPlaylists';
 import MyPlaylists from './MyPlaylists';
 import Playlist from './Playlist';
-import { playlistForm } from './styles.css';
+import { Playlists as styles } from '../../styles/Playlists/';
 
-const styles = theme => ({
-  ...playlistForm(theme)
-});
 
 const View = ({ match, classes, loggedIn }) => (
   <div>

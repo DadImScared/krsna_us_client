@@ -1,16 +1,10 @@
 
 import React from 'react';
 
-import { withStyles } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField';
 
-const styles = () => ({
-  textField: {
-    display: 'flex'
-  }
-});
 
 const LoginForm = ({ classes, submitLogin, updateForm, formErrors }) => (
   <div>
@@ -42,4 +36,4 @@ const LoginForm = ({ classes, submitLogin, updateForm, formErrors }) => (
   </div>
 );
 
-export default withStyles(styles)(LoginForm);
+export default LoginForm;

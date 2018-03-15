@@ -11,19 +11,7 @@ import SocialConnectionButtons from '../SocialConnectionButtons';
 
 import LoginForm from './LoginForm';
 
-const styles = theme => ({
-  paperBackground: {
-    display: 'flex',
-    alignItems: 'center',
-    flexDirection: 'column',
-    padding: theme.spacing.unit * 2,
-    minHeight: 'calc(100vh - 161px)',
-    justifyContent: 'space-around'
-  },
-  textField: {
-    display: 'flex'
-  }
-});
+import styles from '../../styles/Login.css';
 
 const View = ({ classes, errorMessage, onSocialSuccess, updateForm, submitLogin, formErrors, ...other }) => (
   <Paper classes={{ root: classes.paperBackground }}>
@@ -36,7 +24,13 @@ const View = ({ classes, errorMessage, onSocialSuccess, updateForm, submitLogin,
         />
         :null
     }
-    <LoginForm formErrors={formErrors} submitLogin={submitLogin} updateForm={updateForm} errorMessage={errorMessage} />
+    <LoginForm
+      classes={classes}
+      formErrors={formErrors}
+      submitLogin={submitLogin}
+      updateForm={updateForm}
+      errorMessage={errorMessage}
+    />
     <Typography>
       {'Don\'t '} have an account? Click here
       to <NavLink style={{ color: 'lightblue' }} to={'/register'}>register.</NavLink>

@@ -67,6 +67,7 @@ export const unStuckVideo = theme => ({
   unStuckVideo: {
     width: videoWidths.xs.width,
     height: videoWidths.xs.height,
+    zIndex: 100,
     [theme.breakpoints.up('md')]: {
       width: videoWidths.mdUp.width,
       height: videoWidths.mdUp.height
@@ -96,4 +97,11 @@ export const videoWrapper = theme => ({
       width: '400px'
     }
   }
+});
+
+export default (theme) => ({
+  ...fixedVideo(theme),
+  ...fixedVideoScrollDown(theme),
+  ...videoWrapper(theme),
+  ...unStuckVideo(theme)
 });

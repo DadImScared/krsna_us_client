@@ -3,6 +3,7 @@ import React from 'react';
 
 import VirtualResults from '../VirtualResults';
 
+
 const View = ({ items, nextPage, isFetching, setRef, shouldUpdate, updateCb }) => (
   <div>
     {

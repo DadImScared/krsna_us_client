@@ -8,17 +8,8 @@ import { InfiniteLoader, List, AutoSizer, WindowScroller } from 'react-virtualiz
 import { withStyles } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
 
-const styles = theme => ({
-  container: {
-    [theme.breakpoints.up('md')]: {
-      width: '50%',
-      margin: '0 auto'
-    },
-    [`${theme.breakpoints.up('md')} and (orientation: landscape)`]: {
-      width: '80%'
-    }
-  }
-});
+import { VirtualResults as styles } from '../../styles/VirtualResults';
+
 
 const View = ({
   classes, cache, items,

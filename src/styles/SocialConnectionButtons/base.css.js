@@ -1,4 +1,5 @@
-const baseButtonStyles = (theme) => ({
+
+export default (theme) => ({
   textSpacing: {
     paddingLeft: theme.spacing.unit * 2
   },
@@ -7,5 +8,3 @@ const baseButtonStyles = (theme) => ({
     justifyContent: 'space-around'
   }
 });
-
-export default baseButtonStyles;

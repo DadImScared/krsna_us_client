@@ -9,11 +9,7 @@ import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import SvgIcon from 'material-ui/SvgIcon';
 
-import baseButtonStyles from './styles.css';
-
-const styles = theme => ({
-  ...baseButtonStyles(theme)
-});
+import { FacebookButton as styles } from '../../styles/SocialConnectionButtons';
 
 const FacebookButton = ({ classes, onSuccess, prefix }) => (
   <FacebookLogin

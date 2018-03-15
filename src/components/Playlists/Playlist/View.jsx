@@ -9,13 +9,9 @@ import Divider from 'material-ui/Divider';
 
 import PlaylistForm from '../PlaylistForm';
 import PlaylistItems from './PlaylistItems';
-import { inputRow, container, sortableList } from './styles.css';
 
-const styles = theme => ({
-  ...container(theme),
-  ...inputRow(theme),
-  ...sortableList(theme)
-});
+import { Playlist as styles } from '../../../styles/Playlists';
+
 
 const View = ({ name, items, classes, ...other }) => (
   <Paper classes={{

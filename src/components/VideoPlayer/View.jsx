@@ -8,14 +8,8 @@ import classNames from 'classnames';
 import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 
-import { fixedVideo, fixedVideoScrollDown, videoWrapper, unStuckVideo } from './styles.css';
+import styles from '../../styles/VideoPlayer.css';
 
-const styles = theme => ({
-  ...fixedVideo(theme),
-  ...fixedVideoScrollDown(theme),
-  ...videoWrapper(theme),
-  ...unStuckVideo(theme)
-});
 
 const View = ({
   classes,

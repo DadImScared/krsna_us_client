@@ -8,18 +8,8 @@ import Divider from 'material-ui/Divider';
 
 import CATEGORIES from '../../categories';
 import Title from '../Title';
+import { RenderResult as styles } from '../../styles/VirtualResults';
 
-const styles = theme => ({
-  buttonStyle: {
-    margin: theme.spacing.unit,
-    marginLeft: '0'
-  },
-  contentStyle: {
-    '& em': {
-      fontWeight: 500
-    }
-  }
-});
 
 class RenderResult extends Component {
   constructor(props) {
