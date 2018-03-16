@@ -10,7 +10,9 @@ import IconButton from 'material-ui/IconButton';
 import Tooltip from 'material-ui/Tooltip';
 import Icon from 'material-ui/Icon';
 
-import VolumeMute from 'material-ui-icons/VolumeMute';
+import VolumeUp from 'material-ui-icons/VolumeUp';
+import VolumeOff from 'material-ui-icons/VolumeOff';
+import VolumeDown from 'material-ui-icons/VolumeDown';
 import SkipPreviousIcon from 'material-ui-icons/SkipPrevious';
 import PlayArrowIcon from 'material-ui-icons/PlayArrow';
 import SkipNextIcon from 'material-ui-icons/SkipNext';
@@ -33,7 +35,7 @@ const UIControls = ({
       })}>
         {
           playerType === 'playlist' ?
-            <IconButton onClick={() => changeSong(-1)}>
+            <IconButton varient={'small'} onClick={() => changeSong(-1)}>
               <SkipPreviousIcon/>
             </IconButton>
             :
@@ -54,8 +56,16 @@ const UIControls = ({
         }
         <div style={{ display: 'flex', alignSelf: 'center' }}>
           <Tooltip placement={'top'} title={muted ? 'Un mute':'Mute'}>
-            <Icon onClick={toggleMute} color='secondary' style={{ alignItems: 'center', height: '24px' }}>
-              <VolumeMute />
+            <Icon onClick={toggleMute} color='secondary' style={{ alignItems: 'center', height: '24px', display: 'flex' }}>
+              {
+                muted || volume === 0 ?
+                  <VolumeOff />
+                  :
+                  volume < 0.2 ?
+                    <VolumeDown />
+                    :
+                    <VolumeUp/>
+              }
             </Icon>
           </Tooltip>
           <Slider
@@ -63,7 +73,8 @@ const UIControls = ({
             min={0}
             max={1}
             onChange={setVolume}
-            value={volume}
+            onBeforeChange={muted ? toggleMute:() => {}}
+            value={muted || volume === 0 ? 0:volume}
             step={0.01}
             trackStyle={{ backgroundColor: theme.palette.secondary.main }}
             handleStyle={{
