@@ -15,7 +15,7 @@ const View = ({ classes, onSocialSuccess, shouldShow, successMessage, email, ...
   <Paper classes={{ root: classes.paperBackground }}>
     <div className={classes.innerWrapper}>
       <SocialConnectionButtons prefix={'Register'} onSuccess={onSocialSuccess} />
-      <Typography gutterBottom  variant={'title'}>or</Typography>
+      <Typography className={classes.orStyle}  variant={'title'}>or</Typography>
       <div className={classes.registerWrapper}>
         <Typography align='center'>Register with us</Typography>
         <ReSendEmail
@@ -23,6 +23,7 @@ const View = ({ classes, onSocialSuccess, shouldShow, successMessage, email, ...
           message={successMessage}
           email={email}
           afterSend={true}
+          fadeProps={{ unmountOnExit: true, mountOnEnter: true }}
         />
         <RegisterForm classes={classes} {...other} />
       </div>

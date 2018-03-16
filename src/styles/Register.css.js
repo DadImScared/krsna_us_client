@@ -35,5 +35,9 @@ export default (theme) => ({
     [theme.breakpoints.up('lg')]: {
       width: '20vw'
     }
+  },
+  orStyle: {
+    marginTop: theme.spacing.unit,
+    marginBottom: theme.spacing.unit
   }
 });
