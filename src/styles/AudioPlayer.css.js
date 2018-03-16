@@ -34,6 +34,7 @@ export default (theme) => ({
     pointerEvents: 'none'
   },
   tooltip: {
+    width: '100%',
     '&:hover': {
       cursor: 'pointer'
     }
@@ -46,5 +47,11 @@ export default (theme) => ({
   },
   currentlyPlaying: {
     backgroundColor: theme.palette.secondary.dark
+  },
+  volumeIcon: {
+    display: 'flex',
+    height: '24px',
+    marginRight: theme.spacing.unit * 1.2,
+    cursor: 'pointer'
   }
 });

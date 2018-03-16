@@ -54,9 +54,22 @@ const UIControls = ({
             :
             null
         }
-        <div style={{ display: 'flex', alignSelf: 'center' }}>
+        <div
+          style={{
+            display: 'flex',
+            alignSelf: 'center',
+            width: '100%',
+            justifyContent: playerType === 'song' ? 'center':'none'
+          }}
+        >
           <Tooltip placement={'top'} title={muted ? 'Un mute':'Mute'}>
-            <Icon onClick={toggleMute} color='secondary' style={{ alignItems: 'center', height: '24px', display: 'flex' }}>
+            <Icon
+              onClick={toggleMute}
+              color='secondary'
+              classes={{
+                root: classes.volumeIcon
+              }}
+            >
               {
                 muted || volume === 0 ?
                   <VolumeOff />
@@ -69,7 +82,7 @@ const UIControls = ({
             </Icon>
           </Tooltip>
           <Slider
-            style={{ width: `${playerType === 'playlist' ? '40px':'80px'}`, alignSelf: 'center' }}
+            style={{ width: `${playerType === 'playlist' ? '55%':'40%'}`, alignSelf: 'center' }}
             min={0}
             max={1}
             onChange={setVolume}
