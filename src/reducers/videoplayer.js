@@ -16,7 +16,6 @@ export default function VideoPlayer(state=initialState, action) {
     };
   case VideoActionTypes.SET_VIDEO:
     return {
-      ...state,
       url: action.url,
       title: action.title,
       show: true
