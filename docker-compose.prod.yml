@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  nginx:
+    image: nginx:latest
+    expose:
+      - "8002"
+    volumes:
+      - ./config/nginx:/etc/nginx/conf.d
+      - ./build:/usr/src/app/build
+    environment:
+      - NODE_ENV=development
+      - VIRTUAL_HOST=www.gvparchives.com,gvparchives.com
+      - VIRTUAL_PORT=8002
+      - LETSENCRYPT_HOST=www.gvparchives.com,gvparchives.com
+      - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}
+  client:
+   command: 'npm run build'
+
+networks:
+  default:
+    external:
+      name: webproxy
+
