@@ -13,7 +13,7 @@ import { FacebookButton as styles } from '../../styles/SocialConnectionButtons';
 
 const FacebookButton = ({ classes, onSuccess, prefix }) => (
   <FacebookLogin
-    appId={'515787308763793'}
+    appId={'900703406775843'}
     autoLoad={false}
     disableMobileRedirect={true}
     fields="name,email"
