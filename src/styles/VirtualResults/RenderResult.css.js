@@ -1,4 +1,6 @@
 
+import orange from 'material-ui/colors/orange';
+
 export default (theme) => ({
   buttonStyle: {
     margin: theme.spacing.unit,
@@ -6,7 +8,7 @@ export default (theme) => ({
   },
   contentStyle: {
     '& em': {
-      fontWeight: 500
+      backgroundColor: orange[900]
     }
   }
 });

@@ -36,9 +36,9 @@ const View = ({ item, setSong, openModal, isOpen, ...other }) => (
           {
             isOpen ? <AddToPlaylist item={item} isOpen={isOpen} {...other} />:null
           }
-          <Typography>category: {item.category}</Typography>
+          <Typography>Category: {item.category}</Typography>
         </div>
-        title: <Title item={item} />
+        Title: <Title item={item} />
         <Divider />
       </div>
     } color={'primary'} />

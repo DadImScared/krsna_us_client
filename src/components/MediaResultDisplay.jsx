@@ -24,9 +24,9 @@ const MediaResultDisplay = ({ item, setMediaItem }) => (
           >
             <PlayArrow />
           </Button>
-          <Typography>category: {item.category}</Typography>
+          <Typography>Category: {item.category}</Typography>
         </div>
-        title: <Title item={item} />
+        Title: <Title item={item} />
         <Divider />
       </div>
     } color={'primary'} />
