@@ -6,8 +6,7 @@ import { createStore } from 'redux';
 import 'rc-slider/assets/index.css';
 import './index.css';
 import Base from './components/Base';
-import registerServiceWorker from './registerServiceWorker';
-
+import registerServiceWorker, { unregister } from './registerServiceWorker';
 
 import reducer from './reducers';
 const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
@@ -20,3 +19,4 @@ ReactDOM.render((
   </Provider>
 ), document.getElementById('root'));
 //registerServiceWorker();
+unregister();
