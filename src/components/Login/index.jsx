@@ -32,6 +32,11 @@ class Login extends Component {
     );
   }
 
+  pushRoute = () => {
+    const { history, location: { state: { from: { pathname = '/' } = {} } = {} } } = this.props;
+    history.push(pathname);
+  };
+
   setLogin = (token, provider) => {
     Cookies.set('token', token);
     Cookies.set('provider', provider);
@@ -44,7 +49,7 @@ class Login extends Component {
     try {
       const { data: { key } } = await axios.post('/rest-auth/login/', { email, password });
       this.setLogin(key, 'self');
-      this.props.history.push('/');
+      this.pushRoute();
       onSuccessCb && onSuccessCb(key, 'self');
     }
     catch ({ response: { data } }) {
@@ -58,6 +63,7 @@ class Login extends Component {
   googleResponse = (key, provider) => {
     const { onSuccessCb } = this.props;
     this.setLogin(key, provider);
+    this.pushRoute();
     onSuccessCb && onSuccessCb(key, provider);
   };
 }
