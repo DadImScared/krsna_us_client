@@ -37,5 +37,10 @@ export default (theme) => ({
       width: '15px',
       backgroundColor: theme.palette.text.primary
     }
+  },
+  menuItem: {
+    [theme.breakpoints.down('sm')]: {
+      paddingLeft: '4px'
+    }
   }
 });

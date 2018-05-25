@@ -3,11 +3,8 @@ import React from 'react';
 
 import Autosuggest from 'react-autosuggest';
 
-import { withStyles } from 'material-ui/styles';
-
 import Input from './Input';
 import Filter from './Filter';
-import { SearchBar as styles } from '../../../styles/Navbar';
 
  
 const View = ({
@@ -62,4 +59,4 @@ const View = ({
   </div>
 );
 
-export default withStyles(styles)(View);
+export default View;

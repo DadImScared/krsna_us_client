@@ -7,9 +7,11 @@ import match from 'autosuggest-highlight/match';
 import parse from 'autosuggest-highlight/parse';
 
 import { MenuItem } from 'material-ui/Menu';
+import { withStyles } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
 
 import View from './View';
+import { SearchBar as styles } from '../../../styles/Navbar';
 
 class SearchBar extends Component {
   constructor(...args) {
@@ -41,7 +43,9 @@ class SearchBar extends Component {
     const parts = parse(suggestion.text, matches);
 
     return (
-      <MenuItem selected={isHighlighted} component='div'>
+      <MenuItem classes={{
+        root: this.props.classes.menuItem
+      }} selected={isHighlighted} component='div'>
         <div>
           {parts.map((part, index) => {
             return part.highlight ? (
@@ -100,4 +104,4 @@ class SearchBar extends Component {
   clearSuggestions = () => this.setState({ suggestions: [] });
 }
 
-export default SearchBar;
+export default withStyles(styles)(SearchBar);
