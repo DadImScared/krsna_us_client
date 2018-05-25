@@ -107,6 +107,7 @@ class AddToPlaylist extends Component {
   }
 
   async componentDidMount() {
+    this._isMounted = true;
     const newPlaylists = {};
     try {
       const { data } = await getPlaylistsWithItem(this.props.item.item_id);
@@ -121,6 +122,7 @@ class AddToPlaylist extends Component {
   }
 
   componentWillUnmount() {
+    this._isMounted = false;
     this.props.clearErrors();
     this.props.clearFields();
   }
@@ -128,7 +130,10 @@ class AddToPlaylist extends Component {
   renderPlaylists = () => {
     const { playlists } = this.state;
     return Object.keys(playlists).map((item, index) => (
-      <ListItem key={index} onClick={() => this.toggleCheckbox(item)}>
+      <ListItem style={{ flexWrap: 'wrap' }} key={index} onClick={() => this.toggleCheckbox(item)}>
+        <Button color={'secondary'} size={'small'} onClick={this.props.closeModal}>
+          { playlists[item].hasItem ? 'Delete':'Add'}/exit
+        </Button>
         <Checkbox
           icon={
             <Icon color='secondary'>
@@ -172,7 +177,9 @@ class AddToPlaylist extends Component {
         console.log(data);
       }
     }
-    this.setState({ playlists: newPlaylists });
+    if (this._isMounted) {
+      this.setState({ playlists: newPlaylists });
+    }
   };
 
   createPlaylistAndItem = async () => {
