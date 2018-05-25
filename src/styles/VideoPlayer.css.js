@@ -1,13 +1,17 @@
 
 const videoWidths = {
   xs: {
-    height: '150px',
-    width: '300px'
+    height: 150,
+    width: 300
   },
   mdUp: {
-    height: '250px',
-    width: '400px'
+    height: 250,
+    width: 400
   }
+};
+
+const getVideoSizes = (size, dimension, increaseAmount = 0) => {
+  return `${videoWidths[size][dimension] + increaseAmount}px`;
 };
 
 export const fixedVideo = theme => ({
@@ -38,8 +42,6 @@ export const fixedVideo = theme => ({
       transform: 'translate(24vw, 66px)'
     },
     [theme.breakpoints.only('xl')]: {
-      height: '150px',
-      width: '300px',
       transform: 'translate(35vw, calc(100vh - 400px))'
     }
   }
@@ -65,12 +67,12 @@ export const fixedVideoScrollDown = theme => ({
 
 export const unStuckVideo = theme => ({
   unStuckVideo: {
-    width: videoWidths.xs.width,
-    height: videoWidths.xs.height,
+    width: getVideoSizes('xs', 'width'),
+    height: getVideoSizes('xs', 'height'),
     zIndex: 100,
     [theme.breakpoints.up('md')]: {
-      width: videoWidths.mdUp.width,
-      height: videoWidths.mdUp.height
+      width: getVideoSizes('mdUp', 'width'),
+      height: getVideoSizes('mdUp', 'height')
     },
     [theme.breakpoints.only('xl')]: {
       height: '250px',
@@ -86,11 +88,11 @@ export const unStuckVideo = theme => ({
 
 export const videoWrapper = theme => ({
   videoWrapper: {
-    width: videoWidths.xs.width,
-    height: videoWidths.xs.height,
+    width: getVideoSizes('xs', 'width'),
+    height: getVideoSizes('xs', 'height', 50),
     [theme.breakpoints.up('md')]: {
-      width: videoWidths.mdUp.width,
-      height: videoWidths.mdUp.height
+      width: getVideoSizes('mdUp', 'width'),
+      height: getVideoSizes('mdUp', 'height', 50)
     },
     [theme.breakpoints.only('xl')]: {
       height: '290px',
