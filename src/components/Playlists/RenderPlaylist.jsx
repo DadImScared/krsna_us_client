@@ -16,7 +16,7 @@ import PlayPlaylistButton from './PlayPlaylistButton';
 const RenderPlaylist = ({ item, deletePlaylist, showDelete = true }) => (
   <ListItem button disableRipple style={{ display: 'flex', justifyContent: 'space-between' }}>
     <PlayPlaylistButton playlistId={item.playlist_id} />
-    <ButtonBase style={{ width: '100%' }}>
+    <ButtonBase style={{ width: '90%' }}>
       <ListItemText
         primary={
           <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
@@ -30,7 +30,7 @@ const RenderPlaylist = ({ item, deletePlaylist, showDelete = true }) => (
         }
       />
     </ButtonBase>
-    <div style={{ display: 'flex', alignItems: 'center' }}>
+    <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
       <Typography><span style={{ alignSelf: 'center', marginRight: '5px' }}>{item.items_count}</span></Typography>
       {
         showDelete ?
