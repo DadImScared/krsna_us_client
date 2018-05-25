@@ -79,7 +79,7 @@ class AddToPlaylist extends Component {
                   :
                   <div>
                     <div className={classes.formContainer}>
-                      <div className={classes.formWrapper}>
+                      <form onSubmit={this.createPlaylistAndItem} className={classes.formWrapper}>
                         <TextField
                           id='name'
                           error={!!formErrors['name']}
@@ -88,10 +88,10 @@ class AddToPlaylist extends Component {
                           onChange={(event) => updateForm(event, 'name')}
                           classes={{ root: classes.formField }}
                         />
-                        <Button onClick={this.createPlaylistAndItem} variant='raised' color='primary'>
+                        <Button type={'submit'} variant='raised' color='primary'>
                           create playlist
                         </Button>
-                      </div>
+                      </form>
                     </div>
                     <Divider/>
                     <List>
@@ -182,7 +182,8 @@ class AddToPlaylist extends Component {
     }
   };
 
-  createPlaylistAndItem = async () => {
+  createPlaylistAndItem = async (e) => {
+    e.preventDefault();
     const { form, item, handleErrorResponse, clearFields, clearErrors } = this.props;
     const newData = {
       ...this.state
