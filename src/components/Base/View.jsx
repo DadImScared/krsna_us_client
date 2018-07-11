@@ -3,7 +3,7 @@ import React from 'react';
 
 import { withStyles, createMuiTheme, MuiThemeProvider } from 'material-ui/styles';
 import { indigo, blue } from 'material-ui/colors';
-import Reboot from 'material-ui/Reboot';
+import Reboot from 'material-ui/CssBaseline';
 
 import Navbar from '../Navbar';
 import Main from '../../components/Main';
