@@ -1,6 +1,8 @@
 
 import React from 'react';
 
+import classNames from 'classnames';
+import { withStyles } from 'material-ui/styles';
 import { ListItem, ListItemText } from 'material-ui/List';
 import Button from 'material-ui/Button';
 import Divider from 'material-ui/Divider';
@@ -11,25 +13,26 @@ import PlaylistAdd from 'material-ui-icons/PlaylistAdd';
 
 import Title from '../../components/Title';
 import AddToPlaylist from './AddToPlaylist';
+import styles from '../../styles/MediaResultButtons';
 
-const View = ({ item, setSong, openModal, isOpen, ...other }) => (
+const View = ({ classes, item, setSong, openModal, isOpen, ...other }) => (
   <ListItem>
     <ListItemText primary={
       <div>
         <div style={{ display: 'flex', alignItems: 'center', marginBottom: '24px' }}>
           <Button
             size='small'
+            className={classNames(classes.button, classes.play)}
             onClick={() => setSong(item.link, item.title)}
             variant='raised' color='primary'
-            style={{ marginRight: '12px' }}
           >
             <PlayArrow />
           </Button>
           <Button
             onClick={openModal}
+            className={classNames(classes.button, classes.playlist)}
             size='small'
             variant='raised' color='secondary'
-            style={{ marginRight: '24px' }}
           >
             <PlaylistAdd />
           </Button>
@@ -38,11 +41,16 @@ const View = ({ item, setSong, openModal, isOpen, ...other }) => (
           }
           <Typography>Category: {item.category}</Typography>
         </div>
-        Title: <Title item={item} />
+        <div>
+          <span>Title: </span>
+          <a target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }} href={item.link}>
+            <Title item={item} />
+          </a>
+        </div>
         <Divider />
       </div>
     } color={'primary'} />
   </ListItem>
 );
 
-export default View;
+export default withStyles(styles)(View);
