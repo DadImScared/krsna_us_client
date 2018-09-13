@@ -90,11 +90,11 @@ class BottomNav extends Component {
       <Hidden mdUp>
         <BottomNavigation
           id={'bottom-nav'}
-          className={classNames({
+          className={classNames('sticky', {
             [classes.hideNavBar]: !bottomOfPage && directionDown,
             [classes.showNavBar]: !directionDown
           })}
-          style={{ width: '100%', position: 'sticky', bottom: '0' }}
+          style={{ width: '100%', bottom: '0' }}
           onChange={this.bottomNavChange}
           showLabels
           value={this.state.value}
