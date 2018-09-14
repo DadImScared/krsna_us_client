@@ -45,6 +45,13 @@ class AudioPlayer extends Component {
     );
   }
 
+  componentDidMount() {
+    // maybe temporary
+    // fixes the audio player not playing on some devices when it first mounts
+    setTimeout(() => this.props.setPlaying(false), 50);
+    setTimeout(() => this.props.setPlaying(true), 50);
+  }
+
   onProgress = state => {
     // We only want to update time slider if we are not currently seeking
     if (!this.state.seeking) {
