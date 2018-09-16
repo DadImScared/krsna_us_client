@@ -1,7 +1,7 @@
 
 import React from 'react';
-import { withStyles } from 'material-ui/styles';
-import Typography from 'material-ui/Typography';
+import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 
 import { RenderResult as styles } from '../styles/VirtualResults';
 

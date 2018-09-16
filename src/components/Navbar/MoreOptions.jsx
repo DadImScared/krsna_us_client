@@ -1,10 +1,11 @@
 
 import React, { Component } from 'react';
 
-import Menu, { MenuItem } from 'material-ui/Menu';
-import IconButton from 'material-ui/IconButton';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import IconButton from '@material-ui/core/IconButton';
 
-import MoreVert from 'material-ui-icons/MoreVert';
+import MoreVert from '@material-ui/icons/MoreVert';
 
 class MoreOptions extends Component {
   constructor(...args) {

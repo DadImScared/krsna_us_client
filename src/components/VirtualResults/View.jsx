@@ -5,8 +5,8 @@ import PropTypes from 'prop-types';
 
 import { InfiniteLoader, List, AutoSizer, WindowScroller } from 'react-virtualized';
 
-import { withStyles } from 'material-ui/styles';
-import Paper from 'material-ui/Paper';
+import { withStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
 
 import { VirtualResults as styles } from '../../styles/VirtualResults';
 

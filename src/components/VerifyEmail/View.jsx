@@ -1,11 +1,11 @@
 
 import React from 'react';
 
-import TextField from 'material-ui/TextField';
-import Typography from 'material-ui/Typography';
-import Button from 'material-ui/Button';
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 
-import Fade from 'material-ui/transitions/Fade';
+import Fade from '@material-ui/core/Fade';
 
 import ReSendEmail from '../ReSendEmail';
 

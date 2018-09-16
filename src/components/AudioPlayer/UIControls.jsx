@@ -4,19 +4,19 @@ import React from 'react';
 import Slider from 'rc-slider';
 import classNames from 'classnames';
 
-import { withTheme } from 'material-ui/styles';
-import Typography from 'material-ui/Typography';
-import IconButton from 'material-ui/IconButton';
-import Tooltip from 'material-ui/Tooltip';
-import Icon from 'material-ui/Icon';
+import { withTheme } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import Tooltip from '@material-ui/core/Tooltip';
+import Icon from '@material-ui/core/Icon';
 
-import VolumeUp from 'material-ui-icons/VolumeUp';
-import VolumeOff from 'material-ui-icons/VolumeOff';
-import VolumeDown from 'material-ui-icons/VolumeDown';
-import SkipPreviousIcon from 'material-ui-icons/SkipPrevious';
-import PlayArrowIcon from 'material-ui-icons/PlayArrow';
-import SkipNextIcon from 'material-ui-icons/SkipNext';
-import Pause from 'material-ui-icons/Pause';
+import VolumeUp from '@material-ui/icons/VolumeUp';
+import VolumeOff from '@material-ui/icons/VolumeOff';
+import VolumeDown from '@material-ui/icons/VolumeDown';
+import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
+import PlayArrowIcon from '@material-ui/icons/PlayArrow';
+import SkipNextIcon from '@material-ui/icons/SkipNext';
+import Pause from '@material-ui/icons/Pause';
 
 
 const UIControls = ({

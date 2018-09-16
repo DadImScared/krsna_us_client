@@ -1,10 +1,10 @@
 
 import React from 'react';
 
-import { InputAdornment } from 'material-ui/Input';
-import Icon from 'material-ui/Icon';
-import IconButton from 'material-ui/IconButton';
-import { Search as SearchIcon } from 'material-ui-icons';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import Icon from '@material-ui/core/Icon';
+import IconButton from '@material-ui/core/IconButton';
+import { Search as SearchIcon } from '@material-ui/icons';
 
 const SearchButtonContainer = ({ pushSearch, query }) => (
   <InputAdornment style={{ position: 'relative', paddingRight: '5px' }}>

@@ -1,18 +1,16 @@
 
 import React, { Component } from 'react';
 
-import IconButton from 'material-ui/IconButton';
-import Popover from 'material-ui/Popover';
-import {
-  FormLabel,
-  FormControl,
-  FormGroup,
-  FormControlLabel,
-  FormHelperText,
-} from 'material-ui/Form';
-import Checkbox from 'material-ui/Checkbox';
+import IconButton from '@material-ui/core/IconButton';
+import Popover from '@material-ui/core/Popover';
+import FormLabel from '@material-ui/core/FormLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import Checkbox from '@material-ui/core/Checkbox';
 
-import { FilterList as FilterIcon } from 'material-ui-icons';
+import FilterIcon from '@material-ui/icons/FilterList';
 
 class Filter extends Component {
   constructor(...args) {

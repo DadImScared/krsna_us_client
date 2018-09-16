@@ -3,13 +3,14 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
-import { ListItem, ListItemText } from 'material-ui/List';
-import ButtonBase from 'material-ui/ButtonBase';
-import Icon from 'material-ui/Icon';
-import Typography from 'material-ui/Typography';
-import IconButton from 'material-ui/IconButton';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import ButtonBase from '@material-ui/core/ButtonBase';
+import Icon from '@material-ui/core/Icon';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
 
-import Delete from 'material-ui-icons/Delete';
+import Delete from '@material-ui/icons/Delete';
 
 import PlayPlaylistButton from './PlayPlaylistButton';
 

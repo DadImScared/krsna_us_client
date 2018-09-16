@@ -1,9 +1,9 @@
 
 import React from 'react';
 
-import { withStyles, createMuiTheme, MuiThemeProvider } from 'material-ui/styles';
-import { indigo, blue } from 'material-ui/colors';
-import Reboot from 'material-ui/CssBaseline';
+import { withStyles, createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+import { indigo, blue } from '@material-ui/core/colors';
+import Reboot from '@material-ui/core/CssBaseline';
 
 import Navbar from '../Navbar';
 import Main from '../../components/Main';

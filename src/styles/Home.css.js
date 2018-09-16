@@ -1,5 +1,5 @@
 
-import { indigo } from 'material-ui/colors';
+import { indigo } from '@material-ui/core/colors';
 
 export default (theme) => ({
   container: {

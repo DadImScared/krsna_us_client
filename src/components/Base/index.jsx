@@ -9,7 +9,7 @@ import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 import Cookies from 'js-cookie';
 
-import withWidth from 'material-ui/utils/withWidth';
+import withWidth from '@material-ui/core/withWidth';
 
 import * as AudioActionCreators from '../../actions/audioplayer';
 import * as VideoActionCreators from '../../actions/videoplayer';

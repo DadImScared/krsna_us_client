@@ -3,13 +3,14 @@ import React, { Component } from 'react';
 
 import classNames from 'classnames';
 
-import { withStyles } from 'material-ui/styles';
-import Hidden from 'material-ui/Hidden';
-import Menu from 'material-ui-icons/Menu';
-import BottomNavigation, { BottomNavigationAction } from 'material-ui/BottomNavigation';
+import { withStyles } from '@material-ui/core/styles';
+import Hidden from '@material-ui/core/Hidden';
+import Menu from '@material-ui/icons/Menu';
+import BottomNavigation from '@material-ui/core/BottomNavigation';
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 
-import PlaylistPlay from 'material-ui-icons/PlaylistPlay';
-import MusicNote from 'material-ui-icons/MusicNote';
+import PlaylistPlay from '@material-ui/icons/PlaylistPlay';
+import MusicNote from '@material-ui/icons/MusicNote';
 
 import styles from '../styles/BottomNav.css';
 

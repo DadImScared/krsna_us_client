@@ -2,7 +2,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 
 import ProtectedRoute from '../ProtectedRoute';
 import AllPlaylists from './AllPlaylists';

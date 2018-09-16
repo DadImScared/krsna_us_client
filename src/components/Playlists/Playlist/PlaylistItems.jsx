@@ -7,14 +7,17 @@ import {
   SortableHandle
 } from 'react-sortable-hoc';
 
-import List, { ListItem, ListItemSecondaryAction, ListItemText } from 'material-ui/List';
-import Hidden from 'material-ui/Hidden';
-import IconButton from 'material-ui/IconButton';
-import Icon from 'material-ui/Icon';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import ListItemText from '@material-ui/core/ListItemText';
+import Hidden from '@material-ui/core/Hidden';
+import IconButton from '@material-ui/core/IconButton';
+import Icon from '@material-ui/core/Icon';
 
-import Delete from 'material-ui-icons/Delete';
+import Delete from '@material-ui/icons/Delete';
 
-import { DragHandle as HandleIcon } from 'material-ui-icons';
+import HandleIcon from '@material-ui/icons/DragHandle';
 
 import PlayPlaylistButton from '../PlayPlaylistButton';
 
@@ -28,7 +31,7 @@ const SortableItem = SortableElement(({ value, deleteItem, playlistId, itemIndex
   <ListItem>
     {
       isCreator ?
-        <div>
+        <div style={{ display: 'flex' }}>
           <DragHandle />
           <Hidden lgUp>
             <Icon onClick={() => deleteItem(value)} color='error'>

@@ -24,7 +24,7 @@ export default (theme) => ({
   },
   inkbar: {
     '&:after': {
-      backgroundColor: theme.palette.secondary.main
+      borderBottomColor: theme.palette.secondary.main
     }
   },
   formLabel: {

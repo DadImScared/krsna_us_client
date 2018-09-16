@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 
 import classNames from 'classnames';
 
-import { withStyles } from 'material-ui/styles';
-import Typography from 'material-ui/Typography';
+import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 
 import VirtualResults from '../VirtualResults';
 import styles from '../../styles/SearchItems.css';

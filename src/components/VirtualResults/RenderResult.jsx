@@ -1,10 +1,11 @@
 
 import React, { Component } from 'react';
 
-import { withStyles } from 'material-ui/styles';
-import Typography from 'material-ui/Typography';
-import { ListItem, ListItemText } from 'material-ui/List';
-import Divider from 'material-ui/Divider';
+import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItem from '@material-ui/core/ListItem';
+import Divider from '@material-ui/core/Divider';
 
 import CATEGORIES from '../../categories';
 import Title from '../Title';

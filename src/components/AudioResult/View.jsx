@@ -2,14 +2,15 @@
 import React from 'react';
 
 import classNames from 'classnames';
-import { withStyles } from 'material-ui/styles';
-import { ListItem, ListItemText } from 'material-ui/List';
-import Button from 'material-ui/Button';
-import Divider from 'material-ui/Divider';
-import Typography from 'material-ui/Typography';
+import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Divider from '@material-ui/core/Divider';
+import Typography from '@material-ui/core/Typography';
 
-import PlayArrow from 'material-ui-icons/PlayArrow';
-import PlaylistAdd from 'material-ui-icons/PlaylistAdd';
+import PlayArrow from '@material-ui/icons/PlayArrow';
+import PlaylistAdd from '@material-ui/icons/PlaylistAdd';
 
 import Title from '../../components/Title';
 import AddToPlaylist from './AddToPlaylist';

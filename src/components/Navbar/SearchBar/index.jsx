@@ -6,9 +6,9 @@ import queryString from 'query-string';
 import match from 'autosuggest-highlight/match';
 import parse from 'autosuggest-highlight/parse';
 
-import { MenuItem } from 'material-ui/Menu';
-import { withStyles } from 'material-ui/styles';
-import Paper from 'material-ui/Paper';
+import MenuItem from '@material-ui/core/MenuItem';
+import { withStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
 
 import View from './View';
 import { SearchBar as styles } from '../../../styles/Navbar';

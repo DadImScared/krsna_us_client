@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-import TextField from 'material-ui/TextField';
+import TextField from '@material-ui/core/TextField';
 
 import SearchButton from './SearchButton';
 
@@ -18,8 +18,9 @@ const Input = ({ classes, value , ref, pushSearch, ...other }) => (
     InputProps={{
       classes: {
         input: classes.input,
-        inkbar: classes.inkbar
+        underline: classes.inkbar
       },
+      // disableUnderline: true,
       startAdornment: (
         <SearchButton pushSearch={pushSearch} query={value} />
       ),

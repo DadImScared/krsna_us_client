@@ -3,8 +3,8 @@ import React from 'react';
 
 import { passwordValidator } from '../Register/validators';
 
-import Button from 'material-ui/Button';
-import TextField from 'material-ui/TextField';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 
 
 const fields = [

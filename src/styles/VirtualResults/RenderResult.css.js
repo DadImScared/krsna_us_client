@@ -1,5 +1,5 @@
 
-import orange from 'material-ui/colors/orange';
+import orange from '@material-ui/core/colors/orange';
 
 export default (theme) => ({
   buttonStyle: {

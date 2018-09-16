@@ -2,8 +2,8 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import { withStyles } from 'material-ui/styles';
-import Paper from 'material-ui/Paper';
+import { withStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
 
 import VideoPlayer from '../components/VideoPlayer';
 import Login from '../components/Login';

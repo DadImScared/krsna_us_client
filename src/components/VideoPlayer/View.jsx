@@ -5,8 +5,8 @@ import ReactPlayer from 'react-player';
 
 import classNames from 'classnames';
 
-import { withStyles } from 'material-ui/styles';
-import Button from 'material-ui/Button';
+import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 
 import styles from '../../styles/VideoPlayer.css';
 

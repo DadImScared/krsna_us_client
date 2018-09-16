@@ -3,23 +3,25 @@ import React, { Component } from 'react';
 
 import { Link } from 'react-router-dom';
 
-import { withStyles } from 'material-ui/styles';
-import Dialog from 'material-ui/Dialog';
-import Button from 'material-ui/Button';
-import List, { ListItem, ListItemText } from 'material-ui/List';
-import Icon from 'material-ui/Icon';
-import Divider from 'material-ui/Divider';
-import TextField from 'material-ui/TextField';
-import Checkbox from 'material-ui/Checkbox';
-import Paper from 'material-ui/Paper';
-import AppBar from 'material-ui/AppBar';
-import Toolbar from 'material-ui/Toolbar';
-import IconButton from 'material-ui/IconButton';
-import Typography from 'material-ui/Typography';
-import Slide from 'material-ui/transitions/Slide';
+import { withStyles } from '@material-ui/core/styles';
+import Dialog from '@material-ui/core/Dialog';
+import Button from '@material-ui/core/Button';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Icon from '@material-ui/core/Icon';
+import Divider from '@material-ui/core/Divider';
+import TextField from '@material-ui/core/TextField';
+import Checkbox from '@material-ui/core/Checkbox';
+import Paper from '@material-ui/core/Paper';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import Slide from '@material-ui/core/Slide';
 
-import CloseIcon from 'material-ui-icons/Close';
-import AddBox from 'material-ui-icons/AddBox';
+import CloseIcon from '@material-ui/icons/Close';
+import AddBox from '@material-ui/icons/AddBox';
 
 import { getPlaylistsWithItem, createPlaylist } from '../../actions/playlist';
 import { postItem, deleteItem } from '../../actions/playlistItem';

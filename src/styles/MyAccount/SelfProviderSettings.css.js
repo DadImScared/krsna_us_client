@@ -1,5 +1,5 @@
 
-import { green } from 'material-ui/colors';
+import { green } from '@material-ui/core/colors';
 
 export default (theme) => ({
   container: {

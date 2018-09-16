@@ -4,10 +4,10 @@ import React from 'react';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 import { Facebook } from 'mdi-material-ui';
 
-import { withStyles } from 'material-ui/styles';
-import Typography from 'material-ui/Typography';
-import Button from 'material-ui/Button';
-import SvgIcon from 'material-ui/SvgIcon';
+import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import SvgIcon from '@material-ui/core/SvgIcon';
 
 import { FacebookButton as styles } from '../../styles/SocialConnectionButtons';
 

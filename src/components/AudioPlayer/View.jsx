@@ -3,8 +3,9 @@ import React from 'react';
 
 import ReactPlayer from 'react-player';
 
-import { withStyles } from 'material-ui/styles';
-import Card, { CardContent } from 'material-ui/Card';
+import { withStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 
 import Marquee from './Marquee';
 import UIControls from './UIControls';

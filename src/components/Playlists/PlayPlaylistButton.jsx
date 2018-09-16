@@ -4,10 +4,10 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import IconButton from 'material-ui/IconButton';
-import Icon from 'material-ui/Icon';
+import IconButton from '@material-ui/core/IconButton';
+import Icon from '@material-ui/core/Icon';
 
-import PlayArrow from 'material-ui-icons/PlayArrow';
+import PlayArrow from '@material-ui/icons/PlayArrow';
 
 import { getItems } from '../../actions/playlistItem';
 import * as AudioActions from '../../actions/audioplayer';

@@ -1,14 +1,16 @@
 
 import React, { Component } from 'react';
 
-import List, { ListItem, ListItemText } from 'material-ui/List';
-import Hidden from 'material-ui/Hidden';
-import Icon from 'material-ui/Icon';
-import Tooltip from 'material-ui/Tooltip';
-import Popover from 'material-ui/Popover';
-import Typography from 'material-ui/Typography';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Hidden from '@material-ui/core/Hidden';
+import Icon from '@material-ui/core/Icon';
+import Tooltip from '@material-ui/core/Tooltip';
+import Popover from '@material-ui/core/Popover';
+import Typography from '@material-ui/core/Typography';
 
-import Info from 'material-ui-icons/Info';
+import Info from '@material-ui/icons/Info';
 
 class PlaylistItem extends Component {
   constructor(...args) {
@@ -45,7 +47,7 @@ class PlaylistItem extends Component {
                     </div>
                     <Hidden lgDown>
                       <Tooltip classes={{
-                        root: classes.tooltip,
+                        tooltip: classes.tooltip,
                         popper: `${classes.playlistPopoverContainer}`
                       }} placement='top' title={item.title}>
                         <ListItemText onClick={() => updateIndex(index)} primary={

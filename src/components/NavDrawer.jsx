@@ -2,14 +2,15 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
 
-import { withStyles } from 'material-ui/styles';
-import { MenuItem, MenuList } from 'material-ui/Menu';
-import { ListItemText } from 'material-ui/List';
-import Typography from 'material-ui/Typography';
-import Icon from 'material-ui/Icon';
-import Divider from 'material-ui/Divider';
+import { withStyles } from '@material-ui/core/styles';
+import MenuItem from '@material-ui/core/MenuItem';
+import MenuList from '@material-ui/core/MenuList';
+import ListItemText from '@material-ui/core/ListItemText';
+import Typography from '@material-ui/core/Typography';
+import Icon from '@material-ui/core/Icon';
+import Divider from '@material-ui/core/Divider';
 
-import Close from 'material-ui-icons/Close';
+import Close from '@material-ui/icons/Close';
 
 import ResponsiveDrawer from '../components/ResponsiveDrawer';
 

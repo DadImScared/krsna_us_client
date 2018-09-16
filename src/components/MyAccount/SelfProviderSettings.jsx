@@ -3,13 +3,13 @@ import React from 'react';
 
 import _ from 'lodash';
 
-import { withStyles } from 'material-ui/styles';
-import Typography from 'material-ui/Typography';
-import TextField from 'material-ui/TextField';
-import Paper from 'material-ui/Paper';
-import Divider from 'material-ui/Divider';
+import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
+import Paper from '@material-ui/core/Paper';
+import Divider from '@material-ui/core/Divider';
 
-import Fade from 'material-ui/transitions/Fade';
+import Fade from '@material-ui/core/Fade';
 
 import ChangePassword from './ChangePassword';
 import { SelfProviderSettings as styles } from '../../styles/MyAccount';
