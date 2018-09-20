@@ -14,8 +14,8 @@ export default (theme) => ({
   root: {
     height: '100%',
     width: '100%',
-    [theme.breakpoints.up('md')]: {
-      height: '404px'
+    [theme.breakpoints.up('lg')]: {
+      height: 'auto'
     },
     [theme.breakpoints.up('xl')]: {
       width: '50%'
@@ -26,7 +26,7 @@ export default (theme) => ({
     alignItems: 'center'
   },
   pictures: {
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       display: 'none'
     }
   },
@@ -36,9 +36,9 @@ export default (theme) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-around',
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('lg')]: {
       width: '60%',
-      margin: '0 auto',
+      margin: '24px auto',
       height: 'auto'
     }
   },
@@ -52,6 +52,9 @@ export default (theme) => ({
     [theme.breakpoints.up('sm')]: {
       height: '52px',
       flexDirection: 'row'
+    },
+    [theme.breakpoints.up('lg')]: {
+      height: 'auto'
     }
   },
   movie: {
