@@ -1,13 +1,13 @@
 
 import React, { Component } from 'react';
 
+import Button from '@material-ui/core/Button';
+import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Popover from '@material-ui/core/Popover';
-import FormLabel from '@material-ui/core/FormLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import Checkbox from '@material-ui/core/Checkbox';
 
 import FilterIcon from '@material-ui/icons/FilterList';
@@ -43,7 +43,11 @@ class Filter extends Component {
   }
 
   renderCheckboxes = () => {
-    const { categories, toggleCategory, classes } = this.props;
+    const {
+      categories,
+      actions: { toggleCategory, selectAllCategories, unSelectAllCategories },
+      classes
+    } = this.props;
     const checkBoxGroup = Object.keys(categories).map((category, i) => (
       <FormControlLabel
         classes={{
@@ -65,11 +69,21 @@ class Filter extends Component {
     ));
 
     return (
-      <FormControl component='fieldset'>
-        <FormGroup>
-          {checkBoxGroup}
-        </FormGroup>
-      </FormControl>
+      <div>
+        <Toolbar disableGutters={true} classes={{ root: classes.toolbar }}>
+          <Button style={{ marginRight: 4 }} onClick={selectAllCategories} variant={'outlined'} size={'small'}>
+            select all
+          </Button>
+          <Button onClick={unSelectAllCategories} variant={'outlined'} size={'small'}>
+            un-select all
+          </Button>
+        </Toolbar>
+        <FormControl component='fieldset'>
+          <FormGroup>
+            {checkBoxGroup}
+          </FormGroup>
+        </FormControl>
+      </div>
     );
   };
 

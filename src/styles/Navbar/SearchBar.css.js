@@ -22,6 +22,10 @@ export default (theme) => ({
   input: {
     width: '100%'
   },
+  toolbar: {
+    paddingLeft: 12,
+    paddingRight: 12
+  },
   inkbar: {
     '&:after': {
       borderBottomColor: theme.palette.secondary.main

@@ -8,6 +8,18 @@ export const toggleCategory = (category) => {
   };
 };
 
+export const selectAllCategories = () => {
+  return {
+    type: SearchActionTypes.SELECT_ALL_CATEGORIES
+  };
+};
+
+export const unSelectAllCategories = () => {
+  return {
+    type: SearchActionTypes.UN_SELECT_ALL_CATEGORIES
+  };
+};
+
 export const setQuery = (query) => {
   return {
     type: SearchActionTypes.SET_QUERY,

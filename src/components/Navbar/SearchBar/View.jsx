@@ -18,14 +18,14 @@ const View = ({
   handleChange,
   categories,
   clearSuggestions,
-  actions: { toggleCategory }
+  actions
 }) => (
   <div style={{ width: '500px', display: 'flex' }}>
     <Filter
       isOpen={isOpen}
       classes={classes}
       categories={categories}
-      toggleCategory={toggleCategory}
+      actions={actions}
     />
     <Autosuggest
       theme={{

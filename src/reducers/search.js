@@ -16,6 +16,19 @@ const initialState = {
   results: {}
 };
 
+const selectAllCategories = (shouldSelect = true) => {
+  return {
+    'movie': shouldSelect,
+    'book': shouldSelect,
+    'harikatha': shouldSelect,
+    'harmonistmonthly': shouldSelect,
+    'harmonistmagazine': shouldSelect,
+    'bhagavatpatrika': shouldSelect,
+    'song': shouldSelect,
+    'lecture': shouldSelect
+  };
+};
+
 export default function Search(state=initialState, action) {
   switch(action.type) {
   case SearchActionTypes.TOGGLE_CATEGORY:
@@ -25,6 +38,16 @@ export default function Search(state=initialState, action) {
         ...state.categories,
         [action.category]: !state.categories[action.category]
       }
+    };
+  case SearchActionTypes.SELECT_ALL_CATEGORIES:
+    return {
+      ...state,
+      categories: selectAllCategories()
+    };
+  case SearchActionTypes.UN_SELECT_ALL_CATEGORIES:
+    return {
+      ...state,
+      categories: selectAllCategories(false)
     };
   case SearchActionTypes.SET_QUERY:
     return {
